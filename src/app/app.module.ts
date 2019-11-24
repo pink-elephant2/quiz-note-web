@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderModule } from './shared/header/header.module';
 import { LoginModule } from './login/login.module';
 import { LogoutModule } from './logout/logout.module';
+import { QuizModule } from './quiz/quiz.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LogoutModule } from './logout/logout.module';
     AppRoutingModule,
     HeaderModule,
     LoginModule,
-    LogoutModule
+    LogoutModule,
+    QuizModule
   ],
   providers: [],
   bootstrap: [AppComponent]
