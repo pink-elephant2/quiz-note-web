@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderModule } from './shared/header/header.module';
+import { LoginModule } from './login/login.module';
+import { LogoutModule } from './logout/logout.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { HeaderModule } from './shared/header/header.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HeaderModule
+    HeaderModule,
+    LoginModule,
+    LogoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
