@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Quiz } from 'src/app/shared/service/quiz';
 
 @Component({
   selector: 'app-quiz-card',
@@ -7,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class QuizCardComponent implements OnInit {
 
-  @Input() quiz;
+  /** クイズ情報 */
+  @Input() quiz: Quiz;
 
   constructor() { }
 

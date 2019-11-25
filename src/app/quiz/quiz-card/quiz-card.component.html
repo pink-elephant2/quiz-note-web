@@ -1,7 +1,7 @@
-<div class="card hoverable">
+<div class="card hoverable" *ngIf="quiz">
   <div class="card-content">
     <span class="card-title">問題</span>
-    <p>日本一高い山は富士山ですが、世界一高い山は何？</p>
+    <p>{{quiz.question}}</p>
   </div>
   <div class="card-action right-align">
     <a href="#">編集</a>
