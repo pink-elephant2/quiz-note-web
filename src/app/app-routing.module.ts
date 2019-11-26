@@ -10,8 +10,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'quiz', component: QuizComponent },
-  { path: 'account/:cd', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
-  { path: 'group/:cd', loadChildren: () => import('./group/group.module').then(m => m.GroupModule) }
+  // { path: 'account/:cd', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
+  // { path: 'group/:cd', loadChildren: () => import('./group/group.module').then(m => m.GroupModule) }
+  { path: 'account/:cd', loadChildren: './account/account.module#AccountModule' },
+  { path: 'group/:cd', loadChildren: './group/group.module#GroupModule' }
 ];
 
 @NgModule({
