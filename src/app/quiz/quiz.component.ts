@@ -22,10 +22,9 @@ export class QuizComponent implements OnInit {
     const instances = window['M'].Chips.init(elems, options);
 
     // クイズ取得
-    this.quizList = [
-      { question: '日本一高い山は富士山ですが、世界一高い山は何？', answer: 'エベレスト' },
-      { question: '日本で一番高い山は富士山ですが、二番目に高い山は何？', answer: '北岳' }
-    ];
+    this.quizService.getQuiz().subscribe(quizList => {
+      this.quizList = quizList;
+    })
   }
 
 }

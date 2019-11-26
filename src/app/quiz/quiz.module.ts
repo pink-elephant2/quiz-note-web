@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { QuizComponent } from './quiz.component';
 import { QuizCardComponent } from './quiz-card/quiz-card.component';
 import { environment } from '../../environments/environment';
+import { QuizService, QuizMockService } from '../shared/service/quiz';
 
 
 
@@ -18,7 +19,7 @@ import { environment } from '../../environments/environment';
     QuizComponent
   ],
   providers: [
-    environment.service.quiz
+    environment.production ? QuizService : { provide: QuizService, useClass: QuizMockService }
   ]
 })
 export class QuizModule { }

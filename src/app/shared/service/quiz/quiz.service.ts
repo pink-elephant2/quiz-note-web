@@ -12,7 +12,7 @@ export class QuizService extends ApiService {
   /**
    * クイズを取得する
    */
-  public getQuiz(): Observable<Quiz> {
-    return this.get<Quiz>('/api/v1/quiz');
+  public getQuiz(): Observable<Quiz[]> {
+    return this.get<Quiz[]>('/api/v1/quiz');
   }
 }
