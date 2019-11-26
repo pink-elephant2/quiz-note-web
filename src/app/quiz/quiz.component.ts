@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Quiz } from '../shared/service/quiz';
+import { Quiz, QuizService } from '../shared/service/quiz';
 
 @Component({
   selector: 'app-quiz',
@@ -11,7 +11,7 @@ export class QuizComponent implements OnInit {
   /** クイズ情報 */
   private quizList: Quiz[] = [];
 
-  constructor() { }
+  constructor(private quizService: QuizService) { }
 
   ngOnInit() {
     // タグ初期化

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuizComponent } from './quiz.component';
 import { QuizCardComponent } from './quiz-card/quiz-card.component';
+import { environment } from '../../environments/environment';
 
 
 
@@ -15,6 +16,9 @@ import { QuizCardComponent } from './quiz-card/quiz-card.component';
   ],
   exports: [
     QuizComponent
+  ],
+  providers: [
+    environment.service.quiz
   ]
 })
 export class QuizModule { }

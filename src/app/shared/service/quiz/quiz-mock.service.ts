@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../api.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { QuizService } from './quiz.service';
 import { Quiz } from './quiz';
 
 /**
  * クイズサービス
+ * モック
  */
 @Injectable()
-export class QuizService extends ApiService {
+export class QuizMockService extends QuizService {
 
   /**
    * クイズを取得する
    */
   public getQuiz(): Observable<Quiz> {
-    return this.get<Quiz>('/api/v1/quiz');
+    return of();
   }
 }
