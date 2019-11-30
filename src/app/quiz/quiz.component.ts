@@ -9,7 +9,7 @@ import { Quiz, QuizService } from '../shared/service/quiz';
 export class QuizComponent implements OnInit {
 
   /** クイズ情報 */
-  private quizList: Quiz[] = [];
+  quizList: Quiz[] = [];
 
   constructor(private quizService: QuizService) { }
 
