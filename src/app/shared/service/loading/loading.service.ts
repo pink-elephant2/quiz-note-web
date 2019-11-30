@@ -4,7 +4,9 @@ import { BehaviorSubject } from 'rxjs';
 /**
  * ローディングサービス
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LoadingService {
 
   constructor() { }
