@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './shared/service/auth';
 import { AppComponent } from './app.component';
 import { HeaderModule } from './shared/header/header.module';
 import { LoginModule } from './login/login.module';
@@ -24,7 +25,7 @@ import { QuizModule } from './quiz/quiz.module';
     SignupModule,
     QuizModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
