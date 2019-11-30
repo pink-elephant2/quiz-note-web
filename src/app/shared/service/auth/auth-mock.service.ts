@@ -16,7 +16,6 @@ export class AuthMockService extends AuthService {
    * ログイン
    */
   public login(form: LoginForm): Observable<boolean> {
-    // TODO
     // if (!AccountMockService.accountList.find(account => account.loginId === form.loginId)) {
     //   // ログイン失敗
     //   return of(false);

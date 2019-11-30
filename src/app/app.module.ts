@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderModule } from './shared/header/header.module';
 import { LoginModule } from './login/login.module';
 import { LogoutModule } from './logout/logout.module';
+import { SignupModule } from './signup/signup.module';
 import { QuizModule } from './quiz/quiz.module';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { QuizModule } from './quiz/quiz.module';
     HeaderModule,
     LoginModule,
     LogoutModule,
+    SignupModule,
     QuizModule
   ],
   providers: [],
