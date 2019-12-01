@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { PhotoService, Photo } from 'shared/service/photo';
+import { QuizService, Quiz } from '../../shared/service/quiz';
 
 @Component({
   selector: 'app-account-post',
@@ -13,23 +13,23 @@ export class AccountPostComponent implements OnChanges {
   /** 投稿数 */
   @Output() postCount: EventEmitter<number> = new EventEmitter<number>();
 
-  photoList: Photo[];
+  quizList: Quiz[];
 
-  constructor(private photoService: PhotoService) { }
+  constructor(private quizService: QuizService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     // ログインIDを渡されない場合(ブロックなど)
     if (!this.loginId) {
-      this.photoList = [];
+      this.quizList = [];
       this.postCount.emit(0);
       return;
     }
-    this.photoService.getPhotoList(this.loginId).subscribe(photoPage => {
-      this.photoList = photoPage.content;
+    this.quizService.getQuizList(this.loginId).subscribe(quizPage => {
+      this.quizList = quizPage.content;
 
       // 親に投稿数を渡す
       setTimeout(() => {
-        this.postCount.emit(this.photoList.length);
+        this.postCount.emit(this.quizList.length);
       });
     });
   }

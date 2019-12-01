@@ -10,6 +10,7 @@ import { LoginModule } from './login/login.module';
 import { LogoutModule } from './logout/logout.module';
 import { SignupModule } from './signup/signup.module';
 import { QuizModule } from './quiz/quiz.module';
+import { AccountModule } from './account/account.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { QuizModule } from './quiz/quiz.module';
     LoginModule,
     LogoutModule,
     SignupModule,
-    QuizModule
+    QuizModule,
+    AccountModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

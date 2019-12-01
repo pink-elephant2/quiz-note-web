@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AccountPostComponent } from './account-post.component';
-import { PhotoService, PhotoMockService } from 'shared/service/photo';
+import { QuizService, QuizMockService } from '../../shared/service/quiz';
 
 describe('AccountPostComponent', () => {
   let component: AccountPostComponent;
@@ -17,7 +17,7 @@ describe('AccountPostComponent', () => {
       ],
       declarations: [AccountPostComponent],
       providers: [
-        { provide: PhotoService, useClass: PhotoMockService }
+        { provide: QuizService, useClass: QuizMockService }
       ]
     })
       .compileComponents();

@@ -4,10 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AccountMenuComponent } from './account-menu.component';
-import { AccountService, AccountMockService } from 'shared/service/account';
-import { AuthService, AuthMockService } from 'shared/service/auth';
-import { LoadingService } from 'shared/service/loading';
-import { NavigateService } from 'shared/service/navigate';
+import { AccountService, AccountMockService } from '../../shared/service/account';
+import { AuthService, AuthMockService } from '../../shared/service/auth';
+import { LoadingService } from '../../shared/service/loading';
+import { NavigateService } from '../../shared/service/navigate';
 
 describe('AccountMenuComponent', () => {
   let component: AccountMenuComponent;

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { FollowService } from 'shared/service/follow';
-import { Account } from 'shared/service/account';
+import { FollowService } from '../../shared/service/follow';
+import { Account } from '../../shared/service/account';
 
 @Component({
   selector: 'app-account-followers',

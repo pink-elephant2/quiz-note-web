@@ -15,6 +15,7 @@ import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { AccountService, AccountMockService } from '../shared/service/account';
 import { AuthService, AuthMockService } from '../shared/service/auth';
 import { FollowService, FollowMockService } from '../shared/service/follow';
+import { QuizService, QuizMockService } from '../shared/service/quiz';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { FollowService, FollowMockService } from '../shared/service/follow';
     environment.production ? AccountService : { provide: AccountService, useClass: AccountMockService },
     environment.production ? AuthService : { provide: AuthService, useClass: AuthMockService },
     environment.production ? FollowService : { provide: FollowService, useClass: FollowMockService },
+    environment.production ? QuizService : { provide: QuizService, useClass: QuizMockService },
     NavigateService
   ]
 })

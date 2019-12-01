@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccountFollowersComponent } from './account-followers.component';
-import { AccountCardModule } from 'shared/component';
-import { FollowService, FollowMockService } from 'shared/service/follow';
+import { AccountCardComponent } from '../account-card/account-card.component';
+import { FollowService, FollowMockService } from '../../shared/service/follow';
 
 describe('AccountFollowersComponent', () => {
   let component: AccountFollowersComponent;
@@ -10,10 +10,11 @@ describe('AccountFollowersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AccountCardModule
+      imports: [],
+      declarations: [
+        AccountFollowersComponent,
+        AccountCardComponent
       ],
-      declarations: [AccountFollowersComponent],
       providers: [
         { provide: FollowService, useClass: FollowMockService }
       ]

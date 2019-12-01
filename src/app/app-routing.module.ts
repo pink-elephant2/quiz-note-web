@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SignupComponent } from './signup/signup.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { AccountComponent } from './account/account.component';
 
 
 const routes: Routes = [
@@ -14,11 +15,11 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'signup', component: SignupComponent, data: { title: 'ユーザー登録' } },
   { path: 'quiz', component: QuizComponent },
-  // { path: 'account/:cd', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
+  { path: 'account', component: AccountComponent, data: { title: 'マイページ' }, canActivate: [AuthGuard] },
   // { path: 'group/:cd', loadChildren: () => import('./group/group.module').then(m => m.GroupModule) }
-  { path: 'account/:cd', loadChildren: './account/account.module#AccountModule' },
   { path: 'group/:cd', loadChildren: './group/group.module#GroupModule' },
   { path: 'setting', loadChildren: './setting/setting.module#SettingModule', canActivate: [AuthGuard] },
+  { path: ':loginId', component: AccountComponent, data: { title: 'アカウント' } }
 ];
 
 @NgModule({

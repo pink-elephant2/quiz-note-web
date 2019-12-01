@@ -22,8 +22,8 @@ export class QuizComponent implements OnInit {
     const instances = window['M'].Chips.init(elems, options);
 
     // クイズ取得
-    this.quizService.getQuiz().subscribe(quizList => {
-      this.quizList = quizList;
+    this.quizService.getQuizList().subscribe(quizList => {
+      this.quizList = quizList.content;
     })
   }
 

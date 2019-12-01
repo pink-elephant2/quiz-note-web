@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Account } from 'shared/service/account';
+import { Account } from '../../shared/service/account';
 
 /**
  * アカウントカード
