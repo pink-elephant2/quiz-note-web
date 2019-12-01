@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { QuizComponent } from './quiz.component';
 import { QuizCardComponent } from './quiz-card/quiz-card.component';
 import { environment } from '../../environments/environment';
 import { QuizService, QuizMockService } from '../shared/service/quiz';
-
 
 
 @NgModule({
@@ -13,7 +14,9 @@ import { QuizService, QuizMockService } from '../shared/service/quiz';
     QuizCardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     QuizComponent

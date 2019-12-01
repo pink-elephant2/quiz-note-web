@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+
 import { AuthService } from '../shared/service/auth';
 import { Quiz, QuizService } from '../shared/service/quiz';
+import { QuizForm } from './quiz-form';
 
 @Component({
   selector: 'app-quiz',
@@ -9,13 +12,24 @@ import { Quiz, QuizService } from '../shared/service/quiz';
 })
 export class QuizComponent implements OnInit {
 
+  /** 入力フォーム */
+  form: FormGroup;
+
   /** クイズ情報 */
   quizList: Quiz[] = [];
 
+  /** バリデーション失敗 */
+  isInValid: boolean;
+  /** APIエラー */
+  isError: boolean;
+
   constructor(
+    private formBuilder: FormBuilder,
     private authService: AuthService,
     private quizService: QuizService
-  ) { }
+  ) {
+    this.form = this.formBuilder.group(QuizForm.validators);
+  }
 
   ngOnInit() {
     // タグ初期化
