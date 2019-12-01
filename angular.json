@@ -65,6 +65,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "stg": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stg.ts"
+                }
+              ]
             }
           }
         },
@@ -76,6 +84,9 @@
           "configurations": {
             "production": {
               "browserTarget": "quiz-note-web:build:production"
+            },
+            "stg": {
+              "browserTarget": "quiz-note-web:build:stg"
             }
           }
         },
@@ -128,6 +139,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "quiz-note-web"
 }

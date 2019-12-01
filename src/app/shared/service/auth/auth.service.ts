@@ -15,7 +15,8 @@ export class AuthService extends ApiService {
 
   /** ログイン状態か */
   public get authenticated(): boolean {
-    return localStorage.getItem('isLoggedIn') === 'true' && this._loginId !== undefined;
+    // return localStorage.getItem('isLoggedIn') === 'true' && this._loginId !== undefined;
+    return localStorage.getItem('isLoggedIn') === 'true';
   }
 
   /** ログイン検知 */
