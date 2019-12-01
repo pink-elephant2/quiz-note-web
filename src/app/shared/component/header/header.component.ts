@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
-import { APP_TITLE } from '../const';
-import { AuthService } from '../service/auth';
-import { AccountService, Account } from '../service/account';
+import { APP_TITLE } from '../../const';
+import { AuthService } from '../../service/auth';
+import { AccountService, Account } from '../../service/account';
 
 /**
  * ヘッダー
@@ -12,7 +12,7 @@ import { AccountService, Account } from '../service/account';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
 
   /** タイトル */
   title = APP_TITLE;
@@ -32,8 +32,6 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    window['$']('.sidenav').sidenav();
-
     if (location.pathname === '/maintenance') {
       this.isLink = false;
       return;
@@ -52,6 +50,11 @@ export class HeaderComponent implements OnInit {
         this.account = undefined;
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    // サイドメニュー初期化
+    window['$']('.sidenav').sidenav();
 
     // ドロップダウン初期化
     const option = {
@@ -59,5 +62,4 @@ export class HeaderComponent implements OnInit {
     };
     window['M'].Dropdown.init(document.querySelectorAll('.dropdown-trigger'), option);
   }
-
 }

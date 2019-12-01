@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import { AuthService, AuthMockService } from '../service/auth';
+import { AuthService, AuthMockService } from '../../service/auth';
 import { HttpClientModule } from '@angular/common/http';
-import { AccountService, AccountMockService } from '../service/account';
+import { AccountService, AccountMockService } from '../../service/account';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
