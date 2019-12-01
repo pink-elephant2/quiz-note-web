@@ -1,0 +1,15 @@
+RewriteEngine on
+RewriteBase /
+
+#------------------
+# 共通設定
+#------------------
+DirectoryIndex /quiz-note/index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /quiz-note/ [L]
+</IfModule>
