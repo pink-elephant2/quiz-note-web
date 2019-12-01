@@ -13,10 +13,7 @@ export class QuizService extends ApiService {
   /**
    * クイズ一覧を取得する
    */
-  public getQuizList(loginId?: string, pageable?: Pageable): Observable<Page<Quiz>> {
-    const params = loginId ? {
-      'loginId': loginId
-    } : {};
-    return this.get<Quiz[]>('/api/v1/quiz', Object.assign(params, pageable));
+  public getQuizList(loginId: string, pageable?: Pageable): Observable<Page<Quiz>> {
+    return this.get<Quiz[]>(`/api/v1/user/${loginId}/quiz`, pageable);
   }
 }
