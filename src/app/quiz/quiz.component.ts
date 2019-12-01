@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '../shared/service/auth';
 import { Quiz, QuizService } from '../shared/service/quiz';
 import { QuizForm } from './quiz-form';
+import { LoadingService } from '../shared/service/loading';
 
 @Component({
   selector: 'app-quiz',
@@ -26,7 +27,8 @@ export class QuizComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private quizService: QuizService
+    private quizService: QuizService,
+    private loadingService: LoadingService
   ) {
     this.form = this.formBuilder.group(QuizForm.validators);
   }
@@ -45,4 +47,15 @@ export class QuizComponent implements OnInit {
     })
   }
 
-}
+  /**
+   * 登録ボタン
+   * @param form 入力フォーム
+   * @param isValid 有効か
+   */
+  onSubmit(form: QuizForm, isValid: boolean) {
+    if (!isValid) {
+      return;
+    }
+    this.isInValid = false;
+    this.isError = false;
+  }}
