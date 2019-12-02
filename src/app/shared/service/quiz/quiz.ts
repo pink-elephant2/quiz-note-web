@@ -7,4 +7,10 @@ export class Quiz {
 
   /** 答え */
   answer: string;
+
+  /** ヒント */
+  hint?: string;
+
+  /** 解説 */
+  explanation?: string;
 }

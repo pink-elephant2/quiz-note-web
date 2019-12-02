@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { AuthService } from '../shared/service/auth';
@@ -58,4 +59,29 @@ export class QuizComponent implements OnInit {
     }
     this.isInValid = false;
     this.isError = false;
-  }}
+
+    this.loadingService.setLoading(true);
+
+    // クイズを登録する
+    this.quizService.postQuiz(this.authService.loginId, form).subscribe((quiz: Quiz) => {
+      this.loadingService.setLoading(false);
+
+      if (quiz) {
+
+      }
+    }, (error: HttpErrorResponse) => {
+      this.loadingService.setLoading(false);
+      console.error(error);
+
+      switch (error.status) {
+        case 403:
+          this.isInValid = true;
+          break;
+        case 500:
+        default:
+          this.isError = true;
+          break;
+      }
+    });
+  }
+}

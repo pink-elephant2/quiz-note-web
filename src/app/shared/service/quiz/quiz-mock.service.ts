@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { QuizService } from './quiz.service';
 import { Quiz } from './quiz';
 import { Page, Pageable } from '../../model';
+import { QuizForm } from 'src/app/quiz/quiz-form';
 
 /**
  * クイズサービス
@@ -33,5 +34,12 @@ export class QuizMockService extends QuizService {
     return of({
       content: quizList
     } as Page<Quiz>);
+  }
+
+  /**
+   * クイズを登録する
+   */
+  public postQuiz(loginId: string, form: QuizForm): Observable<Quiz> {
+    return of(QuizMockService.quizList[0]);
   }
 }

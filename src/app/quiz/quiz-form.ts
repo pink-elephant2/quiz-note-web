@@ -21,9 +21,9 @@ export class QuizForm {
     /** 答え */
     answer: ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
     /** ヒント */
-    hint: ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
+    hint: ['', Validators.compose([Validators.maxLength(50)])],
     /** 解説 */
-    explanation: ['', Validators.compose([Validators.required, Validators.maxLength(100)])]
+    explanation: ['', Validators.compose([Validators.maxLength(100)])]
   };
 
 }

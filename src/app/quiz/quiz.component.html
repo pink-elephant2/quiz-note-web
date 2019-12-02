@@ -13,10 +13,41 @@
       </div>
     </div>
     <div class="row">
+      <div class="input-field col s12">
+        <input id="answer" type="text" class="validate" formControlName="answer">
+        <label for="answer">答えを入力</label>
+        <ng-container *ngIf="form.controls['answer'].touched">
+          <span class="helper-text" *ngIf="form.controls['answer'].hasError('required')" data-error="入力してください"></span>
+          <span class="helper-text" *ngIf="form.controls['answer'].hasError('maxlength')"
+            data-error="50文字以内で入力してください"></span>
+        </ng-container>
+      </div>
+    </div>
+    <div class="row">
       <div class="col s12">
         <div class="chips">
           <input class="custom-class">
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="hint" type="text" class="validate" formControlName="hint">
+        <label for="hint">ヒントを入力</label>
+        <ng-container *ngIf="form.controls['hint'].touched">
+          <span class="helper-text" *ngIf="form.controls['hint'].hasError('maxlength')"
+            data-error="50文字以内で入力してください"></span>
+        </ng-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="explanation" type="text" class="validate" formControlName="explanation">
+        <label for="explanation">解説を入力</label>
+        <ng-container *ngIf="form.controls['explanation'].touched">
+          <span class="helper-text" *ngIf="form.controls['explanation'].hasError('maxlength')"
+            data-error="100文字以内で入力してください"></span>
+        </ng-container>
       </div>
     </div>
 
