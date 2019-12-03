@@ -5,8 +5,11 @@
 
         <ng-container *ngIf="isLink">
           <ul class="right hide-on-med-and-down">
-            <li><a routerLink="create"><i class="material-icons">photo_camera</i></a></li>
-            <li><a routerLink="activity"><i class="material-icons">favorite</i></a></li>
+            <!-- ログイン時 -->
+            <ng-container *ngIf="authenticated">
+              <li><a routerLink="quiz"><i class="material-icons">bookmark</i></a></li>
+              <!-- <li><a routerLink="activity"><i class="material-icons">favorite</i></a></li> -->
+            </ng-container>
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">
                 <i *ngIf="!account" class="material-icons">person</i>
                 <img *ngIf="account" [src]="account.imgUrl || '/assets/images/account.png'" [alt]="account.loginId"
@@ -41,8 +44,8 @@
   <ul id="nav-mobile" class="sidenav" *ngIf="isLink">
     <!-- ログイン時 -->
     <ng-container *ngIf="authenticated">
-      <li><a routerLink="create" class="sidenav-close"><i class="material-icons">photo_camera</i>投稿</a></li>
-      <li><a routerLink="activity" class="sidenav-close"><i class="material-icons">favorite</i>アクティビティ</a></li>
+      <li><a routerLink="quiz" class="sidenav-close"><i class="material-icons">bookmark</i>クイズ手帳</a></li>
+      <!-- <li><a routerLink="activity" class="sidenav-close"><i class="material-icons">favorite</i>アクティビティ</a></li> -->
       <li><a routerLink="account" class="sidenav-close"><i class="material-icons">person</i>アカウント</a></li>
       <li><a routerLink="logout" class="sidenav-close"><i class="material-icons">exit_to_app</i>ログアウト</a></li>
     </ng-container>
