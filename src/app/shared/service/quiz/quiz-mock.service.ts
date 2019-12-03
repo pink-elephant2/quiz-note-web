@@ -13,8 +13,16 @@ import { QuizForm } from 'src/app/quiz/quiz-form';
 export class QuizMockService extends QuizService {
 
   private static quizList: Quiz[] = [
-    { question: '日本一高い山は富士山ですが、世界一高い山は何？', answer: 'エベレスト' },
-    { question: '日本で一番高い山は富士山ですが、二番目に高い山は何？', answer: '北岳' }
+    {
+      id: 1,
+      question: '日本一高い山は富士山ですが、世界一高い山は何？',
+      answer: 'エベレスト'
+    },
+    {
+      id: 2,
+      question: '日本で一番高い山は富士山ですが、二番目に高い山は何？',
+      answer: '北岳'
+    }
   ];
 
   /**

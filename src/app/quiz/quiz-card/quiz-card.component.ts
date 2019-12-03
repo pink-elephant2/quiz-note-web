@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { Quiz } from 'src/app/shared/service/quiz';
 
 @Component({
@@ -6,14 +6,26 @@ import { Quiz } from 'src/app/shared/service/quiz';
   templateUrl: './quiz-card.component.html',
   styleUrls: ['./quiz-card.component.scss']
 })
-export class QuizCardComponent implements OnInit {
+export class QuizCardComponent implements OnInit, AfterViewInit {
 
   /** クイズ情報 */
   @Input() quiz: Quiz;
 
+  /** モーダル */
+  private modalInstance: any;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit(): void {
+    if (this.quiz) {
+      // モーダル
+      this.modalInstance = window['M'].Modal.init(document.getElementById('modal' + this.quiz.id), {
+        endingTop: '30%'
+      });
+    }
   }
 
 }

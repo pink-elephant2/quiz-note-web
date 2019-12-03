@@ -2,6 +2,10 @@
  * クイズ情報
  */
 export class Quiz {
+
+  /** ID */
+  id: number;
+
   /** 問題 */
   question: string;
 
