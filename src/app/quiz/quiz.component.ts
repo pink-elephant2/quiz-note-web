@@ -45,7 +45,10 @@ export class QuizComponent implements OnInit {
     // クイズ取得
     this.quizService.getQuizList(this.authService.loginId).subscribe(quizList => {
       this.quizList = quizList.content;
-    })
+
+      var elems = document.querySelectorAll('.collapsible');
+      var instances = window['M'].Collapsible.init(elems, options);
+    });
   }
 
   /**
@@ -67,7 +70,7 @@ export class QuizComponent implements OnInit {
       this.loadingService.setLoading(false);
 
       if (quiz) {
-
+        this.quizList.unshift(quiz);
       }
     }, (error: HttpErrorResponse) => {
       this.loadingService.setLoading(false);

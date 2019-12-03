@@ -1,5 +1,5 @@
 <section class="section animated fadeIn">
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)" autocomplete="off">
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">mic</i>
@@ -61,9 +61,16 @@
   </form>
 </section>
 <section class="section">
-  <div class="row">
-    <div class="col s12 m4" *ngFor="let quiz of quizList">
-      <app-quiz-card [quiz]="quiz"></app-quiz-card>
-    </div>
-  </div>
+  <ul class="collapsible">
+    <li *ngFor="let quiz of quizList">
+      <div class="collapsible-header">
+        <i class="material-icons right">keyboard_arrow_down</i>
+        {{quiz.question}}
+      </div>
+      <div class="collapsible-body">
+        <div class="row">答え：<span>{{quiz.answer}}</span></div>
+        <div class="row">解説：<span>{{quiz.explanation}}</span></div>
+      </div>
+    </li>
+  </ul>
 </section>
