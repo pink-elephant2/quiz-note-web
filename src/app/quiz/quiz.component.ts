@@ -40,11 +40,17 @@ export class QuizComponent implements OnInit {
 
   ngOnInit() {
     // タグ初期化
-    const options = {
+    window['M'].Chips.init(document.querySelectorAll('.chips'), {
       placeholder: 'タグを入力'
-    };
-    const elems = document.querySelectorAll('.chips');
-    const instances = window['M'].Chips.init(elems, options);
+    });
+
+    // FAB初期化
+    window['M'].FloatingActionButton.init(document.querySelectorAll('.fixed-action-btn'), {});
+
+    // ツールチップ初期化
+    window['M'].Tooltip.init(document.querySelectorAll('.tooltipped'), {
+      position: 'left'
+    });
 
     // クイズ取得
     this.getQuizList();
