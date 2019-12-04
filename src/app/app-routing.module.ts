@@ -11,10 +11,10 @@ import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
-  { path: 'signup', component: SignupComponent, data: { title: 'ユーザー登録' } },
-  { path: 'quiz', component: QuizComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, data: { title: 'ログイン' } },
+  { path: 'logout', component: LogoutComponent, data: { title: 'ログアウト' }, canActivate: [AuthGuard] },
+  { path: 'signup', component: SignupComponent, data: { title: '新規アカウント登録' } },
+  { path: 'quiz', component: QuizComponent, data: { title: 'クイズ一覧' }, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, data: { title: 'マイページ' }, canActivate: [AuthGuard] },
   // { path: 'group/:cd', loadChildren: () => import('./group/group.module').then(m => m.GroupModule) }
   { path: 'group/:cd', loadChildren: './group/group.module#GroupModule', canActivate: [AuthGuard] },
