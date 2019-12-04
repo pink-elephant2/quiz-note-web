@@ -29,6 +29,9 @@ export class QuizComponent implements OnInit {
   /** APIエラー */
   isError: boolean;
 
+  /** 新規登録モード TODO あとでコンポーネント化 */
+  isCreate: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -92,8 +95,7 @@ export class QuizComponent implements OnInit {
       this.pagination = new Array(endIndex - startIndex + 1).fill(0).map((v, i) => i + startIndex);
 
       // 折りたたみリスト初期化
-      const elems = document.querySelectorAll('.collapsible');
-      const instances = window['M'].Collapsible.init(elems, {});
+      window['M'].Collapsible.init(document.querySelectorAll('.collapsible'), {});
     });
   }
 
@@ -122,6 +124,10 @@ export class QuizComponent implements OnInit {
           // 末尾を削除
           this.quizData.content.pop();
         }
+
+        // フォームを閉じる
+        this.isCreate = false;
+        this.form.reset();
       }
     }, (error: HttpErrorResponse) => {
       this.loadingService.setLoading(false);
@@ -139,5 +145,11 @@ export class QuizComponent implements OnInit {
     });
   }
 
-
+  /**
+   * クイズ登録フォームを表示する
+   */
+  openCreateForm(): void {
+    this.isCreate = true;
+    window.scrollTo(0, 0);
+  }
 }

@@ -1,4 +1,4 @@
-<section class="section animated fadeIn">
+<section [ngClass]="isCreate ? 'section animated fadeIn' : 'hide'">
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)" autocomplete="off">
     <div class="row">
       <div class="input-field col s12">
@@ -63,7 +63,7 @@
 <section class="section">
   <ul class="collapsible">
     <ng-container *ngIf="quizData">
-      <li *ngFor="let quiz of quizData.content">
+      <li *ngFor="let quiz of quizData.content" class="animated fadeIn">
         <div class="collapsible-header">
           <i class="material-icons right">keyboard_arrow_down</i>
           {{quiz.question}}
@@ -103,7 +103,7 @@
         <i class="material-icons">volume_up</i></a>
     </li>
     <li>
-      <a class="btn-floating blue tooltipped" data-tooltip="新規クイズ登録">
+      <a class="btn-floating blue tooltipped" data-tooltip="新規クイズ登録" (click)="openCreateForm()">
         <i class="material-icons">create</i></a>
     </li>
   </ul>

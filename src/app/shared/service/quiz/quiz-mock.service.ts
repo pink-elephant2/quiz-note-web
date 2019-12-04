@@ -40,7 +40,14 @@ export class QuizMockService extends QuizService {
       quizList = quizList.slice(start, end);
     }
     return of({
-      content: quizList
+      content: quizList,
+      totalElements: QuizMockService.quizList.length,
+      totalPages: Math.ceil(QuizMockService.quizList.length / 20),
+      size: 20,
+      number: pageable ? pageable.page : 0,
+      numberOfElements: quizList.length,
+      first: !(pageable && pageable.page !== 0),
+      last: !(pageable && pageable.page + 1 !== Math.ceil(QuizMockService.quizList.length / 20))
     } as Page<Quiz>);
   }
 
@@ -48,6 +55,6 @@ export class QuizMockService extends QuizService {
    * クイズを登録する
    */
   public postQuiz(loginId: string, form: QuizForm): Observable<Quiz> {
-    return of(QuizMockService.quizList[0]);
+    return of(Object.assign(new Quiz(), form));
   }
 }
