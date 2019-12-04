@@ -6,6 +6,7 @@ import { AuthService } from '../shared/service/auth';
 import { Quiz, QuizService } from '../shared/service/quiz';
 import { QuizForm } from './quiz-form';
 import { LoadingService } from '../shared/service/loading';
+import { Page, Pageable } from '../shared/model';
 
 @Component({
   selector: 'app-quiz',
@@ -18,7 +19,10 @@ export class QuizComponent implements OnInit {
   form: FormGroup;
 
   /** クイズ情報 */
-  quizList: Quiz[] = [];
+  quizData: Page<Quiz>;
+
+  /** ページネーション */
+  pagination: number[] = [];
 
   /** バリデーション失敗 */
   isInValid: boolean;
@@ -43,11 +47,47 @@ export class QuizComponent implements OnInit {
     const instances = window['M'].Chips.init(elems, options);
 
     // クイズ取得
-    this.quizService.getQuizList(this.authService.loginId).subscribe(quizList => {
-      this.quizList = quizList.content;
+    this.getQuizList();
+  }
 
-      var elems = document.querySelectorAll('.collapsible');
-      var instances = window['M'].Collapsible.init(elems, options);
+  /**
+   * クイズを取得する
+   */
+  getQuizList(pageable?: Pageable) {
+    if (pageable && this.quizData && (pageable.page < 0 || this.quizData.totalPages <= pageable.page)) {
+      return;
+    }
+
+    // クイズ取得
+    this.quizService.getQuizList(this.authService.loginId, pageable).subscribe(quizData => {
+      this.quizData = quizData;
+
+      // ページネーション設定
+      const backSpan = Math.floor((this.quizData.totalPages - 1) / 2);
+      const forthSpan = (this.quizData.totalPages - 1) - backSpan;
+      let startIndex: number;
+      let endIndex: number;
+      const length = 5;
+
+      if (this.quizData.number - backSpan < 1) {
+        // 表示幅に従うと存在しないページ(0ページ以下)が生成されるので、1ページから始める
+        startIndex = 1;
+        endIndex = length < this.quizData.totalPages ? length : this.quizData.totalPages;
+      } else if (this.quizData.number + forthSpan > this.quizData.totalPages) {
+        // 表示幅に従うと存在しないページ(最終ページ以降)が生成されるので、表示領域を最終ページから逆算する
+        startIndex = this.quizData.totalPages - (length - 1) > 1 ? this.quizData.totalPages - (length - 1) : 1;
+        endIndex = this.quizData.totalPages;
+      } else {
+        // その間なので、中央にcurrentがくるように配置する。
+        // ページのリストの端に当たっていないので、単純に中央にくるような両端を考えればよい。
+        startIndex = this.quizData.number - backSpan;
+        endIndex = this.quizData.number + forthSpan;
+      }
+      this.pagination = new Array(endIndex - startIndex + 1).fill(0).map((v, i) => i + startIndex);
+
+      // 折りたたみリスト初期化
+      const elems = document.querySelectorAll('.collapsible');
+      const instances = window['M'].Collapsible.init(elems, {});
     });
   }
 
@@ -70,7 +110,12 @@ export class QuizComponent implements OnInit {
       this.loadingService.setLoading(false);
 
       if (quiz) {
-        this.quizList.unshift(quiz);
+        // 先頭に追加
+        this.quizData.content.unshift(quiz);
+        if (this.quizData.size < this.quizData.content.length) {
+          // 末尾を削除
+          this.quizData.content.pop();
+        }
       }
     }, (error: HttpErrorResponse) => {
       this.loadingService.setLoading(false);
@@ -87,4 +132,6 @@ export class QuizComponent implements OnInit {
       }
     });
   }
+
+
 }
