@@ -11,6 +11,7 @@ import { LogoutModule } from './logout/logout.module';
 import { SignupModule } from './signup/signup.module';
 import { QuizModule } from './quiz/quiz.module';
 import { AccountModule } from './account/account.module';
+import { LoadingModule } from './shared/component/loading';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AccountModule } from './account/account.module';
     LogoutModule,
     SignupModule,
     QuizModule,
-    AccountModule
+    AccountModule,
+    LoadingModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
