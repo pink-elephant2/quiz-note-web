@@ -32,6 +32,12 @@ export class QuizComponent implements OnInit {
   /** 新規登録モード TODO あとでコンポーネント化 */
   isCreate: boolean;
 
+  /** FABインスタンス */
+  fabInstance: any;
+
+  /** ツールチップインスタンス */
+  tooltipInstance: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -48,10 +54,10 @@ export class QuizComponent implements OnInit {
     });
 
     // FAB初期化
-    window['M'].FloatingActionButton.init(document.querySelectorAll('.fixed-action-btn'), {});
+    this.fabInstance = window['M'].FloatingActionButton.init(document.querySelectorAll('.fixed-action-btn'), {});
 
     // ツールチップ初期化
-    window['M'].Tooltip.init(document.querySelectorAll('.tooltipped'), {
+    this.tooltipInstance = window['M'].Tooltip.init(document.querySelectorAll('.tooltipped'), {
       position: 'left'
     });
 
@@ -151,5 +157,7 @@ export class QuizComponent implements OnInit {
   openCreateForm(): void {
     this.isCreate = true;
     window.scrollTo(0, 0);
+    this.tooltipInstance[1].close();
+    this.fabInstance[0].close();
   }
 }
