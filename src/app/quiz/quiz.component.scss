@@ -7,11 +7,11 @@
 }
 
 /* アイコンを回転させる */
-.collapsible li i {
+.collapsible li i.arrow {
   animation: spinof 0.2s linear;
   transform: rotate(0deg);
 }
-.collapsible li.active i {
+.collapsible li.active i.arrow {
   animation: spinon 0.2s linear;
   transform: rotate(180deg);
 }
