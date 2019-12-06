@@ -92,15 +92,15 @@
 
   <ul class="pagination" *ngIf="this.pagination.length > 0">
     <li [ngClass]="quizData.first ? 'disabled' : 'waves-effect'">
-      <a (click)="getQuizList({page: quizData.number - 1})">
+      <a (click)="getQuizList(quizData.number - 1)">
         <i class="material-icons">chevron_left</i>
       </a>
     </li>
     <li *ngFor="let i of this.pagination" [ngClass]="quizData.number + 1 == i ? 'active' : 'waves-effect'">
-      <a (click)="getQuizList({page: i - 1})">{{i}}</a>
+      <a (click)="getQuizList(i - 1)">{{i}}</a>
     </li>
     <li [ngClass]="quizData.last ? 'disabled' : 'waves-effect'">
-      <a (click)="getQuizList({page: quizData.number + 1})">
+      <a (click)="getQuizList(quizData.number + 1)">
         <i class="material-icons">chevron_right</i>
       </a>
     </li>

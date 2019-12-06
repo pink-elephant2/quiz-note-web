@@ -68,10 +68,13 @@ export class QuizComponent implements OnInit {
   /**
    * クイズを取得する
    */
-  getQuizList(pageable?: Pageable) {
-    if (pageable && this.quizData && (pageable.page < 0 || this.quizData.totalPages <= pageable.page)) {
+  getQuizList(page?: number) {
+    if (page !== undefined && this.quizData && (page < 0 || this.quizData.totalPages <= page)) {
       return;
     }
+    const pageable = {
+      'page': page || 0
+    } as Pageable;
 
     // クイズ取得
     this.quizService.getQuizList(this.authService.loginId, pageable).subscribe(quizData => {
