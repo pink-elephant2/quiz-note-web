@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiDomain: ''
+  apiDomain: '',
+  analytics: {
+    id: ''
+  },
 };
 
 /*

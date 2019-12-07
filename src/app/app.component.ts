@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { APP_TITLE } from './shared/const';
+import { GaService } from './shared/service/ga';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private gaService: GaService
   ) { }
 
   ngOnInit() {
@@ -24,6 +26,9 @@ export class AppComponent implements OnInit {
       const titles: Array<string> = this.getRouterData(this.router.routerState, this.router.routerState.root, 'title');
       const title = ((titles.length > 0) ? titles.pop() + ' - ' : '') + APP_TITLE;
       this.titleService.setTitle(title);
+
+      // tracking
+      this.gaService.sendPageView(params.url);
     });
   }
 
