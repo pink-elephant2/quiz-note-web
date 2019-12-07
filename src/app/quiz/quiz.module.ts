@@ -6,12 +6,14 @@ import { QuizComponent } from './quiz.component';
 import { QuizCardComponent } from './quiz-card/quiz-card.component';
 import { environment } from '../../environments/environment';
 import { QuizService, QuizMockService } from '../shared/service/quiz';
+import { QuizFormComponent } from './quiz-form/quiz-form.component';
 
 
 @NgModule({
   declarations: [
     QuizComponent,
-    QuizCardComponent
+    QuizCardComponent,
+    QuizFormComponent
   ],
   imports: [
     CommonModule,

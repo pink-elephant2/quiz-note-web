@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { AuthService } from '../shared/service/auth';
 import { Quiz, QuizService } from '../shared/service/quiz';
-import { QuizForm } from './quiz-form';
-import { LoadingService } from '../shared/service/loading';
 import { Page, Pageable } from '../shared/model';
 
 @Component({
@@ -15,21 +11,13 @@ import { Page, Pageable } from '../shared/model';
 })
 export class QuizComponent implements OnInit {
 
-  /** 入力フォーム */
-  form: FormGroup;
-
   /** クイズ情報 */
   quizData: Page<Quiz>;
 
   /** ページネーション */
   pagination: number[] = [];
 
-  /** バリデーション失敗 */
-  isInValid: boolean;
-  /** APIエラー */
-  isError: boolean;
-
-  /** 新規登録モード TODO あとでコンポーネント化 */
+  /** 新規登録モード */
   isCreate: boolean;
 
   /** FABインスタンス */
@@ -39,20 +27,11 @@ export class QuizComponent implements OnInit {
   tooltipInstance: any;
 
   constructor(
-    private formBuilder: FormBuilder,
     private authService: AuthService,
-    private quizService: QuizService,
-    private loadingService: LoadingService
-  ) {
-    this.form = this.formBuilder.group(QuizForm.validators);
-  }
+    private quizService: QuizService
+  ) { }
 
   ngOnInit() {
-    // タグ初期化
-    window['M'].Chips.init(document.querySelectorAll('.chips'), {
-      placeholder: 'タグを入力'
-    });
-
     // FAB初期化
     this.fabInstance = window['M'].FloatingActionButton.init(document.querySelectorAll('.fixed-action-btn'), {});
 
@@ -109,52 +88,6 @@ export class QuizComponent implements OnInit {
   }
 
   /**
-   * 登録ボタン
-   * @param form 入力フォーム
-   * @param isValid 有効か
-   */
-  onSubmit(form: QuizForm, isValid: boolean) {
-    if (!isValid) {
-      return;
-    }
-    this.isInValid = false;
-    this.isError = false;
-
-    this.loadingService.setLoading(true);
-
-    // クイズを登録する
-    this.quizService.postQuiz(this.authService.loginId, form).subscribe((quiz: Quiz) => {
-      this.loadingService.setLoading(false);
-
-      if (quiz) {
-        // 先頭に追加
-        this.quizData.content.unshift(quiz);
-        if (this.quizData.size < this.quizData.content.length) {
-          // 末尾を削除
-          this.quizData.content.pop();
-        }
-
-        // フォームを閉じる
-        this.isCreate = false;
-        this.form.reset();
-      }
-    }, (error: HttpErrorResponse) => {
-      this.loadingService.setLoading(false);
-      console.error(error);
-
-      switch (error.status) {
-        case 403:
-          this.isInValid = true;
-          break;
-        case 500:
-        default:
-          this.isError = true;
-          break;
-      }
-    });
-  }
-
-  /**
    * クイズ登録フォームを表示する
    */
   openCreateForm(): void {
@@ -162,5 +95,20 @@ export class QuizComponent implements OnInit {
     window.scrollTo(0, 0);
     this.tooltipInstance[1].close();
     this.fabInstance[0].close();
+  }
+
+  /**
+   * クイズ新規追加イベント
+   * @param quiz
+   */
+  create(quiz: Quiz): void {
+    // 先頭に追加
+    this.quizData.content.unshift(quiz);
+    if (this.quizData.size < this.quizData.content.length) {
+      // 末尾を削除
+      this.quizData.content.pop();
+    }
+    // フォームを閉じる
+    this.isCreate = false;
   }
 }

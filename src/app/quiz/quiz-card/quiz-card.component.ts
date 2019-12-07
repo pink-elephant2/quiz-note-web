@@ -23,7 +23,7 @@ export class QuizCardComponent implements OnInit, AfterViewInit {
     if (this.quiz) {
       // モーダル
       this.modalInstance = window['M'].Modal.init(document.getElementById('modal' + this.quiz.id), {
-        endingTop: '30%'
+        startingTop: '20px'
       });
     }
   }

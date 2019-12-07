@@ -3,7 +3,7 @@ import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
 import { Quiz } from './quiz';
 import { Page, Pageable } from '../../model';
-import { QuizForm } from 'src/app/quiz/quiz-form';
+import { QuizForm } from 'src/app/quiz/quiz-form/quiz-form';
 
 /**
  * クイズサービス
