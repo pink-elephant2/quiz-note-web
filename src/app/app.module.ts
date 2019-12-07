@@ -12,6 +12,8 @@ import { SignupModule } from './signup/signup.module';
 import { QuizModule } from './quiz/quiz.module';
 import { AccountModule } from './account/account.module';
 import { LoadingModule } from './shared/component/loading';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { LoadingModule } from './shared/component/loading';
     SignupModule,
     QuizModule,
     AccountModule,
-    LoadingModule
+    LoadingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
