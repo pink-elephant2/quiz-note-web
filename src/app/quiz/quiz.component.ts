@@ -40,6 +40,11 @@ export class QuizComponent implements OnInit {
       position: 'left'
     });
 
+    // モーダル
+    window['M'].Modal.init(document.querySelectorAll('.modal'), {
+      startingTop: '20px'
+    });
+
     // クイズ取得
     this.getQuizList();
   }
@@ -84,6 +89,8 @@ export class QuizComponent implements OnInit {
 
       // 折りたたみリスト初期化
       window['M'].Collapsible.init(document.querySelectorAll('.collapsible'), {});
+
+      window.scrollTo(0, 0);
     });
   }
 

@@ -1,6 +1,12 @@
-<section [ngClass]="isCreate ? 'section animated fadeIn' : 'hide'">
-  <app-quiz-form (onSubmit)="create($event)"></app-quiz-form>
-</section>
+<div id="modal" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <app-quiz-form (onSubmit)="create($event)"></app-quiz-form>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:void(0)" class="modal-close waves-effect waves-green btn-flat">閉じる</a>
+  </div>
+</div>
+
 <section class="section">
   <ul class="collapsible">
     <ng-container *ngIf="quizData">
@@ -58,7 +64,8 @@
         <i class="material-icons">volume_up</i></a>
     </li>
     <li>
-      <a class="btn-floating blue tooltipped" data-tooltip="新規クイズ登録" (click)="openCreateForm()">
+      <a class="btn-floating blue tooltipped modal-trigger" data-target="modal" data-tooltip="新規クイズ登録"
+        (click)="openCreateForm()">
         <i class="material-icons">create</i></a>
     </li>
   </ul>

@@ -17,7 +17,6 @@ export class GaService {
    * GAの読み込みをチェック
    */
   private useGA(): boolean {
-    console.log(environment.analytics.id);
     if (!environment.analytics.id) {
       return false;
     }

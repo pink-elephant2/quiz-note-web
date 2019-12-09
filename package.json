@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:local": "ng serve --proxy-config proxy.conf.local.json",
-    "build": "ng build --prod --aot=true --base-href=/quiz-note/",
+    "start:local": "ng serve --configuration=stg --proxy-config proxy.conf.local.json",
+    "build": "ng build --aot=true --base-href=/quiz-note/",
     "test": "ng test",
     "lint": "ng lint --type-check",
     "sasslint": "sass-lint -c .sass-lint.yml -q -v",

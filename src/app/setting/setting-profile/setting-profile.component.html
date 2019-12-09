@@ -45,28 +45,6 @@
 
     <div class="row">
       <div class="col s12 input-field">
-        <input id="place" type="text" class="validate" formControlName="place" maxlength="30" data-length="30">
-        <label for="place" [ngClass]="{active: form.controls['place'].value}">場所</label>
-        <ng-container *ngIf="form.controls['place'].touched">
-          <span class="helper-text" *ngIf="form.controls['place'].hasError('maxlength')"
-            data-error="30文字以内で入力してください"></span>
-        </ng-container>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col s12 input-field">
-        <input id="url" type="url" class="validate" formControlName="url" maxlength="100" data-length="100">
-        <label for="url" [ngClass]="{active: form.controls['url'].value}">ウェブサイト</label>
-        <ng-container *ngIf="form.controls['url'].touched">
-          <span class="helper-text" *ngIf="form.controls['url'].hasError('maxlength')"
-            data-error="100文字以内で入力してください"></span>
-        </ng-container>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col s12 input-field">
         <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
           type="submit">保存する</button>
       </div>
