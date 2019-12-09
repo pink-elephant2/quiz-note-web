@@ -1,3 +1,4 @@
+<!-- クイズフォームモーダル -->
 <div id="modal" class="modal modal-fixed-footer">
   <div class="modal-content">
     <app-quiz-form (onSubmit)="create($event)"></app-quiz-form>
@@ -7,6 +8,7 @@
   </div>
 </div>
 
+<!-- クイズ一覧 -->
 <section class="section">
   <ul class="collapsible">
     <ng-container *ngIf="quizData">
@@ -27,7 +29,7 @@
               <span class="hide-on-med-and-up"><i class="material-icons">mic</i></span>
               <span class="hide-on-small-only"><i class="material-icons left">mic</i>録音</span>
             </a>
-            <a class="waves-effect waves-red btn-flat red-text right">
+            <a class="waves-effect waves-red btn-flat red-text right" (click)="deleteConfirm(quiz)">
               <span class="hide-on-med-and-up"><i class="material-icons">delete</i></span>
               <span class="hide-on-small-only"><i class="material-icons left">delete</i>削除</span>
             </a>
@@ -37,6 +39,7 @@
     </ng-container>
   </ul>
 
+  <!-- ページネーション -->
   <ul class="pagination" *ngIf="this.pagination.length > 0">
     <li [ngClass]="quizData.first ? 'disabled' : 'waves-effect'">
       <a (click)="getQuizList(quizData.number - 1)">
@@ -54,6 +57,24 @@
   </ul>
 </section>
 
+<!-- 削除確認モーダル -->
+<div id="delete-modal" class="modal">
+  <div class="modal-content" *ngIf="currentQuiz">
+    <h4 class="h6">このクイズを削除しますか？</h4>
+    <div class="row">
+      <div class="col s12">
+        <p>問題：{{currentQuiz.question}}</p>
+        <p>答え：{{currentQuiz.answer}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:void(0)" (click)="delete()" class="waves-effect waves-light btn-flat red-text">削除</a>
+    <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
+  </div>
+</div>
+
+<!-- メニューFAB -->
 <div class="fixed-action-btn">
   <a class="btn-floating btn-large red">
     <i class="large material-icons">menu</i>

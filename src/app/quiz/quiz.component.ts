@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../shared/service/auth';
+import { LoadingService } from '../shared/service/loading';
 import { Quiz, QuizService } from '../shared/service/quiz';
 import { Page, Pageable } from '../shared/model';
 
@@ -14,6 +16,9 @@ export class QuizComponent implements OnInit {
   /** クイズ情報 */
   quizData: Page<Quiz>;
 
+  /** 選択中のクイズ情報 */
+  currentQuiz: Quiz;
+
   /** ページネーション */
   pagination: number[] = [];
 
@@ -26,8 +31,13 @@ export class QuizComponent implements OnInit {
   /** ツールチップインスタンス */
   tooltipInstance: any;
 
+  /** 削除モーダルインスタンス */
+  deleteModalInstance: any;
+
   constructor(
+    private router: Router,
     private authService: AuthService,
+    private loadingService: LoadingService,
     private quizService: QuizService
   ) { }
 
@@ -42,6 +52,10 @@ export class QuizComponent implements OnInit {
 
     // モーダル
     window['M'].Modal.init(document.querySelectorAll('.modal'), {
+      startingTop: '20px'
+    });
+    // 削除モーダル
+    this.deleteModalInstance = window['M'].Modal.init(document.getElementById('delete-modal'), {
       startingTop: '20px'
     });
 
@@ -91,6 +105,8 @@ export class QuizComponent implements OnInit {
       window['M'].Collapsible.init(document.querySelectorAll('.collapsible'), {});
 
       window.scrollTo(0, 0);
+    }, () => {
+      this.router.navigate(['logout']);
     });
   }
 
@@ -117,5 +133,42 @@ export class QuizComponent implements OnInit {
     }
     // フォームを閉じる
     this.isCreate = false;
+  }
+
+  /**
+   * クイズ削除確認モーダルを表示する
+   */
+  deleteConfirm(quiz: Quiz): void {
+    this.currentQuiz = quiz;
+    this.deleteModalInstance.open();
+  }
+
+  /**
+   * クイズを削除する
+   */
+  delete(): void {
+    if (!this.currentQuiz) {
+      return;
+    }
+    // クイズ削除
+    this.loadingService.setLoading(true);
+    this.quizService.deleteQuiz(this.authService.loginId, this.currentQuiz.cd).subscribe((ret: boolean) => {
+      this.loadingService.setLoading(false);
+      if (ret) {
+        // モーダルを閉じる
+        this.deleteModalInstance.close();
+
+        window['M'].toast({ html: 'クイズを削除しました。' });
+
+        // 現在のページを再表示
+        this.getQuizList(this.quizData.number)
+      } else {
+        window['M'].toast({ html: 'クイズの削除に失敗しました。' });
+      }
+    }, () => {
+      this.loadingService.setLoading(false);
+      this.deleteModalInstance.close();
+      window['M'].toast({ html: 'クイズの削除に失敗しました。' });
+    });
   }
 }

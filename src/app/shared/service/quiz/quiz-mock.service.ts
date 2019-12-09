@@ -15,11 +15,13 @@ export class QuizMockService extends QuizService {
   private static quizList: Quiz[] = [
     {
       id: 1,
+      cd: 'AAA',
       question: '日本一高い山は富士山ですが、世界一高い山は何？',
       answer: 'エベレスト'
     },
     {
       id: 2,
+      cd: 'BBB',
       question: '日本で一番高い山は富士山ですが、二番目に高い山は何？',
       answer: '北岳'
     }
@@ -56,5 +58,12 @@ export class QuizMockService extends QuizService {
    */
   public postQuiz(loginId: string, form: QuizForm): Observable<Quiz> {
     return of(Object.assign(new Quiz(), form));
+  }
+
+  /**
+   * クイズを削除する
+   */
+  public deleteQuiz(loginId: string, quizCd: string): Observable<boolean> {
+    return of(true);
   }
 }

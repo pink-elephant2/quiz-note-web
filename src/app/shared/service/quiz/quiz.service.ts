@@ -25,4 +25,12 @@ export class QuizService extends ApiService {
     const url = `/api/v1/user/${loginId}/quiz`;
     return this.post<Quiz>(url, form);
   }
+
+  /**
+   * クイズを削除する
+   */
+  public deleteQuiz(loginId: string, quizCd: string): Observable<boolean> {
+    const url = `/api/v1/user/${loginId}/quiz/${quizCd}`;
+    return this.delete<boolean>(url);
+  }
 }

@@ -46,7 +46,7 @@ export abstract class ApiService {
   /**
    * HTTP DELETE処理
    */
-  public delete<T>(url: string, params?: object): Observable<T | T[]> {
+  public delete<T>(url: string, params?: object): Observable<any> {
     if (params) {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;

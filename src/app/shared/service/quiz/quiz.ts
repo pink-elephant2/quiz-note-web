@@ -6,6 +6,9 @@ export class Quiz {
   /** ID */
   id: number;
 
+  /** CD */
+  cd: string;
+
   /** 問題 */
   question: string;
 
