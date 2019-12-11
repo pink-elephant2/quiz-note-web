@@ -61,6 +61,13 @@ export class QuizMockService extends QuizService {
   }
 
   /**
+   * クイズを更新する
+   */
+  public putQuiz(loginId: string, quizCd: string, form: QuizForm): Observable<Quiz> {
+    return of(Object.assign(new Quiz(), form));
+  }
+
+  /**
    * クイズを削除する
    */
   public deleteQuiz(loginId: string, quizCd: string): Observable<boolean> {

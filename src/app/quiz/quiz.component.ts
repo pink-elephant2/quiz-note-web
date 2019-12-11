@@ -22,14 +22,14 @@ export class QuizComponent implements OnInit {
   /** ページネーション */
   pagination: number[] = [];
 
-  /** 新規登録モード */
-  isCreate: boolean;
-
   /** FABインスタンス */
   fabInstance: any;
 
   /** ツールチップインスタンス */
   tooltipInstance: any;
+
+  /** 登録モーダルインスタンス */
+  formModalInstance: any;
 
   /** 削除モーダルインスタンス */
   deleteModalInstance: any;
@@ -51,7 +51,7 @@ export class QuizComponent implements OnInit {
     });
 
     // モーダル
-    window['M'].Modal.init(document.querySelectorAll('.modal'), {
+    this.formModalInstance = window['M'].Modal.init(document.getElementById('form-modal'), {
       startingTop: '20px'
     });
     // 削除モーダル
@@ -113,11 +113,15 @@ export class QuizComponent implements OnInit {
   /**
    * クイズ登録フォームを表示する
    */
-  openCreateForm(): void {
-    this.isCreate = true;
-    window.scrollTo(0, 0);
-    this.tooltipInstance[1].close();
-    this.fabInstance[0].close();
+  openForm(quiz?: Quiz): void {
+    this.formModalInstance.open();
+    this.currentQuiz = quiz ? { ...quiz } : undefined; // コピー
+
+    if (!quiz) {
+      window.scrollTo(0, 0);
+      this.tooltipInstance[1].close();
+      this.fabInstance[0].close();
+    }
   }
 
   /**
@@ -125,21 +129,28 @@ export class QuizComponent implements OnInit {
    * @param quiz
    */
   create(quiz: Quiz): void {
-    // 先頭に追加
-    this.quizData.content.unshift(quiz);
-    if (this.quizData.size < this.quizData.content.length) {
-      // 末尾を削除
-      this.quizData.content.pop();
+    // 更新
+    if (this.currentQuiz) {
+      // 現在のページを再表示 TODO this.quizData.contentを更新
+      this.getQuizList(this.quizData.number);
+    } else {
+      // 新規
+      // 先頭に追加
+      this.quizData.content.unshift(quiz);
+      if (this.quizData.size < this.quizData.content.length) {
+        // 末尾を削除
+        this.quizData.content.pop();
+      }
     }
     // フォームを閉じる
-    this.isCreate = false;
+    this.formModalInstance.close();
   }
 
   /**
    * クイズ削除確認モーダルを表示する
    */
   deleteConfirm(quiz: Quiz): void {
-    this.currentQuiz = quiz;
+    this.currentQuiz = { ...quiz }; // コピー
     this.deleteModalInstance.open();
   }
 

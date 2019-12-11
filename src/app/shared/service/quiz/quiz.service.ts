@@ -27,6 +27,16 @@ export class QuizService extends ApiService {
   }
 
   /**
+   * クイズを更新する
+   */
+  public putQuiz(loginId: string, quizCd: string, form: QuizForm): Observable<Quiz> {
+    const url = `/api/v1/user/${loginId}/quiz`;
+    const params = { ...form };
+    params['cd'] = quizCd;
+    return super.put<Quiz>(url, params);
+  }
+
+  /**
    * クイズを削除する
    */
   public deleteQuiz(loginId: string, quizCd: string): Observable<boolean> {

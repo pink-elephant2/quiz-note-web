@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -15,7 +15,7 @@ import { LoadingService } from 'src/app/shared/service/loading';
   templateUrl: './quiz-form.component.html',
   styleUrls: ['./quiz-form.component.scss']
 })
-export class QuizFormComponent implements OnInit {
+export class QuizFormComponent implements OnInit, OnChanges {
 
   /** 入力フォーム */
   form: FormGroup;
@@ -46,6 +46,15 @@ export class QuizFormComponent implements OnInit {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.quiz) {
+      this.form.patchValue(this.quiz);
+    } else {
+      this.form.reset();
+    }
+    window['M'].updateTextFields();
+  }
+
   /**
    * 登録ボタン
    * @param form 入力フォーム
@@ -61,7 +70,10 @@ export class QuizFormComponent implements OnInit {
     this.loadingService.setLoading(true);
 
     // クイズを登録する
-    this.quizService.postQuiz(this.authService.loginId, form).subscribe((quiz: Quiz) => {
+    const sub = (this.quiz && this.quiz.cd)
+      ? this.quizService.putQuiz(this.authService.loginId, this.quiz.cd, form)
+      : this.quizService.postQuiz(this.authService.loginId, form);
+    sub.subscribe((quiz: Quiz) => {
       this.loadingService.setLoading(false);
 
       if (quiz) {

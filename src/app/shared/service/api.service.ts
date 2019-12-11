@@ -44,6 +44,17 @@ export abstract class ApiService {
   }
 
   /**
+   * HTTP PUT処理
+   */
+  public put<T>(url: string, params: object = {}): Observable<any> {
+    const header = new HttpHeaders();
+    header.append('Content-Type', 'application/x-www-form-urlencoded');
+    // header.append('Content-Type', 'multipart/form-data');
+
+    return this.http.put<T>(environment.apiDomain + url, params, { headers: header });
+  }
+
+  /**
    * HTTP DELETE処理
    */
   public delete<T>(url: string, params?: object): Observable<any> {
