@@ -1,0 +1,11 @@
+{
+  "/api/v1": {
+    "target": {
+      "host": "ec2-3-112-18-50.ap-northeast-1.compute.amazonaws.com",
+      "protocol": "http:",
+      "port": 8080
+    },
+    "secure": false,
+    "changeOrigin": true
+  }
+}
