@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 import { QuizService, QuizMockService } from '../shared/service/quiz';
 import { QuizFormComponent } from './quiz-form/quiz-form.component';
 import { QuizAudioComponent } from './quiz-audio/quiz-audio.component';
+import { TimerService } from 'shared/service/timer';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { QuizAudioComponent } from './quiz-audio/quiz-audio.component';
     QuizComponent
   ],
   providers: [
-    environment.production ? QuizService : { provide: QuizService, useClass: QuizMockService }
+    environment.production ? QuizService : { provide: QuizService, useClass: QuizMockService },
+    TimerService
   ]
 })
 export class QuizModule { }

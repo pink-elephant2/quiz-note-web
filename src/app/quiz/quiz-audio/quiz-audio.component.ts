@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
+
 import { Quiz } from 'shared/service/quiz';
+import { TimerService } from 'shared/service/timer';
 
 /**
  * 録音モーダル
@@ -10,7 +13,7 @@ import { Quiz } from 'shared/service/quiz';
   templateUrl: './quiz-audio.component.html',
   styleUrls: ['./quiz-audio.component.scss']
 })
-export class QuizAudioComponent implements OnInit {
+export class QuizAudioComponent implements OnInit, OnChanges {
 
   /** クイズ情報 */
   @Input() quiz: Quiz;
@@ -22,11 +25,38 @@ export class QuizAudioComponent implements OnInit {
   localMediaStream;
   scriptProcessor;
 
+  /** 残り時間 */
+  time = 0;
+
+  /** タイマー */
+  timer: Subscription;
+
   constructor(
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private timerService: TimerService
   ) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+    // 持ち時間設定
+    this.time = this.timerService.timeLimit;
+  }
+
+  /**
+   * 残り時間表記
+   */
+  get timeStr(): string {
+    const h = Math.floor(this.time / 60 / 60);
+    const m = Math.floor(this.time / 60 % 60);
+    const s = Math.floor(this.time % 60);
+
+    if (h >= 1) {
+      return `0${h}`.slice(-2) + ':' + `0${m}`.slice(-2) + ':' + `0${s}`.slice(-2);
+    } else {
+      return `0${m}`.slice(-2) + ':' + `0${s}`.slice(-2);
+    }
   }
 
   /**
@@ -35,9 +65,22 @@ export class QuizAudioComponent implements OnInit {
   startRecord(): void {
     // 音声データ初期化
     this.audioData = [];
+    this.quiz.soundUrl = undefined;
+    // 持ち時間設定
+    this.time = this.timerService.timeLimit;
 
     // 録音イベント
     navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then((stream) => {
+      // カウントダウン
+      this.timer = this.timerService.getTimer().subscribe(time => {
+        this.time--;
+
+        // 終了
+        if (this.time <= 0) {
+          this.stopRecord();
+        }
+      });
+
       this.localMediaStream = stream;
 
       const audioContext = new AudioContext();
@@ -63,6 +106,8 @@ export class QuizAudioComponent implements OnInit {
    * 録音を停止する
    */
   stopRecord(): void {
+    this.timer.unsubscribe();
+
     this.localMediaStream.getTracks().forEach(track => track.stop());
     this.scriptProcessor.disconnect();
     this.saveWAV();
