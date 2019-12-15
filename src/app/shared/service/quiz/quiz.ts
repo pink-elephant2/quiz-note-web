@@ -12,7 +12,7 @@ export class Quiz {
   /** 問題 */
   question: string;
 
-  /** 答え */
+  /** 正解 */
   answer: string;
 
   /** ヒント */
@@ -20,4 +20,7 @@ export class Quiz {
 
   /** 解説 */
   explanation?: string;
+
+  /** 音声パス */
+  soundUrl?: string;
 }

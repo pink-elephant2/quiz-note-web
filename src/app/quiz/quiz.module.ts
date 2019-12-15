@@ -7,13 +7,15 @@ import { QuizCardComponent } from './quiz-card/quiz-card.component';
 import { environment } from '../../environments/environment';
 import { QuizService, QuizMockService } from '../shared/service/quiz';
 import { QuizFormComponent } from './quiz-form/quiz-form.component';
+import { QuizAudioComponent } from './quiz-audio/quiz-audio.component';
 
 
 @NgModule({
   declarations: [
     QuizComponent,
     QuizCardComponent,
-    QuizFormComponent
+    QuizFormComponent,
+    QuizAudioComponent
   ],
   imports: [
     CommonModule,

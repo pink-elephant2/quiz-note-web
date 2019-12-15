@@ -10,52 +10,67 @@
 
 <!-- クイズ一覧 -->
 <section class="section">
-  <ul class="collapsible">
-    <ng-container *ngIf="quizData">
-      <li *ngFor="let quiz of quizData.content" class="animated fadeIn">
-        <div class="collapsible-header">
-          <i class="arrow material-icons right">keyboard_arrow_down</i>
-          {{quiz.question}}
-        </div>
-        <div class="collapsible-body">
-          <div class="row">答え：<span>{{quiz.answer}}</span></div>
-          <div class="row">解説：<span>{{quiz.explanation}}</span></div>
-          <div class="row">
-            <a class="waves-effect waves-teal btn-flat right" (click)="openForm(quiz)">
-              <span class="hide-on-med-and-up"><i class="material-icons">edit</i></span>
-              <span class="hide-on-small-only"><i class="material-icons left">edit</i>編集</span>
-            </a>
-            <a class="waves-effect waves-teal btn-flat right">
-              <span class="hide-on-med-and-up"><i class="material-icons">mic</i></span>
-              <span class="hide-on-small-only"><i class="material-icons left">mic</i>録音</span>
-            </a>
-            <a class="waves-effect waves-red btn-flat red-text right" (click)="deleteConfirm(quiz)">
-              <span class="hide-on-med-and-up"><i class="material-icons">delete</i></span>
-              <span class="hide-on-small-only"><i class="material-icons left">delete</i>削除</span>
-            </a>
-          </div>
-        </div>
-      </li>
-    </ng-container>
-  </ul>
+  <div class="row">
+    <div class="col s12 m10">
+      <ul class="collapsible">
+        <ng-container *ngIf="quizData">
+          <li *ngFor="let quiz of quizData.content" class="animated fadeIn">
+            <div class="collapsible-header">
+              <i class="arrow material-icons right">keyboard_arrow_down</i>
+              {{quiz.question}}
+            </div>
+            <div class="collapsible-body">
+              <div class="row">正解：<span>{{quiz.answer}}</span></div>
+              <div class="row">解説：<span>{{quiz.explanation}}</span></div>
+              <div class="row">
+                <a class="waves-effect waves-teal btn-flat right" (click)="openForm(quiz)">
+                  <span class="hide-on-med-and-up"><i class="material-icons">edit</i></span>
+                  <span class="hide-on-small-only"><i class="material-icons left">edit</i>編集</span>
+                </a>
+                <a class="waves-effect waves-teal btn-flat right" (click)="audioConfirm(quiz)">
+                  <span class="hide-on-med-and-up"><i class="material-icons">mic</i></span>
+                  <span class="hide-on-small-only"><i class="material-icons left">mic</i>録音</span>
+                </a>
+                <a class="waves-effect waves-red btn-flat red-text right" (click)="deleteConfirm(quiz)">
+                  <span class="hide-on-med-and-up"><i class="material-icons">delete</i></span>
+                  <span class="hide-on-small-only"><i class="material-icons left">delete</i>削除</span>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
 
-  <!-- ページネーション -->
-  <ul class="pagination" *ngIf="this.pagination.length > 0">
-    <li [ngClass]="quizData.first ? 'disabled' : 'waves-effect'">
-      <a (click)="getQuizList(quizData.number - 1)">
-        <i class="material-icons">chevron_left</i>
-      </a>
-    </li>
-    <li *ngFor="let i of this.pagination" [ngClass]="quizData.number + 1 == i ? 'active' : 'waves-effect'">
-      <a (click)="getQuizList(i - 1)">{{i}}</a>
-    </li>
-    <li [ngClass]="quizData.last ? 'disabled' : 'waves-effect'">
-      <a (click)="getQuizList(quizData.number + 1)">
-        <i class="material-icons">chevron_right</i>
-      </a>
-    </li>
-  </ul>
+      <!-- ページネーション -->
+      <ul class="pagination" *ngIf="this.pagination.length > 0">
+        <li [ngClass]="quizData.first ? 'disabled' : 'waves-effect'">
+          <a (click)="getQuizList(quizData.number - 1)">
+            <i class="material-icons">chevron_left</i>
+          </a>
+        </li>
+        <li *ngFor="let i of this.pagination" [ngClass]="quizData.number + 1 == i ? 'active' : 'waves-effect'">
+          <a (click)="getQuizList(i - 1)">{{i}}</a>
+        </li>
+        <li [ngClass]="quizData.last ? 'disabled' : 'waves-effect'">
+          <a (click)="getQuizList(quizData.number + 1)">
+            <i class="material-icons">chevron_right</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </section>
+
+<!-- 録音モーダル -->
+<div id="audio-modal" class="modal modal-fixed-footer">
+  <div class="modal-content" *ngIf="currentQuiz">
+    <app-quiz-audio [quiz]="currentQuiz"></app-quiz-audio>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:void(0)" class="waves-effect waves-light btn-flat">保存</a>
+    <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
+  </div>
+</div>
 
 <!-- 削除確認モーダル -->
 <div id="delete-modal" class="modal">
@@ -64,7 +79,7 @@
     <div class="row">
       <div class="col s12">
         <p>問題：{{currentQuiz.question}}</p>
-        <p>答え：{{currentQuiz.answer}}</p>
+        <p>正解：{{currentQuiz.answer}}</p>
       </div>
     </div>
   </div>

@@ -31,6 +31,9 @@ export class QuizComponent implements OnInit {
   /** 登録モーダルインスタンス */
   formModalInstance: any;
 
+  /** 録音モーダルインスタンス */
+  audioModalInstance: any;
+
   /** 削除モーダルインスタンス */
   deleteModalInstance: any;
 
@@ -50,8 +53,12 @@ export class QuizComponent implements OnInit {
       position: 'left'
     });
 
-    // モーダル
+    // 登録モーダル
     this.formModalInstance = window['M'].Modal.init(document.getElementById('form-modal'), {
+      startingTop: '20px'
+    });
+    // 録音モーダル
+    this.audioModalInstance = window['M'].Modal.init(document.getElementById('audio-modal'), {
       startingTop: '20px'
     });
     // 削除モーダル
@@ -144,6 +151,14 @@ export class QuizComponent implements OnInit {
     }
     // フォームを閉じる
     this.formModalInstance.close();
+  }
+
+  /**
+   * 録音モーダルを表示する
+   */
+  audioConfirm(quiz: Quiz): void {
+    this.currentQuiz = { ...quiz }; // コピー
+    this.audioModalInstance.open();
   }
 
   /**

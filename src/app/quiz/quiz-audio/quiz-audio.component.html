@@ -1,0 +1,34 @@
+<h4 class="h6">問読み録音</h4>
+<div class="row">
+  <div class="col s12">
+    <p>問題：{{quiz.question}}</p>
+    <p>正解：{{quiz.answer}}</p>
+  </div>
+</div>
+
+<article class="center">
+  <div class="row">
+    <div class="col s12">
+      <i class="material-icons large">mic</i>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s4 offset-s2 m2 offset-m4">
+      <a class="btn-floating btn-large waves-effect waves-light white" (click)="stopRecord()">
+        <i class="material-icons grey-text text-darken-4">stop</i>
+      </a>
+    </div>
+    <div class="col s4 m2">
+      <a class="btn-floating btn-large waves-effect waves-light white" (click)="startRecord()">
+        <i class="material-icons large red-text">fiber_manual_record</i>
+      </a>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="quiz.soundUrl">
+    <div class="col s12">
+      <audio [src]="sanitize(quiz.soundUrl)" controls controlslist="nodownload"></audio>
+    </div>
+  </div>
+</article>

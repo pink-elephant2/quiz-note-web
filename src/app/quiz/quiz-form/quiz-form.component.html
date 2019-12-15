@@ -14,7 +14,7 @@
   <div class="row">
     <div class="input-field col s12">
       <input id="answer" type="text" class="validate" formControlName="answer">
-      <label for="answer">答えを入力</label>
+      <label for="answer">正解を入力</label>
       <ng-container *ngIf="form.controls['answer'].touched">
         <span class="helper-text" *ngIf="form.controls['answer'].hasError('required')" data-error="入力してください"></span>
         <span class="helper-text" *ngIf="form.controls['answer'].hasError('maxlength')"
