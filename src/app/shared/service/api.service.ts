@@ -23,7 +23,7 @@ export abstract class ApiService {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
     }
-    return this.http.get<T>(environment.apiDomain + url).pipe(catchError((res: HttpResponse<T>) => {
+    return this.http.get<T>(environment.apiDomain + url, { withCredentials: true }).pipe(catchError((res: HttpResponse<T>) => {
       if (res.status === 503 || res.status === 504) {
         // メンテナンス画面へ
         location.href = '/assets/html/maintenance.html';
@@ -40,7 +40,7 @@ export abstract class ApiService {
     header.append('Content-Type', 'application/x-www-form-urlencoded');
     // header.append('Content-Type', 'multipart/form-data');
 
-    return this.http.post<T>(environment.apiDomain + url, params, { headers: header });
+    return this.http.post<T>(environment.apiDomain + url, params, { headers: header, withCredentials: true });
   }
 
   /**
@@ -51,7 +51,7 @@ export abstract class ApiService {
     header.append('Content-Type', 'application/x-www-form-urlencoded');
     // header.append('Content-Type', 'multipart/form-data');
 
-    return this.http.put<T>(environment.apiDomain + url, params, { headers: header });
+    return this.http.put<T>(environment.apiDomain + url, params, { headers: header, withCredentials: true });
   }
 
   /**
@@ -62,7 +62,7 @@ export abstract class ApiService {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
     }
-    return this.getObservable(this.http.delete(environment.apiDomain + url)).pipe(map(data => data as T | T[]));
+    return this.getObservable(this.http.delete(environment.apiDomain + url, { withCredentials: true })).pipe(map(data => data as T | T[]));
   }
 
   /**
