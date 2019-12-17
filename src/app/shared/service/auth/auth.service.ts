@@ -45,7 +45,7 @@ export class AuthService extends ApiService {
   }
 
   /** ログインID */
-  protected _loginId: string = 'my_melody';
+  protected _loginId: string;
 
   /** ログインIDを取得する */
   public get loginId() {
