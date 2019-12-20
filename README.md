@@ -20,6 +20,10 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 `aws s3 sync --profile cheese . s3://quiz-note-dev/web/ --delete`
 
+`aws cloudfront create-invalidation --distribution-id E1RXY1FD7LULYV --paths "/*"`
+
+`aws cloudfront create-invalidation --profile cheese --distribution-id E1RXY1FD7LULYV --paths "/*"`
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
