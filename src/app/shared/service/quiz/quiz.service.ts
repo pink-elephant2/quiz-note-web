@@ -43,4 +43,15 @@ export class QuizService extends ApiService {
     const url = `/api/v1/user/${loginId}/quiz/${quizCd}`;
     return this.delete<boolean>(url);
   }
+
+  /**
+   * 問読みを登録/更新する
+   */
+  public postSound(loginId: string, quizCd: string, blob: Blob): Observable<Quiz> {
+    const url = `/api/v1/user/${loginId}/quiz/${quizCd}/sound`;
+    const data = new FormData();
+    data.append('upfile', blob);
+    return this.post<Quiz>(url, data);
+  }
+
 }

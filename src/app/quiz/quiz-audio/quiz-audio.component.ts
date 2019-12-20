@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 
@@ -24,6 +24,8 @@ export class QuizAudioComponent implements OnInit, OnChanges {
   audio_sample_rate = null;
   localMediaStream;
   scriptProcessor;
+
+  @Output() onRecord: EventEmitter<Blob> = new EventEmitter<Blob>();
 
   /** 残り時間 */
   time = 0;
@@ -118,6 +120,7 @@ export class QuizAudioComponent implements OnInit, OnChanges {
    */
   saveWAV() {
     const audioBlob = this.exportWAV(this.audioData);
+    this.onRecord.emit(audioBlob);
 
     let myURL = window.URL || window['webkitURL'];
     let url = myURL.createObjectURL(audioBlob);
@@ -136,7 +139,7 @@ export class QuizAudioComponent implements OnInit, OnChanges {
   /**
    * WAVに変換し、Blobを返却する
    */
-  exportWAV(audioData) {
+  exportWAV(audioData): Blob {
 
     let encodeWAV = function (samples, sampleRate) {
       let buffer = new ArrayBuffer(44 + samples.length * 2);

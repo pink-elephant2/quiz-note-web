@@ -64,7 +64,7 @@
 <!-- 録音モーダル -->
 <div id="audio-modal" class="modal modal-fixed-footer">
   <div class="modal-content" *ngIf="currentQuiz">
-    <app-quiz-audio [quiz]="currentQuiz"></app-quiz-audio>
+    <app-quiz-audio [quiz]="currentQuiz" (onRecord)="updateSound($event)"></app-quiz-audio>
   </div>
   <div class="modal-footer">
     <a href="javascript:void(0)" class="waves-effect waves-light btn-flat">保存</a>

@@ -73,4 +73,11 @@ export class QuizMockService extends QuizService {
   public deleteQuiz(loginId: string, quizCd: string): Observable<boolean> {
     return of(true);
   }
+
+  /**
+   * 問読みを登録/更新する
+   */
+  public postSound(loginId: string, quizCd: string, blob: Blob): Observable<Quiz> {
+    return of(QuizMockService.quizList[0]);
+  }
 }

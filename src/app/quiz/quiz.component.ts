@@ -197,4 +197,31 @@ export class QuizComponent implements OnInit {
       window['M'].toast({ html: 'クイズの削除に失敗しました。' });
     });
   }
+
+  /**
+   * 問読みを登録する
+   */
+  updateSound(audioData: Blob) {
+    console.log(audioData);
+
+    // 問読み登録
+    this.loadingService.setLoading(true);
+    this.quizService.postSound(this.authService.loginId, this.currentQuiz.cd, audioData).subscribe((quiz: Quiz) => {
+      this.loadingService.setLoading(false);
+
+      console.log(quiz);
+      if (quiz) {
+        // モーダルを閉じる
+        this.audioModalInstance.close();
+
+        window['M'].toast({ html: '問読みを登録しました。' });
+      } else {
+        window['M'].toast({ html: '問読みの登録に失敗しました。' });
+      }
+    }, () => {
+      this.loadingService.setLoading(false);
+      this.deleteModalInstance.close();
+      window['M'].toast({ html: '問読みの登録に失敗しました。' });
+    });
+  }
 }
