@@ -8,7 +8,7 @@ import { Observable, interval } from 'rxjs';
 export class TimerService {
 
   /** 持ち時間 */
-  private _timeLimit = 15;  // 15秒
+  private _timeLimit = 10;  // 10秒
 
   constructor() { }
 
@@ -35,6 +35,6 @@ export class TimerService {
    * 初期値に戻す
    */
   public reset(): void {
-    this._timeLimit = 15;
+    this._timeLimit = 10;
   }
 }
