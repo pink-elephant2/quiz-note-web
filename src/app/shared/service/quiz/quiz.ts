@@ -23,4 +23,7 @@ export class Quiz {
 
   /** 音声パス */
   soundUrl?: string;
+
+  /** タグ */
+  tags: string[];
 }

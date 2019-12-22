@@ -25,6 +25,9 @@ export class QuizFormComponent implements OnInit, OnChanges {
 
   @Output() onSubmit: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
+  /** Chipsインスタンス */
+  chipsInstance: any;
+
   /** バリデーション失敗 */
   isInValid: boolean;
   /** APIエラー */
@@ -40,15 +43,23 @@ export class QuizFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    // タグ初期化
-    window['M'].Chips.init(document.querySelectorAll('.chips'), {
-      placeholder: 'タグを入力'
-    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    // タグ初期化
+    this.chipsInstance = window['M'].Chips.init(document.getElementById('chips'), {
+      placeholder: 'タグを入力',
+      limit: 10
+    });
+
     if (this.quiz) {
       this.form.patchValue(this.quiz);
+
+      this.quiz.tags.forEach(tagName => {
+        this.chipsInstance.addChip({
+          tag: tagName
+        });
+      });
     } else {
       this.form.reset();
     }
@@ -68,6 +79,9 @@ export class QuizFormComponent implements OnInit, OnChanges {
     this.isError = false;
 
     this.loadingService.setLoading(true);
+
+    // タグ設定
+    form.tags = this.chipsInstance.chipsData.map((tag) => tag.tag);
 
     // クイズを登録する
     const sub = (this.quiz && this.quiz.cd)

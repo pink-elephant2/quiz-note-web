@@ -202,19 +202,19 @@ export class QuizComponent implements OnInit {
    * 問読みを登録する
    */
   updateSound(audioData: Blob) {
-    console.log(audioData);
-
     // 問読み登録
     this.loadingService.setLoading(true);
     this.quizService.postSound(this.authService.loginId, this.currentQuiz.cd, audioData).subscribe((quiz: Quiz) => {
       this.loadingService.setLoading(false);
 
-      console.log(quiz);
       if (quiz) {
         // モーダルを閉じる
         this.audioModalInstance.close();
 
         window['M'].toast({ html: '問読みを登録しました。' });
+
+        // 現在のページを再表示
+        this.getQuizList(this.quizData.number)
       } else {
         window['M'].toast({ html: '問読みの登録に失敗しました。' });
       }

@@ -14,6 +14,8 @@ export class QuizForm {
   hint: string;
   /** 解説 */
   explanation: string;
+  /** タグ */
+  tags: string[];
 
   static validators = {
     /** 問題 */
@@ -24,6 +26,8 @@ export class QuizForm {
     hint: ['', Validators.compose([Validators.maxLength(50)])],
     /** 解説 */
     explanation: ['', Validators.compose([Validators.maxLength(100)])]
+    /** タグ */
+    // tags: ['', Validators.compose([])]
   };
 
 }
