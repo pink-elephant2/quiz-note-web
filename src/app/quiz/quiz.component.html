@@ -30,6 +30,10 @@
                   <span class="hide-on-med-and-up"><i class="material-icons">edit</i></span>
                   <span class="hide-on-small-only"><i class="material-icons left">edit</i>編集</span>
                 </a>
+                <a class="waves-effect waves-teal btn-flat right" (click)="sound(quiz)">
+                  <span class="hide-on-med-and-up"><i class="material-icons">volume_up</i></span>
+                  <span class="hide-on-small-only"><i class="material-icons left">volume_up</i>再生</span>
+                </a>
                 <a class="waves-effect waves-teal btn-flat right" (click)="audioConfirm(quiz)">
                   <span class="hide-on-med-and-up"><i class="material-icons">mic</i></span>
                   <span class="hide-on-small-only"><i class="material-icons left">mic</i>録音</span>
@@ -98,7 +102,7 @@
   </a>
   <ul>
     <li>
-      <a class="btn-floating green tooltipped" data-tooltip="問読み再生">
+      <a class="btn-floating green tooltipped" data-tooltip="問読み再生" (click)="soundAll()">
         <i class="material-icons">volume_up</i></a>
     </li>
     <li>

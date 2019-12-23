@@ -226,6 +226,42 @@ export class QuizComponent implements OnInit {
   }
 
   /**
+   * 問読みを再生する
+   */
+  sound(quiz: Quiz): void {
+    if (speechSynthesis.speaking) {
+      // 再生を止める
+      speechSynthesis.cancel();
+    }
+    const uttr = new SpeechSynthesisUtterance(quiz.question);
+    // 再生 (発言キューに発言を追加)
+    speechSynthesis.speak(uttr);
+
+    setTimeout(() => {
+      uttr.text = '正解は、' + quiz.answer;
+      speechSynthesis.speak(uttr);
+    }, 5000);
+  }
+
+  /**
+   * 問読みを再生する (ALL)
+   */
+  soundAll(): void {
+    this.tooltipInstance[0].close();
+    this.fabInstance[0].close();
+
+    this.quizData.content.forEach((quiz: Quiz) => {
+      // 再生 (発言キューに発言を追加)
+      const uttr = new SpeechSynthesisUtterance('問題：');
+      speechSynthesis.speak(uttr);
+      const uttr2 = new SpeechSynthesisUtterance(quiz.question);
+      speechSynthesis.speak(uttr2);
+      const uttr3 = new SpeechSynthesisUtterance('正解は、' + quiz.answer);
+      speechSynthesis.speak(uttr3);
+    });
+  }
+
+  /**
    * 付箋紙クリック
    */
   onFusenClick(quiz: Quiz, $event: Event): void {
