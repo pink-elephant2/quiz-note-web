@@ -16,9 +16,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 `cd dist/quiz-note-web/`
 
-`aws s3 sync . s3://quiz-note-dev/web/ --delete`
+`aws s3 sync . s3://quiz-note-dev/web/ --delete --cache-control "max-age=25200"`
 
-`aws s3 sync --profile cheese . s3://quiz-note-dev/web/ --delete`
+`aws s3 sync --profile cheese . s3://quiz-note-dev/web/ --delete --cache-control "max-age=25200"`
 
 `aws cloudfront create-invalidation --distribution-id E1RXY1FD7LULYV --paths "/*"`
 
