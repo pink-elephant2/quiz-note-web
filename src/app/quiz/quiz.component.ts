@@ -224,4 +224,15 @@ export class QuizComponent implements OnInit {
       window['M'].toast({ html: '問読みの登録に失敗しました。' });
     });
   }
+
+  /**
+   * 付箋紙クリック
+   */
+  onFusenClick(quiz: Quiz, $event: Event): void {
+    // 付箋紙をはがして正解を表示する
+    $event.target['classList'] = 'fusen2 animated hinge';
+    $event.target.addEventListener('animationend', () => {
+      quiz.isAnswerOpen = true;
+    });
+  }
 }

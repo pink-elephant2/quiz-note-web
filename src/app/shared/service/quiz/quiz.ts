@@ -26,4 +26,9 @@ export class Quiz {
 
   /** タグ */
   tags: string[];
+
+  // --------------
+
+  /** 正解を表示するか */
+  isAnswerOpen?: boolean;
 }

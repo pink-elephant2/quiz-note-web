@@ -20,7 +20,10 @@
               {{quiz.question}}
             </div>
             <div class="collapsible-body">
-              <div class="row">正解：<span>{{quiz.answer}}</span></div>
+              <div class="row">
+                <div class="fusen" *ngIf="!quiz.isAnswerOpen" (click)="onFusenClick(quiz, $event)"></div>
+                <div style="height: 40px;line-height: 40px;" *ngIf="quiz.isAnswerOpen">正解：{{quiz.answer}}</div>
+              </div>
               <div class="row">解説：<span>{{quiz.explanation}}</span></div>
               <div class="row">
                 <a class="waves-effect waves-teal btn-flat right" (click)="openForm(quiz)">
