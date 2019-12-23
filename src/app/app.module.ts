@@ -30,7 +30,7 @@ import { environment } from '../environments/environment';
     QuizModule,
     AccountModule,
     LoadingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production && location.hostname !== 'localhost' })
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
