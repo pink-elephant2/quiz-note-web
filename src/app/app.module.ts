@@ -9,6 +9,7 @@ import { HeaderModule } from './shared/component/header';
 import { LoginModule } from './login/login.module';
 import { LogoutModule } from './logout/logout.module';
 import { SignupModule } from './signup/signup.module';
+import { ContactModule } from './contact/contact.module';
 import { QuizModule } from './quiz/quiz.module';
 import { AccountModule } from './account/account.module';
 import { LoadingModule } from './shared/component/loading';
@@ -27,6 +28,7 @@ import { environment } from '../environments/environment';
     LoginModule,
     LogoutModule,
     SignupModule,
+    ContactModule,
     QuizModule,
     AccountModule,
     LoadingModule,
