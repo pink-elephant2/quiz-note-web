@@ -81,7 +81,7 @@ export class AuthService extends ApiService {
    * ログインチェック
    */
   public check(): Observable<boolean> {
-    return this.get('/api/v1/login/check').pipe(map(loginId => {
+    return this.get('/api/v1/check/login').pipe(map(loginId => {
       // ログイン成功
       this._loginId = loginId;
       this.saveSession();
