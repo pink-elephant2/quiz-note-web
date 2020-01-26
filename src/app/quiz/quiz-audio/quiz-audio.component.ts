@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 
@@ -41,7 +41,7 @@ export class QuizAudioComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
     // 持ち時間設定
     this.time = this.timerService.timeLimit;
   }
@@ -89,7 +89,7 @@ export class QuizAudioComponent implements OnInit, OnChanges {
       this.audio_sample_rate = audioContext.sampleRate;
 
       this.scriptProcessor = audioContext.createScriptProcessor(this.bufferSize, 1, 1);
-      var mediastreamsource = audioContext.createMediaStreamSource(stream);
+      const mediastreamsource = audioContext.createMediaStreamSource(stream);
       mediastreamsource.connect(this.scriptProcessor);
       this.scriptProcessor.onaudioprocess = (e) => {
         console.debug('e', e);

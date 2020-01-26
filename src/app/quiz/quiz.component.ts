@@ -78,7 +78,7 @@ export class QuizComponent implements OnInit {
       return;
     }
     const pageable = {
-      'page': page || 0
+      page: page || 0
     } as Pageable;
 
     // クイズ取得
@@ -133,7 +133,7 @@ export class QuizComponent implements OnInit {
 
   /**
    * クイズ新規追加イベント
-   * @param quiz
+   * @param quiz 新規クイズ情報
    */
   create(quiz: Quiz): void {
     // 更新
@@ -187,7 +187,7 @@ export class QuizComponent implements OnInit {
         window['M'].toast({ html: 'クイズを削除しました。' });
 
         // 現在のページを再表示
-        this.getQuizList(this.quizData.number)
+        this.getQuizList(this.quizData.number);
       } else {
         window['M'].toast({ html: 'クイズの削除に失敗しました。' });
       }
@@ -214,7 +214,7 @@ export class QuizComponent implements OnInit {
         window['M'].toast({ html: '問読みを登録しました。' });
 
         // 現在のページを再表示
-        this.getQuizList(this.quizData.number)
+        this.getQuizList(this.quizData.number);
       } else {
         window['M'].toast({ html: '問読みの登録に失敗しました。' });
       }

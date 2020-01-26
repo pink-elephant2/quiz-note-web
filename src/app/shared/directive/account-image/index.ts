@@ -1,1 +1,1 @@
-export * from './account-image.module'
+export * from './account-image.module';

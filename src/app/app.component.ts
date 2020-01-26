@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.subscribe(() => {
         // 強制更新
-        window.location.reload(true);
+        window.location.reload();
       });
       // Check for new version
       this.swUpdate.checkForUpdate();
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
     window.addEventListener('beforeinstallprompt', event => {
       event['userChoice'].then(choiceResult => {
         this.gaService.sendEvent('install', 'install', 'click', choiceResult.outcome);
-      })
+      });
     });
   }
 
