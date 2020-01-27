@@ -1,7 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)" autocomplete="off">
   <div class="row">
     <div class="input-field col s12">
-      <i class="material-icons prefix">mic</i>
       <input id="question" type="text" class="validate" formControlName="question">
       <label for="question">問題を入力</label>
       <ng-container *ngIf="form.controls['question'].touched">

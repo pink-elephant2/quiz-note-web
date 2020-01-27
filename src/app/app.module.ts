@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared/service/auth';
 import { AppComponent } from './app.component';
 import { HeaderModule } from './shared/component/header';
+import { FooterModule } from 'shared/component/footer/footer.module';
 import { LoginModule } from './login/login.module';
 import { LogoutModule } from './logout/logout.module';
 import { SignupModule } from './signup/signup.module';
@@ -25,6 +26,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     HttpClientModule,
     HeaderModule,
+    FooterModule,
     LoginModule,
     LogoutModule,
     SignupModule,

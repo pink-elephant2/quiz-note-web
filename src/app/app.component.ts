@@ -13,6 +13,9 @@ import { GaService } from './shared/service/ga';
 })
 export class AppComponent implements OnInit {
 
+  /** 無限スクロールする画面か */
+  isInfinityScroll: boolean;
+
   constructor(
     private router: Router,
     private titleService: Title,
@@ -37,6 +40,10 @@ export class AppComponent implements OnInit {
       const titles: Array<string> = this.getRouterData(this.router.routerState, this.router.routerState.root, 'title');
       const title = ((titles.length > 0) ? titles.pop() + ' - ' : '') + APP_TITLE;
       this.titleService.setTitle(title);
+
+      // 無限スクロールする画面か判定
+      const isInfinityScrolls = this.getRouterData(this.router.routerState, this.router.routerState.root, 'infinityScroll');
+      this.isInfinityScroll = Boolean(isInfinityScrolls.length > 0 && isInfinityScrolls.pop());
 
       // tracking
       this.gaService.sendPageView(params.url);
