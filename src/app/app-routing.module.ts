@@ -20,9 +20,9 @@ const routes: Routes = [
   // { path: 'group/:cd', loadChildren: () => import('./group/group.module').then(m => m.GroupModule) }
   { path: 'group/:cd', loadChildren: './group/group.module#GroupModule', canActivate: [AuthGuard] },
   { path: 'setting', loadChildren: './setting/setting.module#SettingModule', canActivate: [AuthGuard] },
-  { path: ':loginId', component: AccountComponent, data: { title: 'アカウント' }, canActivate: [AuthGuard] },
   { path: 'privacy', loadChildren: './privacy/privacy.module#PrivacyModule' },
-  { path: 'terms', loadChildren: './terms/terms.module#TermsModule' }
+  { path: 'terms', loadChildren: './terms/terms.module#TermsModule' },
+  { path: ':loginId', component: AccountComponent, data: { title: 'アカウント' }, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
