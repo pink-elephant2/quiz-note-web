@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: 'ログイン' } },
   { path: 'logout', component: LogoutComponent, data: { title: 'ログアウト' }, canActivate: [AuthGuard] },
   { path: 'signup', component: SignupComponent, data: { title: '新規アカウント登録' } },
+  { path: 'password', loadChildren: './password/password.module#PasswordModule' },
   { path: 'contact', loadChildren: './contact/contact.module#ContactModule' },
   { path: 'quiz', component: QuizComponent, data: { title: 'クイズ一覧', infinityScroll: true }, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, data: { title: 'マイページ' }, canActivate: [AuthGuard] },
