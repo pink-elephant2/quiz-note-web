@@ -7,10 +7,15 @@ import { PasswordRoutingModule } from './password-routing.module';
 import { PasswordComponent } from './password.component';
 import { PasswordReminderComponent } from './password-reminder/password-reminder.component';
 import { PasswordService, PasswordMockService } from 'shared/service/password';
+import { PasswordReminderCbkComponent } from './password-reminder-cbk/password-reminder-cbk.component';
 
 
 @NgModule({
-  declarations: [PasswordComponent, PasswordReminderComponent],
+  declarations: [
+    PasswordComponent,
+    PasswordReminderComponent,
+    PasswordReminderCbkComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

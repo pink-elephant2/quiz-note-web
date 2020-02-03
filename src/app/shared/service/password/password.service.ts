@@ -16,4 +16,11 @@ export class PasswordService extends ApiService {
   public sendReminder(form: PasswordReminderForm): Observable<boolean> {
     return this.post<boolean>('/api/v1/password/reminder', form);
   }
+
+  /**
+   * パスワードを再設定する
+   */
+  public resetPassword(form: PasswordReminderForm): Observable<boolean> {
+    return this.post<boolean>('/api/v1/password/reset', form);
+  }
 }
