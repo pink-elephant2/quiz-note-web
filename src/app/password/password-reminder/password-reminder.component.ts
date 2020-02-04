@@ -52,7 +52,7 @@ export class PasswordReminderComponent implements OnInit {
     this.isInValid = false;
     this.isError = false;
 
-    // お問合せ送信
+    // リマインダー送信
     this.loadingService.setLoading(true);
     this.passwordService.sendReminder(this.form.value).subscribe((ret: boolean) => {
       this.loadingService.setLoading(false);

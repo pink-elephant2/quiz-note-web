@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 
 import { PasswordService } from 'shared/service/password';
 import { PasswordReminderCbkForm } from './password-reminder-cbk-form';
 import { LoadingService } from 'shared/service/loading';
 import { GaService } from 'shared/service/ga';
+import { APP_TITLE } from 'shared/const';
 
 /**
  * パスワードリマインダー
@@ -15,7 +18,10 @@ import { GaService } from 'shared/service/ga';
   templateUrl: './password-reminder-cbk.component.html',
   styleUrls: ['./password-reminder-cbk.component.scss']
 })
-export class PasswordReminderCbkComponent implements OnInit {
+export class PasswordReminderCbkComponent implements OnInit, OnDestroy {
+
+  /** タイトル */
+  title = APP_TITLE;
 
   /** 入力フォーム */
   form: FormGroup;
@@ -27,8 +33,11 @@ export class PasswordReminderCbkComponent implements OnInit {
   /** 送信完了 */
   isCompleted: boolean;
 
+  private sub: any;
+
   constructor(
     private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
     private loadingService: LoadingService,
     private passwordService: PasswordService,
     private gaService: GaService
@@ -37,6 +46,74 @@ export class PasswordReminderCbkComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe((params: { token: string }) => {
+      // ワンタイムトークンチェック
+      this.loadingService.setLoading(true);
+      this.passwordService.checkToken(params.token).pipe(catchError((error: Response) => {
+        this.loadingService.setLoading(false);
+
+        // TODO 有効期限切れ
+        throw error;
+      })).subscribe(ret => {
+        this.loadingService.setLoading(false);
+
+        if (!ret) {
+          // TODO 不正なトークン
+        }
+
+        // hiddenにセット
+        this.form.controls.token.setValue(params.token);
+      });
+    });
+
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  /**
+   * 送信ボタン
+   * @param form 入力フォーム
+   * @param isValid 有効か
+   */
+  onSubmit(form: PasswordReminderCbkForm, isValid: boolean) {
+    if (!isValid) {
+      return;
+    }
+    this.isInValid = false;
+    this.isError = false;
+
+    // パスワード更新
+    this.loadingService.setLoading(true);
+    this.passwordService.resetPassword(this.form.value).subscribe((ret: boolean) => {
+      this.loadingService.setLoading(false);
+
+      if (ret) {
+        // tracking
+        this.gaService.sendEvent('password-reminder-cbk', 'password-reminder-cbk', 'click', form.mail);
+
+        // 送信完了
+        this.isCompleted = true;
+      } else {
+        this.isInValid = true;
+      }
+    }, (error: Response) => {
+      this.loadingService.setLoading(false);
+
+      switch (error.status) {
+        case 403:
+          this.isInValid = true;
+          break;
+        // メールアドレスが登録されていない場合
+        case 404:
+          this.isInValid = true;
+          break;
+        case 500:
+        default:
+          this.isError = true;
+          break;
+      }
+    });
+  }
 }
