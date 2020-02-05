@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '', component: PasswordComponent,
     children: [
       { path: 'reminder', component: PasswordReminderComponent, data: { title: 'パスワードリマインダー' } },
-      { path: 'reminder/cbk/:token', component: PasswordReminderCbkComponent, data: { title: 'パスワードリマインダー' } }
+      { path: 'reminder/cbk', component: PasswordReminderCbkComponent, data: { title: 'パスワードリマインダー' } }
     ]
   }
 ];

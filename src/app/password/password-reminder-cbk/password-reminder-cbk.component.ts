@@ -46,10 +46,10 @@ export class PasswordReminderCbkComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe((params: { token: string }) => {
+    this.sub = this.route.queryParams.subscribe((params: { token: string }) => {
       // ワンタイムトークンチェック
       this.loadingService.setLoading(true);
-      this.passwordService.checkToken(params.token).pipe(catchError((error: Response) => {
+      this.passwordService.checkToken(encodeURIComponent(params.token)).pipe(catchError((error: Response) => {
         this.loadingService.setLoading(false);
 
         // TODO 有効期限切れ
