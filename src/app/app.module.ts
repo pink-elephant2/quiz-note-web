@@ -16,10 +16,12 @@ import { AccountModule } from './account/account.module';
 import { LoadingModule } from './shared/component/loading';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LpComponent } from './lp/lp.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LpComponent
   ],
   imports: [
     BrowserModule,

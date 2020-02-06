@@ -7,6 +7,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { SignupComponent } from './signup/signup.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { AccountComponent } from './account/account.component';
+import { LpComponent } from './lp/lp.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'setting', loadChildren: './setting/setting.module#SettingModule', canActivate: [AuthGuard] },
   { path: 'privacy', loadChildren: './privacy/privacy.module#PrivacyModule' },
   { path: 'terms', loadChildren: './terms/terms.module#TermsModule' },
+  { path: 'lp', component: LpComponent },
   { path: ':loginId', component: AccountComponent, data: { title: 'アカウント' }, canActivate: [AuthGuard] }
 ];
 

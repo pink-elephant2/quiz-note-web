@@ -1,0 +1,144 @@
+<div id="carousel" class="carousel carousel-slider center">
+  <div class="carousel-fixed-item center">
+    <h1 class="h3">みんなのクイズ手帳！</h1>
+    <h2 class="h4">クイズの問読み・練習が変わる！</h2>
+  </div>
+  <span class="carousel-item">
+    <img src="https://cdn.banana-juice.com/tech/img/articles/20111207/20111207.jpg"></span>
+  <span class="carousel-item">
+    <img src="https://cdn.banana-juice.com/tech/img/articles/20170523/camel-snake-m.png"></span>
+  <span class="carousel-item">
+    <img src="https://cdn.banana-juice.com/tech/img/articles/20171019/elvis-operator.png"></span>
+</div>
+
+<section class="section center">
+  <div class="row">
+    <h3 class="h4">みんなのクイズ手帳とは？</h3>
+    <h4 class="h5">毎日使える！クイズ問読み・練習の定番サービス！</h4>
+  </div>
+
+  <div class="row">
+    <div class="col s4">
+      <div class="card small">
+        <div class="card-content">
+          <span class="card-title">基本無料</span>
+          <p>基本無料</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s4">
+      <div class="card small">
+        <div class="card-content">
+          <span class="card-title">問題＆答えを登録</span>
+          <p>問題＆答えを登録</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s4">
+      <div class="card small">
+        <div class="card-content">
+          <span class="card-title">音声で再生</span>
+          <p>通勤・通学の時間も有効に！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section center">
+  <div class="row">
+    <h3 class="h4">今後はこんな事もできるように！</h3>
+  </div>
+
+  <div class="row">
+    <h4 class="h5">1. クイズ集のシェア機能</h4>
+    <p>自分で考えたクイズ集をみんなに共有！</p>
+    <p>お互いのクイズをシェアして楽しもう！</p>
+    <p>※ただいま絶賛開発中！　ちょっと待ってて</p>
+  </div>
+
+  <div class="row">
+    <h4 class="h5">2. iOS、Androidアプリ展開</h4>
+    <p>※2020リリース予定！　ちょっと待ってて</p>
+  </div>
+</section>
+
+<section class="section center">
+  <div class="row">
+    <h3 class="h4">「みんなのクイズ手帳」を<br>使ってみよう！</h3>
+  </div>
+
+  <div class="row">
+    <p><a class="btn waves-effect waves-light indigo darken-2"
+        href="https://api.quiz-note.com/api/v1/login/facebook">Facebookで登録</a></p>
+  </div>
+
+  <!-- TODO コンポーネント化 -->
+  <div class="row">
+    <div class="col s12">
+      <form>
+        <div class="row">
+          <div class="col s12 input-field">
+            <input id="loginId" type="email" class="validate" required maxlength="30" data-length="30"
+              autocapitalize="off" autocorrect="off">
+            <label for="loginId">ログインID</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 input-field">
+            <input id="mail" type="email" class="validate" formControlName="mail" required maxlength="256"
+              data-length="256">
+            <label for="mail">メールアドレス</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 input-field">
+            <input id="password" type="password" class="validate" required maxlength="30" data-length="30">
+            <label for="password">パスワード</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <label>
+              <input id="isAgreeTerm" type="checkbox" required>
+              <span><a routerLink="/terms" target="_blank" rel="noopener">利用規約</a>に同意の上、「利用規約に同意して登録」ボタンを押してください。</span>
+            </label>
+            <button class="btn waves-effect waves-light pink accent-2" type="submit">利用規約に同意して登録</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <p class="red-text" *ngIf="isInValid">既に利用されています。別のログインIDでお試しください。アカウントをお持ちの方は
+              <a routerLink="/login">ログイン</a>へ。</p>
+            <p class="red-text" *ngIf="isError">申し訳ございません。ただいま回線が込み合っています。しばらくお待ちください。</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section center">
+  <div class="row">
+    <h3 class="h4">Twitter</h3>
+  </div>
+</section>
+
+<section class="section center">
+  <div class="row">
+    <p>ただいまWeb版でサービス中</p>
+    <p>振るってご参加ください！</p>
+  </div>
+
+  <div class="row">
+    <p><a class="btn waves-effect waves-light indigo darken-2"
+        href="https://api.quiz-note.com/api/v1/login/facebook">Facebookで登録</a></p>
+    <p><a class="btn waves-effect waves-light pink accent-2" routerLink="/signup">会員登録</a></p>
+  </div>
+</section>
