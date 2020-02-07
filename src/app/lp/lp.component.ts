@@ -26,7 +26,7 @@ export class LpComponent implements OnInit {
     var elems = document.getElementById('carousel');
     var instances = window['M'].Carousel.init(elems, options, false, false);
 
-    this.timerService.interval = 3000;  // 3秒間隔でカルーセルを動かす
+    this.timerService.interval = 4000;  // 4秒間隔でカルーセルを動かす
 
     // カウントダウン
     this.timer = this.timerService.getTimer().subscribe(time => {
@@ -40,6 +40,13 @@ export class LpComponent implements OnInit {
       //   this.timer.unsubscribe();
       // }
     });
+
+    // Twitterタイムライン埋め込み
+    var script = document.createElement('script');
+    script.src = 'https://platform.twitter.com/widgets.js';
+    script.charset = 'utf-8';
+    script.async = true;
+    document.body.appendChild(script);
   }
 
 }
