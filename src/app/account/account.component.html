@@ -61,7 +61,7 @@
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s3">
-          <a class="active" href="account#post" title="投稿({{postCount}})">投稿({{postCount}})</a>
+          <a class="active" href="account#post" title="問題({{postCount}})">問題({{postCount}})</a>
         </li>
         <li class="tab col s3" [ngClass]="{disabled: (followingCount === 0)}">
           <a href="account#following" title="フォロー({{followingCount}})">フォロー({{followingCount}})</a>
@@ -71,7 +71,7 @@
       </ul>
     </div>
 
-    <!-- 投稿 -->
+    <!-- 問題 -->
     <div id="post" class="col s12">
       <app-account-post *ngIf="account" [loginId]="!account.isBlocked ? account.loginId : null"
         (postCount)="postCount=$event"></app-account-post>

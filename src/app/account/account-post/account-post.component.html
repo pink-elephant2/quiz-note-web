@@ -2,15 +2,12 @@
   <div class="col s4 m4 l4" *ngFor="let quiz of quizList">
     <div class="card">
       <div class="card-image">
-        <a [routerLink]="['/quiz/', quiz.cd]">
-          <img class="quiz-list" src="{{quiz.imgUrl}}" alt="{{quiz.caption}}">
-          <span class="cover"></span>
-        </a>
+        {{quiz.question}}
       </div>
     </div>
   </div>
 
   <div class="col s12" *ngIf="quizList && quizList.length === 0">
-    <p>まだ投稿がありません。</p>
+    <p>まだ問題がありません。</p>
   </div>
 </div>
