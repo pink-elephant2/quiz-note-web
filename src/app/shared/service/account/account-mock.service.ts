@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { AccountService } from './account.service';
 import { Account } from './account';
 import { ProfileForm } from 'src/app/setting/setting-profile/profile-form';
-import { SignupForm } from 'src/app/signup/signup-form';
+import { SignupForm } from 'src/app/signup/signup-form/signup-form';
 import { ImageForm } from 'src/app/setting/setting-profile/image-form';
 
 /**
