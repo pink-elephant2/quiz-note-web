@@ -1,8 +1,11 @@
 <div class="row">
-  <div class="col s4 m4 l4" *ngFor="let quiz of quizList">
-    <div class="card">
-      <div class="card-image">
-        {{quiz.question}}
+  <div class="col s12 m4 l4" *ngFor="let quiz of quizList; let i = index">
+    <div class="card" [ngClass]="quiz.isAnswerOpen ? 'animated flip' : ''" (click)="onClickCard(i)">
+      <div class="card-content" *ngIf="!quiz.isAnswerOpen">
+        問題: {{quiz.question}}
+      </div>
+      <div class="card-content" *ngIf="quiz.isAnswerOpen">
+        答え: {{quiz.answer}}
       </div>
     </div>
   </div>
