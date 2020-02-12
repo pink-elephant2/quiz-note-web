@@ -16,15 +16,14 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: 'ログイン' } },
   { path: 'logout', component: LogoutComponent, data: { title: 'ログアウト' }, canActivate: [AuthGuard] },
   { path: 'signup', component: SignupComponent, data: { title: '新規アカウント登録' } },
-  { path: 'password', loadChildren: './password/password.module#PasswordModule' },
-  { path: 'contact', loadChildren: './contact/contact.module#ContactModule' },
+  { path: 'password', loadChildren: () => import('./password/password.module').then(m => m.PasswordModule) },
+  { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
   { path: 'quiz', component: QuizComponent, data: { title: 'クイズ一覧', infinityScroll: true }, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, data: { title: 'マイページ' }, canActivate: [AuthGuard] },
-  // { path: 'group/:cd', loadChildren: () => import('./group/group.module').then(m => m.GroupModule) }
-  { path: 'group/:cd', loadChildren: './group/group.module#GroupModule', canActivate: [AuthGuard] },
-  { path: 'setting', loadChildren: './setting/setting.module#SettingModule', canActivate: [AuthGuard] },
-  { path: 'privacy', loadChildren: './privacy/privacy.module#PrivacyModule' },
-  { path: 'terms', loadChildren: './terms/terms.module#TermsModule' },
+  { path: 'group/:cd', loadChildren: () => import('./group/group.module').then(m => m.GroupModule), canActivate: [AuthGuard] },
+  { path: 'setting', loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule), canActivate: [AuthGuard] },
+  { path: 'privacy', loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule) },
+  { path: 'terms', loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule) },
   { path: 'lp', component: LpComponent },
   { path: ':loginId', component: AccountComponent, data: { title: 'アカウント' }, canActivate: [AuthGuard] }
 ];
