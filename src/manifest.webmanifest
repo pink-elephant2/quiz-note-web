@@ -1,11 +1,11 @@
 {
   "name": "みんなのクイズ手帳",
-  "short_name": "みんなのクイズ手帳",
+  "short_name": "クイズ手帳",
   "theme_color": "#ee6e73",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/home",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",

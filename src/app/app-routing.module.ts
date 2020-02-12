@@ -12,6 +12,7 @@ import { LpComponent } from './lp/lp.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'home', component: LoginComponent }, // PWA
   { path: 'login', component: LoginComponent, data: { title: 'ログイン' } },
   { path: 'logout', component: LogoutComponent, data: { title: 'ログアウト' }, canActivate: [AuthGuard] },
   { path: 'signup', component: SignupComponent, data: { title: '新規アカウント登録' } },
