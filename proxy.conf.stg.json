@@ -1,11 +1,11 @@
 {
   "/api/v1": {
     "target": {
-      "host": "ec2-3-112-18-50.ap-northeast-1.compute.amazonaws.com",
-      "protocol": "http:",
-      "port": 8080
+      "host": "api.quiz-note.com",
+      "protocol": "https:",
+      "port": 443
     },
-    "secure": false,
+    "secure": true,
     "changeOrigin": true
   }
 }

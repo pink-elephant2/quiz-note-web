@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { GroupComponent } from './group.component';
+import { GroupListComponent } from './group-list/group-list.component';
 
 const routes: Routes = [
   {
-    path: '', component: GroupComponent
+    path: '', component: GroupListComponent, data: { title: 'グループ' }
   }
 ];
 

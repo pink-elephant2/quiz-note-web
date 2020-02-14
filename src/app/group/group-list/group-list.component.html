@@ -1,0 +1,29 @@
+<section class="section animated fadeIn">
+  <h2 class="h4 red-text darken-1">グループ一覧</h2>
+
+  <ng-container *ngIf="groupData">
+    <!-- 所属しているグループがない場合 -->
+    <ng-container *ngIf="groupData.totalElements === 0">
+      <div class="row">
+        <p>グループに所属してみましょう。</p>
+      </div>
+      <div class="row">
+        <button class="btn">探す</button>
+      </div>
+      <div class="row">
+        <button class="btn">作る</button>
+      </div>
+    </ng-container>
+
+    <!-- 所属しているグループがある場合 -->
+    <ul class="collection">
+      <li *ngFor="let group of groupData.content" class="collection-item avatar animated fadeIn">
+        <img src="assets/images/account.png" alt="" class="circle">
+        <span class="title">{{group.name}}</span>
+        <p>{{group.description}}
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+    </ul>
+  </ng-container>
+</section>

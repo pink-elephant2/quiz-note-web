@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
   { path: 'quiz', component: QuizComponent, data: { title: 'クイズ一覧', infinityScroll: true }, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, data: { title: 'マイページ' }, canActivate: [AuthGuard] },
-  { path: 'group/:cd', loadChildren: () => import('./group/group.module').then(m => m.GroupModule), canActivate: [AuthGuard] },
+  { path: 'group', loadChildren: () => import('./group/group.module').then(m => m.GroupModule), canActivate: [AuthGuard] },
   { path: 'setting', loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule), canActivate: [AuthGuard] },
   { path: 'privacy', loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule) },
   { path: 'terms', loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule) },
