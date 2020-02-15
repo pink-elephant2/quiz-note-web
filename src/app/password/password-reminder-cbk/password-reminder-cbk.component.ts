@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { catchError } from 'rxjs/operators';
 
 import { PasswordService } from 'shared/service/password';
 import { PasswordReminderCbkForm } from './password-reminder-cbk-form';
@@ -26,6 +25,8 @@ export class PasswordReminderCbkComponent implements OnInit, OnDestroy {
   /** 入力フォーム */
   form: FormGroup;
 
+  /** 有効期限切れ */
+  isExpired: boolean;
   /** バリデーション失敗 */
   isInValid: boolean;
   /** APIエラー */
@@ -48,21 +49,27 @@ export class PasswordReminderCbkComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.queryParams.subscribe((params: { token: string }) => {
       // ワンタイムトークンチェック
+      if (!params.token) {
+        // URL不正
+        this.isExpired = true;
+        return;
+      }
       this.loadingService.setLoading(true);
-      this.passwordService.checkToken(encodeURIComponent(params.token)).pipe(catchError((error: Response) => {
-        this.loadingService.setLoading(false);
-
-        // TODO 有効期限切れ
-        throw error;
-      })).subscribe(ret => {
+      this.passwordService.checkToken(encodeURIComponent(params.token)).subscribe(ret => {
         this.loadingService.setLoading(false);
 
         if (!ret) {
           // TODO 不正なトークン
+          this.isExpired = true;
+        } else {
+          // hiddenにセット
+          this.form.controls.token.setValue(params.token);
         }
+      }, () => {
+        this.loadingService.setLoading(false);
 
-        // hiddenにセット
-        this.form.controls.token.setValue(params.token);
+        // 有効期限切れ
+        this.isExpired = true;
       });
     });
 
