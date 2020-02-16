@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from '../api.service';
 import { Pageable, Page } from 'shared/model';
 import { Group } from './group';
+import { GroupForm } from 'src/app/group/group-form/group-form';
 
 /**
  * グループサービス
@@ -21,20 +22,20 @@ export class GroupService extends ApiService {
   /**
    * グループを登録する
    */
-  // public postGroup(loginId: string, form: GroupForm): Observable<Group> {
-  //   const url = `/api/v1/user/${loginId}/group`;
-  //   return this.post<Group>(url, form);
-  // }
+  public postGroup(loginId: string, form: GroupForm): Observable<Group> {
+    const url = `/api/v1/user/${loginId}/group`;
+    return this.post<Group>(url, form);
+  }
 
   /**
    * グループを更新する
    */
-  // public putGroup(loginId: string, groupCd: string, form: GroupForm): Observable<Group> {
-  //   const url = `/api/v1/user/${loginId}/group`;
-  //   const params = { ...form };
-  //   params['cd'] = groupCd;
-  //   return super.put<Group>(url, params);
-  // }
+  public putGroup(loginId: string, groupCd: string, form: GroupForm): Observable<Group> {
+    const url = `/api/v1/user/${loginId}/group`;
+    const params = { ...form };
+    params['cd'] = groupCd;
+    return super.put<Group>(url, params);
+  }
 
   /**
    * グループを削除する

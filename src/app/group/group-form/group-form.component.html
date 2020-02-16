@@ -1,3 +1,37 @@
 <section class="section animated fadeIn">
   <h2 class="h4 red-text darken-1">新規グループ作成</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)" autocomplete="off">
+    <div class="input-field">
+      <input id="name" type="text" class="validate" formControlName="name" required maxlength="30" data-length="30">
+      <label for="name">グループ名</label>
+      <ng-container *ngIf="form.controls['name'].touched">
+        <span class="helper-text" *ngIf="form.controls['name'].hasError('required')" data-error="入力してください"></span>
+        <span class="helper-text" *ngIf="form.controls['name'].hasError('maxlength')"
+          data-error="30文字以内で入力してください"></span>
+      </ng-container>
+    </div>
+
+    <div class="input-field">
+      <input id="description" type="text" class="validate" formControlName="description" required maxlength="120"
+        data-length="120">
+      <label for="description">紹介文</label>
+      <ng-container *ngIf="form.controls['description'].touched">
+        <span class="helper-text" *ngIf="form.controls['description'].hasError('required')"
+          data-error="入力してください"></span>
+        <span class="helper-text" *ngIf="form.controls['description'].hasError('maxlength')"
+          data-error="120文字以内で入力してください"></span>
+      </ng-container>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
+          type="submit">作成する</button>
+      </div>
+    </div>
+
+    <p class="red-text" *ngIf="isInValid">既に同じ名前のグループが存在します。</p>
+    <p class="red-text" *ngIf="isError">申し訳ございません。ただいま回線が込み合っています。しばらくお待ちください。</p>
+  </form>
 </section>

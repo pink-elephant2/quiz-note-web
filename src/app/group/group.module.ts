@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { environment } from 'env/environment';
 import { GroupComponent } from './group.component';
@@ -20,6 +22,9 @@ import { GroupDetailComponent } from './group-detail/group-detail.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
     GroupRoutingModule
   ],
   providers: [
