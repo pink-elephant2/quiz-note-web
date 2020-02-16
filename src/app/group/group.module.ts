@@ -6,11 +6,17 @@ import { GroupComponent } from './group.component';
 import { GroupRoutingModule } from './group-routing.module';
 import { GroupListComponent } from './group-list/group-list.component';
 import { GroupService, GroupMockService } from 'shared/service/group';
+import { GroupFormComponent } from './group-form/group-form.component';
+import { GroupSearchComponent } from './group-search/group-search.component';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
 
 @NgModule({
   declarations: [
     GroupComponent,
-    GroupListComponent
+    GroupListComponent,
+    GroupFormComponent,
+    GroupSearchComponent,
+    GroupDetailComponent
   ],
   imports: [
     CommonModule,

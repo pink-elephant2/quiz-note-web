@@ -8,10 +8,10 @@
         <p>グループに所属してみましょう。</p>
       </div>
       <div class="row">
-        <button class="btn">探す</button>
+        <button routerLink="/group/explore" class="btn">探す</button>
       </div>
       <div class="row">
-        <button class="btn">作る</button>
+        <button routerLink="/group/create" class="btn">作る</button>
       </div>
     </ng-container>
 
@@ -22,7 +22,7 @@
         <span class="title">{{group.name}}</span>
         <p>{{group.description}}
         </p>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        <a [routerLink]="['/group/', group.cd]" class="secondary-content"><i class="material-icons">grade</i></a>
       </li>
     </ul>
   </ng-container>

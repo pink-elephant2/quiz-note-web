@@ -152,5 +152,8 @@
       }
     }
   },
-  "defaultProject": "quiz-note-web"
+  "defaultProject": "quiz-note-web",
+  "cli": {
+    "analytics": "0ee6fcec-0c87-4862-9acb-18965e9e9fd7"
+  }
 }

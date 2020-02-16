@@ -51,10 +51,14 @@ export class GroupListComponent implements OnInit {
       // TODO 仮データ
       this.groupData.content = [
         {
+          id: 1,
+          cd: 'aaa',
           name: 'グループ1',
           description: '説明'
         } as Group,
         {
+          id: 2,
+          cd: 'bbb',
           name: 'グループ2',
           description: '説明2'
         } as Group
