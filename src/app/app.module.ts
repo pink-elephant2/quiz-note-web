@@ -17,6 +17,7 @@ import { LoadingModule } from './shared/component/loading';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LpComponent } from './lp/lp.component';
+import { TwitterModule } from 'shared/component/twitter';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LpComponent } from './lp/lp.component';
     QuizModule,
     AccountModule,
     LoadingModule,
+    TwitterModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production && location.hostname !== 'localhost' })
   ],
   providers: [AuthGuard],

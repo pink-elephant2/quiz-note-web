@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'home', component: LoginComponent }, // PWA
   { path: 'login', component: LoginComponent, data: { title: 'ログイン' } },
   { path: 'logout', component: LogoutComponent, data: { title: 'ログアウト' }, canActivate: [AuthGuard] },
+  { path: 'maintenance', loadChildren: () => import('./maintenance/maintenance.module').then(m => m.MaintenanceModule) },
   { path: 'signup', component: SignupComponent, data: { title: '新規アカウント登録' } },
   { path: 'password', loadChildren: () => import('./password/password.module').then(m => m.PasswordModule) },
   { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },

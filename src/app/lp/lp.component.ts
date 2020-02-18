@@ -40,13 +40,6 @@ export class LpComponent implements OnInit {
       //   this.timer.unsubscribe();
       // }
     });
-
-    // Twitterタイムライン埋め込み
-    var script = document.createElement('script');
-    script.src = 'https://platform.twitter.com/widgets.js';
-    script.charset = 'utf-8';
-    script.async = true;
-    document.body.appendChild(script);
   }
 
 }
