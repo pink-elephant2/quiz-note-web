@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: '', component: GroupListComponent, data: { title: 'グループ' } },
   { path: 'explore', component: GroupSearchComponent, data: { title: 'グループを探す' } },
   { path: 'create', component: GroupFormComponent, data: { title: 'グループ作成' } },
+  { path: 'edit/:cd', component: GroupFormComponent, data: { title: 'グループ編集' } },
   { path: ':cd', component: GroupDetailComponent, data: { title: 'グループ詳細' } }
 ];
 

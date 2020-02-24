@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { GroupForm } from './group-form';
 import { AuthService } from 'shared/service/auth';
@@ -16,6 +17,9 @@ import { GroupService, Group } from 'shared/service/group';
 })
 export class GroupFormComponent implements OnInit {
 
+  /** グループCD */
+  groupCd: string;
+
   /** 入力フォーム */
   form: FormGroup;
 
@@ -24,7 +28,11 @@ export class GroupFormComponent implements OnInit {
   /** APIエラー */
   isError: boolean;
 
+  private sub: any;
+
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private loadingService: LoadingService,
@@ -34,6 +42,36 @@ export class GroupFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // テキストボックス事前入力
+    window['M'].updateTextFields();
+
+    // 文字数カウント
+    window['$']('#groupForm').find('input, textarea').characterCounter();
+
+    // グループCDを渡された場合、編集モード
+    this.sub = this.route.params.subscribe((params: { cd: string }) => {
+      this.groupCd = params.cd;
+
+      // グループ取得
+      this.loadingService.setLoading(true);
+      this.groupService.getGroup(this.authService.loginId, this.groupCd).subscribe(group => {
+        this.loadingService.setLoading(false);
+
+        // 管理者アカウントのみ編集可能
+        if (group.account.loginId !== this.authService.loginId) {
+          this.router.navigate(['/group']);
+          return;
+        }
+
+        // フォームにセット
+        this.form.controls.name.setValue(group.name);
+        this.form.controls.description.setValue(group.description);
+
+      }, (error: Response) => {
+        this.loadingService.setLoading(false);
+        this.isError = true;
+      });
+    });
   }
 
   /**
@@ -50,11 +88,14 @@ export class GroupFormComponent implements OnInit {
 
     // グループ作成
     this.loadingService.setLoading(true);
-    this.groupService.postGroup(this.authService.loginId, this.form.value).subscribe((group: Group) => {
+    const sub = (this.groupCd)
+      ? this.groupService.putGroup(this.authService.loginId, this.groupCd, this.form.value)
+      : this.groupService.postGroup(this.authService.loginId, this.form.value);
+    sub.subscribe((group: Group) => {
       this.loadingService.setLoading(false);
 
-      // TODO 次の画面へ
-      console.log(group);
+      // 次の画面へ
+      this.router.navigate(['/group', group.cd]);
     }, (error: Response) => {
       this.loadingService.setLoading(false);
 

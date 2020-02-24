@@ -25,6 +25,9 @@ export class GroupDetailComponent implements OnInit, OnDestroy {
   /** メンバー数 */
   memberCount = 0;
 
+  /** 管理者アカウントか */
+  isManager = false;
+
   /** グループが存在しない */
   isNotFound = false;
 
@@ -57,6 +60,9 @@ export class GroupDetailComponent implements OnInit, OnDestroy {
 
         this.loadingService.setLoading(false);
         this.group = group;
+
+        // 管理者アカウントか
+        this.isManager = this.group.account.loginId === this.authService.loginId;
 
         // タブ初期化
         const instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});
