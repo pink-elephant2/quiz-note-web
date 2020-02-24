@@ -29,6 +29,15 @@ export class GroupMockService extends GroupService {
   //   } as Group
   // ];
 
+
+  /**
+   * グループを取得する
+   */
+  public getGroup(loginId: string, groupCd: string): Observable<Group> {
+    // TODO 実装
+    return of();
+  }
+
   /**
    * グループ一覧を取得する
    */

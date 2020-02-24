@@ -5,6 +5,10 @@ import { Account } from '../account';
  */
 export class Group {
 
+  // ----------------------------------
+  // API返却値
+  // ----------------------------------
+
   /** ID */
   id: number;
 
@@ -25,4 +29,7 @@ export class Group {
 
   /** 画像URL */
   imgUrl: string;
+
+  /** ログイン状態の場合、ブロックされているかどうか */
+  isBlocked: boolean;
 }

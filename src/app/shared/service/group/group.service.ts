@@ -13,6 +13,13 @@ import { GroupForm } from 'src/app/group/group-form/group-form';
 export class GroupService extends ApiService {
 
   /**
+   * グループを取得する
+   */
+  public getGroup(loginId: string, groupCd: string): Observable<Group> {
+    return this.get<Group>(`/api/v1/user/${loginId}/group/${groupCd}`);
+  }
+
+  /**
    * グループ一覧を取得する
    */
   public getGroupList(loginId: string, pageable?: Pageable): Observable<Page<Group>> {

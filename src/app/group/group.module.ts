@@ -11,6 +11,10 @@ import { GroupService, GroupMockService } from 'shared/service/group';
 import { GroupFormComponent } from './group-form/group-form.component';
 import { GroupSearchComponent } from './group-search/group-search.component';
 import { GroupDetailComponent } from './group-detail/group-detail.component';
+import { GroupImageModule } from 'shared/directive/group-image';
+import { GroupPostComponent } from './group-post/group-post.component';
+import { GroupMemberComponent } from './group-member/group-member.component';
+import { GroupMenuComponent } from './group-menu/group-menu.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +22,18 @@ import { GroupDetailComponent } from './group-detail/group-detail.component';
     GroupListComponent,
     GroupFormComponent,
     GroupSearchComponent,
-    GroupDetailComponent
+    GroupDetailComponent,
+    GroupPostComponent,
+    GroupMemberComponent,
+    GroupMenuComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    GroupRoutingModule
+    GroupRoutingModule,
+    GroupImageModule
   ],
   providers: [
     environment.production ? GroupService : { provide: GroupService, useClass: GroupMockService }
