@@ -5,6 +5,7 @@ import { ApiService } from '../api.service';
 import { Pageable, Page } from 'shared/model';
 import { Group } from './group';
 import { GroupForm } from 'src/app/group/group-form/group-form';
+import { GroupMember } from './group-member';
 
 /**
  * グループサービス
@@ -52,4 +53,10 @@ export class GroupService extends ApiService {
     return this.delete<boolean>(url);
   }
 
+  /**
+   * グループメンバーを取得する
+   */
+  public getGroupMember(loginId: string, groupCd: string, pageable?: Pageable): Observable<Page<GroupMember>> {
+    return this.get<GroupMember[]>(`/api/v1/user/${loginId}/group/${groupCd}/member`, pageable);
+  }
 }

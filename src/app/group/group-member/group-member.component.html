@@ -1,1 +1,15 @@
-<p>group-member works!</p>
+<ul class="collection" *ngIf="groupMemberData">
+  <li *ngFor="let groupMember of groupMemberData.content" class="collection-item avatar animated fadeIn">
+    <img appGroupImage [src]="groupMember.account.imgUrl" [alt]="groupMember.account.name" class="avatar circle">
+    <span class="title">
+      <a [routerLink]="['/', groupMember.account.loginId]">{{groupMember.account.name}}</a>
+      <ng-container *ngIf="groupMember.isManager">
+        &nbsp;<i class="material-icons amber-text" title="管理者">grade</i>
+      </ng-container>
+    </span>
+
+    <p class="truncate description">{{groupMember.account.description}}</p>
+    <a [routerLink]="['/', groupMember.account.loginId]" class="secondary-content"><i
+        class="material-icons">grade</i></a>
+  </li>
+</ul>

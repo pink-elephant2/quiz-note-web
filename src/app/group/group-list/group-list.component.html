@@ -22,8 +22,7 @@
       <li *ngFor="let group of groupData.content" class="collection-item avatar animated fadeIn">
         <img appGroupImage [src]="group.imgUrl" [alt]="group.name" class="avatar circle">
         <span class="title">{{group.name}}</span>
-        <p>{{group.description}}
-        </p>
+        <p class="truncate description">{{group.description}}</p>
         <a [routerLink]="['/group/', group.cd]" class="secondary-content"><i class="material-icons">grade</i></a>
       </li>
     </ul>

@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { GroupService } from './group.service';
 import { Group } from './group';
 import { GroupForm } from 'src/app/group/group-form/group-form';
+import { GroupMember } from './group-member';
 import { Pageable, Page } from 'shared/model';
 
 /**
@@ -69,4 +70,11 @@ export class GroupMockService extends GroupService {
     return of(true);
   }
 
+  /**
+   * グループメンバーを取得する
+   */
+  public getGroupMember(loginId: string, groupCd: string, pageable?: Pageable): Observable<Page<GroupMember>> {
+    // TODO 実装
+    return of();
+  }
 }
