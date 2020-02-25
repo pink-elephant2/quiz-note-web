@@ -59,4 +59,22 @@ export class GroupService extends ApiService {
   public getGroupMember(loginId: string, groupCd: string, pageable?: Pageable): Observable<Page<GroupMember>> {
     return this.get<GroupMember[]>(`/api/v1/user/${loginId}/group/${groupCd}/member`, pageable);
   }
+
+  /**
+   * グループメンバーを登録する
+   */
+  // TODO 実装
+
+  /**
+   * グループメンバーを更新する
+   */
+  // TODO 実装
+
+  /**
+   * グループメンバーを削除する
+   */
+  public removeGroupMember(loginId: string, groupCd: string, memberLoginId: string): Observable<boolean> {
+    const url = `/api/v1/user/${loginId}/group/${groupCd}/member?memberLoginId=${memberLoginId}`;
+    return this.delete<boolean>(url);
+  }
 }

@@ -75,12 +75,4 @@ export class GroupDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-
-  /**
-   * グループから抜ける
-   */
-  leave(): void {
-    // TODO 実装
-    console.log('leave click');
-  }
 }

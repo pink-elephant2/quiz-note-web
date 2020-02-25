@@ -50,6 +50,9 @@ export class GroupFormComponent implements OnInit {
 
     // グループCDを渡された場合、編集モード
     this.sub = this.route.params.subscribe((params: { cd: string }) => {
+      if (!params.cd) {
+        return;
+      }
       this.groupCd = params.cd;
 
       // グループ取得

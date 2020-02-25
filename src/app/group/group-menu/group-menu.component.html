@@ -1,1 +1,24 @@
-<p>group-menu works!</p>
+<!-- 詳細メニューモーダル -->
+<div id="menu-modal" class="modal">
+  <div class="collection">
+    <a href="javascript:void(0);" class="collection-item pink-text">メンバーを招待する</a>
+    <a href="javascript:void(0);" class="collection-item pink-text" (click)="leaveConfirm()">退会する</a>
+    <a href="javascript:void(0);" class="modal-close grey-text collection-item">キャンセル</a>
+  </div>
+</div>
+
+<!-- 退会確認モーダル -->
+<div id="confirm-leave-modal" class="modal">
+  <div class="modal-content" *ngIf="group">
+    <h4 class="h6">@{{group.name}}から退会しますか？</h4>
+    <div class="row">
+      <div class="col offset-s4 s3">
+        <img appGroupImage [src]="group.imgUrl" [alt]="group.name" class="avatar circle responsive-img">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:void(0)" (click)="leave()" class="waves-effect waves-light btn-flat red-text">グループから退会する</a>
+    <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
+  </div>
+</div>

@@ -77,4 +77,21 @@ export class GroupMockService extends GroupService {
     // TODO 実装
     return of();
   }
+
+  /**
+   * グループメンバーを登録する
+   */
+  // TODO 実装
+
+  /**
+   * グループメンバーを更新する
+   */
+  // TODO 実装
+
+  /**
+   * グループメンバーを削除する
+   */
+  public removeGroupMember(loginId: string, groupCd: string, memberLoginId: string): Observable<boolean> {
+    return of(true);
+  }
 }
