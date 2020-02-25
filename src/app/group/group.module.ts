@@ -15,6 +15,7 @@ import { GroupImageModule } from 'shared/directive/group-image';
 import { GroupPostComponent } from './group-post/group-post.component';
 import { GroupMemberComponent } from './group-member/group-member.component';
 import { GroupMenuComponent } from './group-menu/group-menu.component';
+import { AccountImageModule } from 'shared/directive/account-image';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { GroupMenuComponent } from './group-menu/group-menu.component';
     ReactiveFormsModule,
     RouterModule,
     GroupRoutingModule,
-    GroupImageModule
+    GroupImageModule,
+    AccountImageModule
   ],
   providers: [
     environment.production ? GroupService : { provide: GroupService, useClass: GroupMockService }

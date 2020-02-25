@@ -5,6 +5,7 @@ import { GroupService } from './group.service';
 import { Group } from './group';
 import { GroupForm } from 'src/app/group/group-form/group-form';
 import { GroupMember } from './group-member';
+import { GroupInviteForm } from 'src/app/group/group-menu/group-invite-form';
 import { Pageable, Page } from 'shared/model';
 
 /**
@@ -81,7 +82,9 @@ export class GroupMockService extends GroupService {
   /**
    * グループメンバーを登録する
    */
-  // TODO 実装
+  public postGroupMember(loginId: string, groupCd: string, form: GroupInviteForm): Observable<boolean> {
+    return of(true);
+  }
 
   /**
    * グループメンバーを更新する

@@ -6,6 +6,7 @@ import { Pageable, Page } from 'shared/model';
 import { Group } from './group';
 import { GroupForm } from 'src/app/group/group-form/group-form';
 import { GroupMember } from './group-member';
+import { GroupInviteForm } from 'src/app/group/group-menu/group-invite-form';
 
 /**
  * グループサービス
@@ -63,7 +64,12 @@ export class GroupService extends ApiService {
   /**
    * グループメンバーを登録する
    */
-  // TODO 実装
+  public postGroupMember(loginId: string, groupCd: string, form: GroupInviteForm): Observable<boolean> {
+    const url = `/api/v1/user/${loginId}/group/${groupCd}/member`;
+    const params = { ...form };
+    params['cd'] = groupCd;
+    return this.post<boolean>(url, params);
+  }
 
   /**
    * グループメンバーを更新する

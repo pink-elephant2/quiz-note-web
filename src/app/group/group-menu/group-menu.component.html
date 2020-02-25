@@ -1,10 +1,47 @@
 <!-- 詳細メニューモーダル -->
 <div id="menu-modal" class="modal">
   <div class="collection">
-    <a href="javascript:void(0);" class="collection-item pink-text">メンバーを招待する</a>
+    <a href="javascript:void(0);" class="collection-item pink-text" (click)="inviteConfirm()">メンバーを招待する</a>
     <a href="javascript:void(0);" class="collection-item pink-text" (click)="leaveConfirm()">退会する</a>
     <a href="javascript:void(0);" class="modal-close grey-text collection-item">キャンセル</a>
   </div>
+</div>
+
+<!-- 招待確認モーダル -->
+<div id="confirm-invite-modal" class="modal">
+  <form id="groupInviteForm" [formGroup]="form" (ngSubmit)="invite(form.value, form.valid)">
+    <div class="modal-content" *ngIf="group">
+      <h4 class="h6">招待する人のログインIDを入力してください</h4>
+      <br>
+      <div class="input-field">
+        <input id="memberLoginId" type="text" class="validate" formControlName="memberLoginId" required maxlength="30"
+          data-length="30" autocapitalize="off" autocorrect="off">
+        <label for="memberLoginId">ログインID</label>
+        <ng-container *ngIf="form.controls['memberLoginId'].touched">
+          <span class="helper-text" *ngIf="form.controls['memberLoginId'].hasError('required')"
+            data-error="入力してください"></span>
+          <span class="helper-text" *ngIf="form.controls['memberLoginId'].hasError('maxlength')"
+            data-error="30文字以内で入力してください"></span>
+        </ng-container>
+      </div>
+
+      <p class="red-text" *ngIf="isInValid">アカウントが存在しません。</p>
+      <p class="red-text" *ngIf="isInvited">既に招待されています。</p>
+      <p class="red-text" *ngIf="isError">申し訳ございません。ただいま回線が込み合っています。しばらくお待ちください。</p>
+      <div class="row" *ngIf="inviteAccount">
+        <div class="col offset-s4 s3">
+          <img appAccountImage [src]="inviteAccount.imgUrl" [alt]="inviteAccount.name"
+            class="avatar circle responsive-img">
+          {{inviteAccount.name}}
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" [disabled]="!form.valid || isError"
+        class="waves-effect waves-light btn-flat red-text">招待する</button>
+      <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
+    </div>
+  </form>
 </div>
 
 <!-- 退会確認モーダル -->
