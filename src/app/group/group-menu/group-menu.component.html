@@ -47,7 +47,7 @@
 <!-- 退会確認モーダル -->
 <div id="confirm-leave-modal" class="modal">
   <div class="modal-content" *ngIf="group">
-    <h4 class="h6">@{{group.name}}から退会しますか？</h4>
+    <h4 class="h6">{{group.name}}から退会しますか？</h4>
     <div class="row">
       <div class="col offset-s4 s3">
         <img appGroupImage [src]="group.imgUrl" [alt]="group.name" class="avatar circle responsive-img">

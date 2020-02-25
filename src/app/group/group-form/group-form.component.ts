@@ -97,6 +97,12 @@ export class GroupFormComponent implements OnInit {
     sub.subscribe((group: Group) => {
       this.loadingService.setLoading(false);
 
+      if (this.groupCd) {
+        window['M'].toast({ html: 'グループを更新しました' });
+      } else {
+        window['M'].toast({ html: 'グループを作成しました' });
+      }
+
       // 次の画面へ
       this.router.navigate(['/group', group.cd]);
     }, (error: Response) => {

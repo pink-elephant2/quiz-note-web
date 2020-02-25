@@ -99,9 +99,9 @@ export class GroupMenuComponent implements OnInit {
       // 招待完了
       if (ret) {
         // モーダルを閉じる
-        this.modalConfirmInviteInstance.clese();
+        this.modalConfirmInviteInstance.close();
 
-        // TODO メッセージ
+        window['M'].toast({ html: '招待しました。' });
       } else {
         // 招待済み
         this.isInvited = true;
@@ -143,11 +143,13 @@ export class GroupMenuComponent implements OnInit {
     this.groupService.removeGroupMember(this.authService.loginId, this.group.cd, this.authService.loginId).subscribe(ret => {
       this.loadingService.setLoading(false);
 
-      // モーダルを閉じる
-      this.modalConfirmLeaveInstance.close();
-      this.router.navigate(['/group']);
+      if (ret) {
+        // モーダルを閉じる
+        this.modalConfirmLeaveInstance.close();
+        this.router.navigate(['/group']);
 
-      // TODO メッセージ
+        window['M'].toast({ html: '退会しました。' });
+      }
     });
   }
 }
