@@ -18,13 +18,13 @@ export class LpComponent implements OnInit {
 
   ngOnInit() {
 
-    var options = {
+    const options = {
       duration: 300,
       fullWidth: true,
       indicators: true
     };
-    var elems = document.getElementById('carousel');
-    var instances = window['M'].Carousel.init(elems, options, false, false);
+    const elems = document.getElementById('carousel');
+    const instances = window['M'].Carousel.init(elems, options, false, false);
 
     this.timerService.interval = 4000;  // 4秒間隔でカルーセルを動かす
 
