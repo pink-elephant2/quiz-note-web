@@ -20,6 +20,9 @@ export class GroupMemberComponent implements OnChanges {
   /** グループコード */
   @Input() groupCd: string;
 
+  /** 管理者アカウントか */
+  @Input() isManager: boolean;
+
   /** メンバー数 */
   @Output() memberCount: EventEmitter<number> = new EventEmitter<number>();
 

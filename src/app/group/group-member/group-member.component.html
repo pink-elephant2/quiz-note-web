@@ -1,6 +1,8 @@
 <ul class="collection" *ngIf="groupMemberData">
   <li *ngFor="let groupMember of groupMemberData.content" class="collection-item avatar animated fadeIn">
-    <img appGroupImage [src]="groupMember.account.imgUrl" [alt]="groupMember.account.name" class="avatar circle">
+    <a [routerLink]="['/', groupMember.account.loginId]">
+      <img appGroupImage [src]="groupMember.account.imgUrl" [alt]="groupMember.account.name" class="avatar circle">
+    </a>
     <span class="title">
       <a [routerLink]="['/', groupMember.account.loginId]" class="pink-text">{{groupMember.account.name}}</a>
       <ng-container *ngIf="groupMember.isManager">
@@ -9,7 +11,8 @@
     </span>
 
     <p class="truncate description">{{groupMember.account.description}}</p>
-    <a [routerLink]="['/', groupMember.account.loginId]" class="secondary-content"><i
-        class="material-icons">grade</i></a>
+    <a *ngIf="isManager" [routerLink]="['/', groupMember.account.loginId]"
+      class="secondary-content grey-text text-darken-2">
+      <i class="material-icons">more_vert</i></a>
   </li>
 </ul>

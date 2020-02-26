@@ -20,10 +20,13 @@
     <!-- 所属しているグループがある場合 -->
     <ul class="collection">
       <li *ngFor="let group of groupData.content" class="collection-item avatar animated fadeIn">
-        <img appGroupImage [src]="group.imgUrl" [alt]="group.name" class="avatar circle">
-        <span class="title">{{group.name}}</span>
+        <a [routerLink]="['/group/', group.cd]">
+          <img appGroupImage [src]="group.imgUrl" [alt]="group.name" class="avatar circle">
+        </a>
+        <a [routerLink]="['/group/', group.cd]" class="pink-text">
+          <span class="title">{{group.name}}</span>
+        </a>
         <p class="truncate description">{{group.description}}</p>
-        <a [routerLink]="['/group/', group.cd]" class="secondary-content"><i class="material-icons">grade</i></a>
       </li>
     </ul>
   </ng-container>

@@ -38,7 +38,8 @@
 
     <!-- メンバー -->
     <div id="member" class="col s12">
-      <app-group-member *ngIf="group" [groupCd]="!group.isBlocked ? group.cd : null" (memberCount)="memberCount=$event">
+      <app-group-member *ngIf="group" [groupCd]="!group.isBlocked ? group.cd : null" (memberCount)="memberCount=$event"
+        [isManager]="isManager">
       </app-group-member>
     </div>
 
