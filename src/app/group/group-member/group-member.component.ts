@@ -2,6 +2,7 @@ import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges } from
 
 import { GroupService, GroupMember } from 'shared/service/group';
 import { AuthService } from 'shared/service/auth';
+import { Account } from 'shared/service/account';
 import { Pageable, Page } from 'shared/model';
 
 /**
@@ -25,6 +26,9 @@ export class GroupMemberComponent implements OnChanges {
 
   /** メンバー数 */
   @Output() memberCount: EventEmitter<number> = new EventEmitter<number>();
+
+  /** 選択したアカウント */
+  currentAccount: Account;
 
   constructor(
     private authService: AuthService,
@@ -51,4 +55,12 @@ export class GroupMemberComponent implements OnChanges {
     }
   }
 
+  /**
+   * メニューを開く
+   */
+  openMemu(groupMember: GroupMember) {
+    // アカウントを選択する
+    this.currentAccount = groupMember.account;
+    // モーダルはライブラリが開く
+  }
 }

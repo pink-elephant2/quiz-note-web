@@ -14,6 +14,7 @@ import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { GroupImageModule } from 'shared/directive/group-image';
 import { GroupPostComponent } from './group-post/group-post.component';
 import { GroupMemberComponent } from './group-member/group-member.component';
+import { GroupMemberMenuComponent } from './group-member-menu/group-member-menu.component';
 import { GroupMenuComponent } from './group-menu/group-menu.component';
 import { AccountImageModule } from 'shared/directive/account-image';
 
@@ -26,6 +27,7 @@ import { AccountImageModule } from 'shared/directive/account-image';
     GroupDetailComponent,
     GroupPostComponent,
     GroupMemberComponent,
+    GroupMemberMenuComponent,
     GroupMenuComponent
   ],
   imports: [

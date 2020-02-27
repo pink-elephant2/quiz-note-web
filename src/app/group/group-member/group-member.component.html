@@ -11,8 +11,14 @@
     </span>
 
     <p class="truncate description">{{groupMember.account.description}}</p>
-    <a *ngIf="isManager" [routerLink]="['/', groupMember.account.loginId]"
-      class="secondary-content grey-text text-darken-2">
-      <i class="material-icons">more_vert</i></a>
+
+    <button *ngIf="isManager && !groupMember.isManager"
+      class="secondary-content btn-flat modal-trigger grey-text text-darken-2" data-target="member-menu-modal"
+      (click)="openMemu(groupMember)">
+      <i class="material-icons">more_vert</i>
+    </button>
   </li>
 </ul>
+
+<!-- 詳細メニューモーダル -->
+<app-group-member-menu *ngIf="isManager" [groupCd]="groupCd" [account]="currentAccount"></app-group-member-menu>
