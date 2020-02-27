@@ -45,31 +45,50 @@ export class GroupDetailComponent implements OnInit, OnDestroy {
     window['$']('.modal').modal();
 
     this.sub = this.route.params.subscribe((params: { cd: string }) => {
-
       // グループを取得する
-      this.loadingService.setLoading(true);
-      this.groupService.getGroup(this.authService.loginId, params.cd).pipe(catchError((error: Response) => {
-        this.loadingService.setLoading(false);
-
-        // グループが存在しない場合
-        if (error.status === 404) {
-          this.isNotFound = true;
-        }
-        throw error;
-      })).subscribe(group => {
-
-        this.loadingService.setLoading(false);
-        this.group = group;
-
-        // 管理者アカウントか
-        this.isManager = this.group.account.loginId === this.authService.loginId;
-
-        // タブ初期化
-        const instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});
-      }, () => {
-        this.loadingService.setLoading(false);
-      });
+      this.getGroup(params.cd);
     });
+  }
+
+  /**
+   * グループを取得する
+   */
+  getGroup(groupCd: string): void {
+    // グループを取得する
+    this.loadingService.setLoading(true);
+    this.groupService.getGroup(this.authService.loginId, groupCd).pipe(catchError((error: Response) => {
+      this.loadingService.setLoading(false);
+
+      // グループが存在しない場合
+      if (error.status === 404) {
+        this.isNotFound = true;
+      }
+      throw error;
+    })).subscribe(group => {
+
+      this.loadingService.setLoading(false);
+      this.group = group;
+
+      // 管理者アカウントか
+      this.isManager = this.group.account.loginId === this.authService.loginId;
+
+      // タブ初期化
+      const instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});
+    }, () => {
+      this.loadingService.setLoading(false);
+    });
+  }
+
+  /**
+   * メニューからのコールバック
+   */
+  refresh() {
+    // 子コンポーネントをリフレッシュ
+    const groupCd = this.group.cd;
+    this.group.cd = '';
+
+    // グループを再取得する
+    this.getGroup(groupCd);
   }
 
   ngOnDestroy() {

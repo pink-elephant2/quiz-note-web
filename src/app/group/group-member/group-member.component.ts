@@ -27,6 +27,9 @@ export class GroupMemberComponent implements OnChanges {
   /** メンバー数 */
   @Output() memberCount: EventEmitter<number> = new EventEmitter<number>();
 
+  /** グループ情報をリフレッシュさせるためのコールバック */
+  @Output() onRefresh: EventEmitter<void> = new EventEmitter<void>();
+
   /** 選択したアカウント */
   currentAccount: Account;
 
@@ -37,22 +40,33 @@ export class GroupMemberComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.groupCd) {
-      // TODO ページャー実装
-      const page = 0;
-      const pageable = {
-        page: page || 0
-      } as Pageable;
-
       // グループメンバーを取得する
-      this.groupService.getGroupMember(this.authService.loginId, this.groupCd, pageable).subscribe(groupMember => {
-        this.groupMemberData = groupMember;
-
-        // 親にメンバー数を渡す
-        setTimeout(() => {
-          this.memberCount.emit(this.groupMemberData.totalElements);
-        });
-      });
+      this.getGroupMember();
     }
+  }
+
+  /**
+   * グループメンバーを取得する
+   */
+  getGroupMember(page?: number) {
+    if (page !== undefined && this.groupMemberData && (page < 0 || this.groupMemberData.totalPages <= page)) {
+      return;
+    }
+    const pageable = {
+      page: page || 0
+    } as Pageable;
+
+    // グループメンバーを取得する
+    this.groupService.getGroupMember(this.authService.loginId, this.groupCd, pageable).subscribe(groupMember => {
+      this.groupMemberData = groupMember;
+
+      // 親にメンバー数を渡す
+      setTimeout(() => {
+        this.memberCount.emit(this.groupMemberData.totalElements);
+      });
+
+      // TODO ページャー実装
+    });
   }
 
   /**
@@ -62,5 +76,13 @@ export class GroupMemberComponent implements OnChanges {
     // アカウントを選択する
     this.currentAccount = groupMember.account;
     // モーダルはライブラリが開く
+  }
+
+  /**
+   * メニューからのコールバック
+   */
+  refresh() {
+    // 親をリフレッシュする
+    this.onRefresh.emit();
   }
 }

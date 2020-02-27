@@ -38,8 +38,8 @@
 
     <!-- メンバー -->
     <div id="member" class="col s12">
-      <app-group-member *ngIf="group" [groupCd]="!group.isBlocked ? group.cd : null" (memberCount)="memberCount=$event"
-        [isManager]="isManager">
+      <app-group-member *ngIf="group" [groupCd]="!group.isBlocked ? group.cd : null" [isManager]="isManager"
+        (memberCount)="memberCount=$event" (onRefresh)="refresh()">
       </app-group-member>
     </div>
 
@@ -62,4 +62,4 @@
 </section>
 
 <!-- 詳細メニューモーダル -->
-<app-group-menu *ngIf="group" [group]="group"></app-group-menu>
+<app-group-menu *ngIf="group" [group]="group" (onRefresh)="refresh()"></app-group-menu>

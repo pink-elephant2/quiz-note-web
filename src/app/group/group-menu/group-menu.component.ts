@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -20,6 +20,9 @@ export class GroupMenuComponent implements OnInit {
 
   /** グループ情報 */
   @Input() group: Group;
+
+  /** グループ情報をリフレッシュさせるためのコールバック */
+  @Output() onRefresh: EventEmitter<void> = new EventEmitter<void>();
 
   /** 入力フォーム */
   form: FormGroup;
@@ -102,6 +105,9 @@ export class GroupMenuComponent implements OnInit {
         this.modalConfirmInviteInstance.close();
 
         window['M'].toast({ html: '招待しました。' });
+
+        // 親をリフレッシュする
+        this.onRefresh.emit();
       } else {
         // 招待済み
         this.isInvited = true;

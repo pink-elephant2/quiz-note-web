@@ -21,4 +21,5 @@
 </ul>
 
 <!-- 詳細メニューモーダル -->
-<app-group-member-menu *ngIf="isManager" [groupCd]="groupCd" [account]="currentAccount"></app-group-member-menu>
+<app-group-member-menu *ngIf="isManager" [groupCd]="groupCd" [account]="currentAccount" (onRefresh)="refresh()">
+</app-group-member-menu>

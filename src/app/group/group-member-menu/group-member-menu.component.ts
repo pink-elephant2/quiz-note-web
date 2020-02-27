@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Account } from 'shared/service/account';
 import { GroupService, Group } from 'shared/service/group';
@@ -20,6 +20,9 @@ export class GroupMemberMenuComponent implements OnInit {
 
   /** アカウント情報 */
   @Input() account: Account;
+
+  /** グループ情報をリフレッシュさせるためのコールバック */
+  @Output() onRefresh: EventEmitter<void> = new EventEmitter<void>();
 
   /** モーダル */
   private modalInstance: any;
@@ -76,6 +79,9 @@ export class GroupMemberMenuComponent implements OnInit {
         // this.router.navigate(['/group']);
 
         window['M'].toast({ html: '退会させました。' });
+
+        // 親をリフレッシュする
+        this.onRefresh.emit();
       }
     });
   }
