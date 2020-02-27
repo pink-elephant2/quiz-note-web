@@ -26,6 +26,7 @@ export class GroupMemberMenuComponent implements OnInit {
 
   /** モーダル */
   private modalInstance: any;
+  private modalConfirmManagerInstance: any;
   private modalConfirmLeaveInstance: any;
 
   constructor(
@@ -39,6 +40,10 @@ export class GroupMemberMenuComponent implements OnInit {
     this.modalInstance = window['M'].Modal.init(document.getElementById('member-menu-modal'), {
       endingTop: '30%'
     });
+    // 管理者確認モーダル
+    this.modalConfirmManagerInstance = window['M'].Modal.init(document.getElementById('member-confirm-manager-modal'), {
+      endingTop: '15%'
+    });
     // 退会確認モーダル
     this.modalConfirmLeaveInstance = window['M'].Modal.init(document.getElementById('member-confirm-leave-modal'), {
       endingTop: '15%'
@@ -49,8 +54,32 @@ export class GroupMemberMenuComponent implements OnInit {
    * 管理者にする（確認モーダルを開く）
    */
   changeManagerConfirm() {
-    // TODO 実装
-    console.log('changeManagerConfirm');
+    // モーダルを閉じる
+    this.modalInstance.close();
+
+    // 確認モーダルを開く
+    this.modalConfirmManagerInstance.open();
+  }
+
+  /**
+   * 管理者にする（確認モーダルを開く）
+   */
+  changeManager() {
+    // 管理者を変更する
+    this.loadingService.setLoading(true);
+    this.groupService.putGroupManager(this.authService.loginId, this.groupCd, this.account.loginId).subscribe(ret => {
+      this.loadingService.setLoading(false);
+
+      if (ret) {
+        // モーダルを閉じる
+        this.modalConfirmManagerInstance.close();
+
+        window['M'].toast({ html: '管理者を変更しました。' });
+
+        // 親をリフレッシュする
+        this.onRefresh.emit();
+      }
+    });
   }
 
   /**

@@ -87,14 +87,16 @@ export class GroupMockService extends GroupService {
   }
 
   /**
-   * グループメンバーを更新する
-   */
-  // TODO 実装
-
-  /**
    * グループメンバーを削除する
    */
   public removeGroupMember(loginId: string, groupCd: string, memberLoginId: string): Observable<boolean> {
+    return of(true);
+  }
+
+  /**
+   * 管理者を変更する
+   */
+  public putGroupManager(loginId: string, groupCd: string, managerLoginId: string): Observable<boolean> {
     return of(true);
   }
 }

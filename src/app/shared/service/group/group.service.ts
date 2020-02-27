@@ -72,15 +72,18 @@ export class GroupService extends ApiService {
   }
 
   /**
-   * グループメンバーを更新する
-   */
-  // TODO 実装
-
-  /**
    * グループメンバーを削除する
    */
   public removeGroupMember(loginId: string, groupCd: string, memberLoginId: string): Observable<boolean> {
     const url = `/api/v1/user/${loginId}/group/${groupCd}/member?memberLoginId=${memberLoginId}`;
     return this.delete<boolean>(url);
+  }
+
+  /**
+   * 管理者を変更する
+   */
+  public putGroupManager(loginId: string, groupCd: string, managerLoginId: string): Observable<boolean> {
+    const url = `/api/v1/user/${loginId}/group/${groupCd}/manager/${managerLoginId}`;
+    return this.put<boolean>(url);
   }
 }
