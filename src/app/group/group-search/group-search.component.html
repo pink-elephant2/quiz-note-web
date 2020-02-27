@@ -1,3 +1,21 @@
 <section class="section animated fadeIn">
   <h2 class="h4 red-text darken-1">グループを探す</h2>
-</section>  
+
+  <br>
+
+  <div class="row">
+    <h3 class="h5">おすすめグループ</h3>
+  </div>
+  <!-- おすすめグループがある場合 -->
+  <ul *ngIf="groupData" class="collection">
+    <li *ngFor="let group of groupData.content" class="collection-item avatar animated fadeIn">
+      <a [routerLink]="['/group/', group.cd]">
+        <img appGroupImage [src]="group.imgUrl" [alt]="group.name" class="avatar circle">
+      </a>
+      <a [routerLink]="['/group/', group.cd]" class="pink-text">
+        <span class="title">{{group.name}}</span>
+      </a>
+      <p class="truncate description">{{group.description}}</p>
+    </li>
+  </ul>
+</section>

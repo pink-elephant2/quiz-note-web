@@ -44,3 +44,6 @@ body {
 .modal {
   border-radius: 12px;
 }
+.collection:empty, .collapsible:empty {
+  display: none;
+}

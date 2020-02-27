@@ -29,6 +29,14 @@ export class GroupService extends ApiService {
   }
 
   /**
+   * 未所属のおすすめグループ一覧を取得する
+   */
+  public getGroupRecommendList(loginId: string, pageable?: Pageable): Observable<Page<Group>> {
+    // TODO 実装
+    return this.get<Group[]>(`/api/v1/user/${loginId}/group/recommend`, pageable);
+  }
+
+  /**
    * グループを登録する
    */
   public postGroup(loginId: string, form: GroupForm): Observable<Group> {

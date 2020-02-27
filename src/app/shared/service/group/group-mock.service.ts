@@ -49,6 +49,14 @@ export class GroupMockService extends GroupService {
   }
 
   /**
+   * 未所属のおすすめグループ一覧を取得する
+   */
+  public getGroupRecommendList(loginId: string, pageable?: Pageable): Observable<Page<Group>> {
+    // TODO 実装
+    return of();
+  }
+
+  /**
    * グループを登録する
    */
   public postGroup(loginId: string, form: GroupForm): Observable<Group> {
