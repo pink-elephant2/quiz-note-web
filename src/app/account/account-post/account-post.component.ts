@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { QuizService, Quiz } from '../../shared/service/quiz';
+import { AuthService } from 'shared/service/auth';
 
 @Component({
   selector: 'app-account-post',
@@ -15,7 +16,10 @@ export class AccountPostComponent implements OnChanges {
 
   quizList: Quiz[];
 
-  constructor(private quizService: QuizService) { }
+  constructor(
+    private authService: AuthService,
+    private quizService: QuizService
+  ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     // ログインIDを渡されない場合(ブロックなど)
@@ -24,7 +28,8 @@ export class AccountPostComponent implements OnChanges {
       this.postCount.emit(0);
       return;
     }
-    this.quizService.getQuizList(this.loginId).subscribe(quizPage => {
+    // クイズを取得する TODO 未ログインの場合
+    this.quizService.getQuizList(this.authService.loginId, this.loginId).subscribe(quizPage => {
       this.quizList = quizPage.content;
 
       // 親に投稿数を渡す

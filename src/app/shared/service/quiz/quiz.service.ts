@@ -13,9 +13,16 @@ export class QuizService extends ApiService {
 
   /**
    * クイズ一覧を取得する
+   *
+   * @param loginId 自分のログインID
+   * @param targetLoginId 取得したい人のログインID
    */
-  public getQuizList(loginId: string, pageable?: Pageable): Observable<Page<Quiz>> {
-    return this.get<Quiz[]>(`/api/v1/user/${loginId}/quiz`, pageable);
+  public getQuizList(loginId: string, targetLoginId: string, pageable?: Pageable): Observable<Page<Quiz>> {
+    const params = { ...pageable };
+    if (targetLoginId) {
+      params['loginId'] = targetLoginId;
+    }
+    return this.get<Quiz[]>(`/api/v1/user/${loginId}/quiz`, params);
   }
 
   /**

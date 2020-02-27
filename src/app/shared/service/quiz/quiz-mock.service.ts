@@ -31,8 +31,11 @@ export class QuizMockService extends QuizService {
 
   /**
    * クイズ一覧を取得する
+   *
+   * @param loginId 自分のログインID
+   * @param targetLoginId 取得したい人のログインID
    */
-  public getQuizList(loginId?: string, pageable?: Pageable): Observable<Page<Quiz>> {
+  public getQuizList(loginId: string, targetLoginId: string, pageable?: Pageable): Observable<Page<Quiz>> {
     let quizList = QuizMockService.quizList;
     if (loginId) {
       // TODO

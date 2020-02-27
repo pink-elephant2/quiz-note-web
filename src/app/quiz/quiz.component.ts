@@ -82,7 +82,7 @@ export class QuizComponent implements OnInit {
     } as Pageable;
 
     // クイズ取得
-    this.quizService.getQuizList(this.authService.loginId, pageable).subscribe(quizData => {
+    this.quizService.getQuizList(this.authService.loginId, undefined, pageable).subscribe(quizData => {
       this.quizData = quizData;
 
       // ページネーション設定
