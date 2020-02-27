@@ -10,10 +10,27 @@
         <p>グループに所属してみましょう。</p>
       </div>
       <div class="row">
-        <button routerLink="/group/explore" class="btn">探す</button>
-      </div>
-      <div class="row">
-        <button routerLink="/group/create" class="btn">作る</button>
+        <div class="col s6">
+          <div class="card">
+            <div class="card-image">
+              <img src="/assets/images/account.png" alt="グループを探す">
+            </div>
+            <div class="card-content center">
+              <button routerLink="/group/explore" class="btn btn-large">探す</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s6">
+          <div class="card">
+            <div class="card-image">
+              <img src="/assets/images/account.png" alt="グループを作る">
+            </div>
+            <div class="card-content center">
+              <button routerLink="/group/create" class="btn btn-large">作る</button>
+            </div>
+          </div>
+        </div>
       </div>
     </ng-container>
 
