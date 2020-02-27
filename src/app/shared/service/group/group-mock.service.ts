@@ -45,7 +45,16 @@ export class GroupMockService extends GroupService {
    */
   public getGroupList(loginId: string, pageable?: Pageable): Observable<Page<Group>> {
     // TODO 実装
-    return of();
+    return of({
+      content: [],
+      totalElements: 0,
+      totalPages: 0,
+      size: 20,
+      number: pageable ? pageable.page : 0,
+      numberOfElements: 0,
+      first: !(pageable && pageable.page !== 0),
+      last: !(pageable && pageable.page + 1 !== 0)
+    } as Page<Group>);
   }
 
   /**
@@ -53,7 +62,16 @@ export class GroupMockService extends GroupService {
    */
   public getGroupRecommendList(loginId: string, pageable?: Pageable): Observable<Page<Group>> {
     // TODO 実装
-    return of();
+    return of({
+      content: [],
+      totalElements: 0,
+      totalPages: 0,
+      size: 20,
+      number: pageable ? pageable.page : 0,
+      numberOfElements: 0,
+      first: !(pageable && pageable.page !== 0),
+      last: !(pageable && pageable.page + 1 !== 0)
+    } as Page<Group>);
   }
 
   /**
