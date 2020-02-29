@@ -97,16 +97,16 @@
 
 <!-- メニューFAB -->
 <div class="fixed-action-btn">
-  <a class="btn-floating btn-large red">
+  <a class="btn-floating btn-large red" [ngClass]="{pulse: isPulse}">
     <i class="large material-icons">menu</i>
   </a>
   <ul>
-    <li>
+    <li *ngIf="quizData && quizData.totalElements > 0">
       <a class="btn-floating green tooltipped" data-tooltip="問読み再生" (click)="soundAll()">
         <i class="material-icons">volume_up</i></a>
     </li>
     <li>
-      <a class="btn-floating blue tooltipped" data-tooltip="新規クイズ登録" (click)="openForm()">
+      <a class="btn-floating blue tooltipped" [ngClass]="{pulse: isPulse}" data-tooltip="新規クイズ登録" (click)="openForm()">
         <i class="material-icons">create</i></a>
     </li>
   </ul>

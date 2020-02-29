@@ -37,6 +37,9 @@ export class QuizComponent implements OnInit {
   /** 削除モーダルインスタンス */
   deleteModalInstance: any;
 
+  /** FABを点滅させるか */
+  isPulse = false;
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -85,6 +88,9 @@ export class QuizComponent implements OnInit {
     this.quizService.getQuizList(this.authService.loginId, undefined, pageable).subscribe(quizData => {
       this.quizData = quizData;
 
+      // 0件
+      this.isPulse = this.quizData.totalElements === 0;
+
       // ページネーション設定
       const backSpan = Math.floor((this.quizData.totalPages - 1) / 2);
       const forthSpan = (this.quizData.totalPages - 1) - backSpan;
@@ -124,9 +130,12 @@ export class QuizComponent implements OnInit {
     this.formModalInstance.open();
     this.currentQuiz = quiz ? { ...quiz } : undefined; // コピー
 
+    // 点滅解除
+    this.isPulse = false;
+
     if (!quiz) {
       window.scrollTo(0, 0);
-      this.tooltipInstance[1].close();
+      this.tooltipInstance.forEach(tooltip => tooltip.close());
       this.fabInstance[0].close();
     }
   }
@@ -247,7 +256,7 @@ export class QuizComponent implements OnInit {
    * 問読みを再生する (ALL)
    */
   soundAll(): void {
-    this.tooltipInstance[0].close();
+    this.tooltipInstance.forEach(tooltip => tooltip.close());
     this.fabInstance[0].close();
 
     this.quizData.content.forEach((quiz: Quiz) => {
