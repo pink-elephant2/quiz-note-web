@@ -17,6 +17,7 @@ import { GroupMemberComponent } from './group-member/group-member.component';
 import { GroupMemberMenuComponent } from './group-member-menu/group-member-menu.component';
 import { GroupMenuComponent } from './group-menu/group-menu.component';
 import { AccountImageModule } from 'shared/directive/account-image';
+import { QuizCardModule } from 'shared/component/quiz-card';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AccountImageModule } from 'shared/directive/account-image';
     RouterModule,
     GroupRoutingModule,
     GroupImageModule,
-    AccountImageModule
+    AccountImageModule,
+    QuizCardModule
   ],
   providers: [
     environment.production ? GroupService : { provide: GroupService, useClass: GroupMockService }

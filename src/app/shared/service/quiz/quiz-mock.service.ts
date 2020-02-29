@@ -4,6 +4,7 @@ import { QuizService } from './quiz.service';
 import { Quiz } from './quiz';
 import { Page, Pageable } from '../../model';
 import { QuizForm } from 'src/app/quiz/quiz-form/quiz-form';
+import { Account } from '../account';
 
 /**
  * クイズサービス
@@ -18,14 +19,16 @@ export class QuizMockService extends QuizService {
       cd: 'AAA',
       question: '日本一高い山は富士山ですが、世界一高い山は何？',
       answer: 'エベレスト',
-      tags: []
+      tags: [],
+      account: {} as Account
     },
     {
       id: 2,
       cd: 'BBB',
       question: '日本で一番高い山は富士山ですが、二番目に高い山は何？',
       answer: '北岳',
-      tags: []
+      tags: [],
+      account: {} as Account
     }
   ];
 

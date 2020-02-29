@@ -1,3 +1,5 @@
+import { Account } from '../account';
+
 /**
  * クイズ情報
  */
@@ -26,6 +28,9 @@ export class Quiz {
 
   /** タグ */
   tags: string[];
+
+  /** 作成アカウント */
+  account: Account;
 
   // --------------
 

@@ -18,6 +18,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LpComponent } from './lp/lp.component';
 import { TwitterModule } from 'shared/component/twitter';
+import { QuizCardModule } from 'shared/component/quiz-card';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { TwitterModule } from 'shared/component/twitter';
     SignupModule,
     ContactModule,
     QuizModule,
+    QuizCardModule,
     AccountModule,
     LoadingModule,
     TwitterModule,

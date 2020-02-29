@@ -38,13 +38,4 @@ export class AccountPostComponent implements OnChanges {
       });
     });
   }
-
-  /**
-   * カードクリックイベント
-   * @param i クイズリストインデックス
-   */
-  onClickCard(i: number): void {
-    // 正解を表示する
-    this.quizList[i].isAnswerOpen = true;
-  }
 }

@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authService.check().subscribe((ret: boolean) => {
         if (ret) {
           // ログイン済みならTOPへ
-          this.router.navigate(['quiz']);
+          this.router.navigate(['group', 'V4b9Bh6BMc']);
         }
       });
     }
