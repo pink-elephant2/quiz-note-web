@@ -61,4 +61,16 @@ export class QuizService extends ApiService {
     return this.post<Quiz>(url, data);
   }
 
+  /**
+   * グループのクイズ一覧を取得する
+   *
+   * @param loginId 自分のログインID
+   * @param groupCd グループCD
+   */
+  public getGroupQuizList(loginId: string, groupCd: string, pageable?: Pageable): Observable<Page<Quiz>> {
+    const params = { ...pageable };
+    params['groupCd'] = groupCd;
+    return this.get<Quiz[]>(`/api/v1/user/${loginId}/quiz`, params);
+  }
+
 }

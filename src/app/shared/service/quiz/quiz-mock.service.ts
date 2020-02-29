@@ -85,4 +85,15 @@ export class QuizMockService extends QuizService {
   public postSound(loginId: string, quizCd: string, blob: Blob): Observable<Quiz> {
     return of(QuizMockService.quizList[0]);
   }
+
+  /**
+   * グループのクイズ一覧を取得する
+   *
+   * @param loginId 自分のログインID
+   * @param groupCd グループCD
+   */
+  public getGroupQuizList(loginId: string, groupCd: string, pageable?: Pageable): Observable<Page<Quiz>> {
+    // TODO 実装
+    return of();
+  }
 }
