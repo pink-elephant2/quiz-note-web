@@ -9,6 +9,7 @@ import { QuizService, QuizMockService } from '../shared/service/quiz';
 import { QuizFormComponent } from './quiz-form/quiz-form.component';
 import { QuizAudioComponent } from './quiz-audio/quiz-audio.component';
 import { TimerService } from 'shared/service/timer';
+import { PaginationModule } from 'shared/component/pagination';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { TimerService } from 'shared/service/timer';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    PaginationModule
   ],
   exports: [
     QuizComponent

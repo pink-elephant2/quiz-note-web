@@ -49,21 +49,7 @@
       </ul>
 
       <!-- ページネーション -->
-      <ul class="pagination" *ngIf="this.pagination.length > 0">
-        <li [ngClass]="quizData.first ? 'disabled' : 'waves-effect'">
-          <a (click)="getQuizList(quizData.number - 1)">
-            <i class="material-icons">chevron_left</i>
-          </a>
-        </li>
-        <li *ngFor="let i of this.pagination" [ngClass]="quizData.number + 1 == i ? 'active' : 'waves-effect'">
-          <a (click)="getQuizList(i - 1)">{{i}}</a>
-        </li>
-        <li [ngClass]="quizData.last ? 'disabled' : 'waves-effect'">
-          <a (click)="getQuizList(quizData.number + 1)">
-            <i class="material-icons">chevron_right</i>
-          </a>
-        </li>
-      </ul>
+      <app-pagination [pageData]="quizData" (onNext)="getQuizList($event)"></app-pagination>
     </div>
   </div>
 </section>
