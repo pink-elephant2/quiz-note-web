@@ -1,40 +1,13 @@
 <section class="section animated fadeIn">
-  <h2 class="h4 red-text darken-1">グループ一覧</h2>
+  <h2 class="h4 red-text darken-1">グループ</h2>
 
   <br>
 
   <ng-container *ngIf="groupData">
-    <!-- 所属しているグループがない場合 -->
-    <ng-container *ngIf="groupData.totalElements === 0">
-      <div class="row">
-        <p>グループに所属してみましょう。</p>
-      </div>
-      <div class="row">
-        <div class="col s6">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <a routerLink="/group/explore"><img src="/assets/images/search_mushimegane.png" alt="グループを探す"></a>
-            </div>
-            <div class="card-action center">
-              <a routerLink="/group/explore">探す</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col s6">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <a routerLink="/group/create"><img src="/assets/images/group_kids_no_dog.png" alt="グループを作る"></a>
-            </div>
-            <div class="card-action center">
-              <a routerLink="/group/create">作る</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-container>
-
     <!-- 所属しているグループがある場合 -->
+    <div class="row" *ngIf="groupData.totalElements > 0">
+      <h3 class="h5">所属グループ一覧</h3>
+    </div>
     <ul class="collection">
       <li *ngFor="let group of groupData.content" class="collection-item avatar animated fadeIn">
         <a [routerLink]="['/group/', group.cd]">
@@ -49,5 +22,45 @@
 
     <!-- ページネーション -->
     <app-pagination [pageData]="groupData" (onNext)="getGroupList($event)"></app-pagination>
+
+    <ng-container *ngIf="groupData.totalElements > 0">
+      <br>
+      <br>
+    </ng-container>
+
+    <div class="row">
+      <h3 class="h5">新しいグループに所属する</h3>
+    </div>
+
+    <!-- 所属しているグループがない場合 -->
+    <ng-container *ngIf="groupData.totalElements === 0">
+      <div class="row">
+        <p>グループに所属してみましょう。</p>
+      </div>
+    </ng-container>
+
+    <div class="row">
+      <div class="col s6">
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <a routerLink="/group/explore"><img src="/assets/images/search_mushimegane.png" alt="グループを探す"></a>
+          </div>
+          <div class="card-action center">
+            <a routerLink="/group/explore">探す</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s6">
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <a routerLink="/group/create"><img src="/assets/images/group_kids_no_dog.png" alt="グループを作る"></a>
+          </div>
+          <div class="card-action center">
+            <a routerLink="/group/create">作る</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </ng-container>
 </section>
