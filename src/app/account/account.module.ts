@@ -17,6 +17,7 @@ import { AuthService, AuthMockService } from '../shared/service/auth';
 import { FollowService, FollowMockService } from '../shared/service/follow';
 import { QuizService, QuizMockService } from '../shared/service/quiz';
 import { QuizCardModule } from 'shared/component/quiz-card';
+import { PaginationModule } from 'shared/component/pagination';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { QuizCardModule } from 'shared/component/quiz-card';
     ReactiveFormsModule,
     AppRoutingModule,
     AccountImageModule,
-    QuizCardModule
+    QuizCardModule,
+    PaginationModule
   ],
   declarations: [
     AccountComponent,

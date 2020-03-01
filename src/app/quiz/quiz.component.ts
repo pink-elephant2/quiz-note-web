@@ -19,9 +19,6 @@ export class QuizComponent implements OnInit {
   /** 選択中のクイズ情報 */
   currentQuiz: Quiz;
 
-  /** ページネーション */
-  pagination: number[] = [];
-
   /** FABインスタンス */
   fabInstance: any;
 
@@ -90,29 +87,6 @@ export class QuizComponent implements OnInit {
 
       // 0件
       this.isPulse = this.quizData.totalElements === 0;
-
-      // ページネーション設定
-      const backSpan = Math.floor((this.quizData.totalPages - 1) / 2);
-      const forthSpan = (this.quizData.totalPages - 1) - backSpan;
-      let startIndex: number;
-      let endIndex: number;
-      const length = 5;
-
-      if (this.quizData.number - backSpan < 1) {
-        // 表示幅に従うと存在しないページ(0ページ以下)が生成されるので、1ページから始める
-        startIndex = 1;
-        endIndex = length < this.quizData.totalPages ? length : this.quizData.totalPages;
-      } else if (this.quizData.number + forthSpan > this.quizData.totalPages) {
-        // 表示幅に従うと存在しないページ(最終ページ以降)が生成されるので、表示領域を最終ページから逆算する
-        startIndex = this.quizData.totalPages - (length - 1) > 1 ? this.quizData.totalPages - (length - 1) : 1;
-        endIndex = this.quizData.totalPages;
-      } else {
-        // その間なので、中央にcurrentがくるように配置する。
-        // ページのリストの端に当たっていないので、単純に中央にくるような両端を考えればよい。
-        startIndex = this.quizData.number - backSpan;
-        endIndex = this.quizData.number + forthSpan;
-      }
-      this.pagination = new Array(endIndex - startIndex + 1).fill(0).map((v, i) => i + startIndex);
 
       // 折りたたみリスト初期化
       window['M'].Collapsible.init(document.querySelectorAll('.collapsible'), {});

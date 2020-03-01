@@ -1,9 +1,13 @@
-<div class="row">
-  <div class="col s12 m6 l4" *ngFor="let quiz of quizList; let i = index">
-    <app-quiz-card [quiz]="quiz"></app-quiz-card>
-  </div>
+<ng-container *ngIf="quizData">
+  <div class="row">
+    <div class="col s12 m6 l4" *ngFor="let quiz of quizData.content; let i = index">
+      <app-quiz-card [quiz]="quiz"></app-quiz-card>
+    </div>
 
-  <div class="col s12" *ngIf="quizList && quizList.length === 0">
-    <p>まだ問題がありません。</p>
+    <div class="col s12" *ngIf="quizData.totalElements === 0">
+      <p>まだ問題がありません。</p>
+    </div>
   </div>
-</div>
+  <!-- ページネーション -->
+  <app-pagination [pageData]="quizData" (onNext)="getQuizList($event)"></app-pagination>
+</ng-container>
