@@ -1,24 +1,29 @@
-<ul class="collection" *ngIf="groupMemberData">
-  <li *ngFor="let groupMember of groupMemberData.content" class="collection-item avatar animated fadeIn">
-    <a [routerLink]="['/', groupMember.account.loginId]">
-      <img appGroupImage [src]="groupMember.account.imgUrl" [alt]="groupMember.account.name" class="avatar circle">
-    </a>
-    <span class="title">
-      <a [routerLink]="['/', groupMember.account.loginId]" class="pink-text">{{groupMember.account.name}}</a>
-      <ng-container *ngIf="groupMember.isManager">
-        &nbsp;<i class="material-icons amber-text" title="管理者">grade</i>
-      </ng-container>
-    </span>
+<ng-container *ngIf="groupMemberData">
+  <ul class="collection">
+    <li *ngFor="let groupMember of groupMemberData.content" class="collection-item avatar animated fadeIn">
+      <a [routerLink]="['/', groupMember.account.loginId]">
+        <img appGroupImage [src]="groupMember.account.imgUrl" [alt]="groupMember.account.name" class="avatar circle">
+      </a>
+      <span class="title">
+        <a [routerLink]="['/', groupMember.account.loginId]" class="pink-text">{{groupMember.account.name}}</a>
+        <ng-container *ngIf="groupMember.isManager">
+          &nbsp;<i class="material-icons amber-text" title="管理者">grade</i>
+        </ng-container>
+      </span>
 
-    <p class="truncate description">{{groupMember.account.description}}</p>
+      <p class="truncate description">{{groupMember.account.description}}</p>
 
-    <button *ngIf="isManager && !groupMember.isManager"
-      class="secondary-content btn-flat modal-trigger grey-text text-darken-2" data-target="member-menu-modal"
-      (click)="openMemu(groupMember)">
-      <i class="material-icons">more_vert</i>
-    </button>
-  </li>
-</ul>
+      <button *ngIf="isManager && !groupMember.isManager"
+        class="secondary-content btn-flat modal-trigger grey-text text-darken-2" data-target="member-menu-modal"
+        (click)="openMemu(groupMember)">
+        <i class="material-icons">more_vert</i>
+      </button>
+    </li>
+  </ul>
+
+  <!-- ページネーション -->
+  <app-pagination [pageData]="groupMemberData" (onNext)="getGroupMember($event)"></app-pagination>
+</ng-container>
 
 <!-- 詳細メニューモーダル -->
 <app-group-member-menu *ngIf="isManager" [groupCd]="groupCd" [account]="currentAccount" (onRefresh)="refresh()">

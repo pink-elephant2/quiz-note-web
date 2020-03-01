@@ -1,5 +1,9 @@
-<div class="row" *ngIf="quizData">
-  <div class="col s12 m6 l4" *ngFor="let quiz of quizData.content">
-    <app-quiz-card [quiz]="quiz"></app-quiz-card>
+<ng-container *ngIf="quizData">
+  <div class="row">
+    <div class="col s12 m6 l4" *ngFor="let quiz of quizData.content">
+      <app-quiz-card [quiz]="quiz"></app-quiz-card>
+    </div>
   </div>
-</div>
+  <!-- ページネーション -->
+  <app-pagination [pageData]="quizData" (onNext)="getGroupQuizList($event)"></app-pagination>
+</ng-container>

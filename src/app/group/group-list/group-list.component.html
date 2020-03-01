@@ -46,5 +46,8 @@
         <p class="truncate description">{{group.description}}</p>
       </li>
     </ul>
+
+    <!-- ページネーション -->
+    <app-pagination [pageData]="groupData" (onNext)="getGroupList($event)"></app-pagination>
   </ng-container>
 </section>

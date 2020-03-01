@@ -48,6 +48,8 @@ export class GroupPostComponent implements OnChanges {
       setTimeout(() => {
         this.postCount.emit(this.quizData.totalElements);
       });
+
+      window.scrollTo(0, 0);
     });
   }
 }

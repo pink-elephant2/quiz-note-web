@@ -18,6 +18,7 @@ import { GroupMemberMenuComponent } from './group-member-menu/group-member-menu.
 import { GroupMenuComponent } from './group-menu/group-menu.component';
 import { AccountImageModule } from 'shared/directive/account-image';
 import { QuizCardModule } from 'shared/component/quiz-card';
+import { PaginationModule } from 'shared/component/pagination';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { QuizCardModule } from 'shared/component/quiz-card';
     GroupRoutingModule,
     GroupImageModule,
     AccountImageModule,
-    QuizCardModule
+    QuizCardModule,
+    PaginationModule
   ],
   providers: [
     environment.production ? GroupService : { provide: GroupService, useClass: GroupMockService }

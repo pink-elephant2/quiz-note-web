@@ -49,9 +49,6 @@ export class GroupMemberComponent implements OnChanges {
    * グループメンバーを取得する
    */
   getGroupMember(page?: number) {
-    if (page !== undefined && this.groupMemberData && (page < 0 || this.groupMemberData.totalPages <= page)) {
-      return;
-    }
     const pageable = {
       page: page || 0
     } as Pageable;
@@ -65,7 +62,7 @@ export class GroupMemberComponent implements OnChanges {
         this.memberCount.emit(this.groupMemberData.totalElements);
       });
 
-      // TODO ページャー実装
+      window.scrollTo(0, 0);
     });
   }
 
