@@ -7,6 +7,7 @@ import { Group } from './group';
 import { GroupForm } from 'src/app/group/group-form/group-form';
 import { GroupMember } from './group-member';
 import { GroupInviteForm } from 'src/app/group/group-menu/group-invite-form';
+import { GroupImageForm } from 'src/app/group/group-form/group-image-form';
 
 /**
  * グループサービス
@@ -52,6 +53,16 @@ export class GroupService extends ApiService {
     const params = { ...form };
     params['cd'] = groupCd;
     return super.put<Group>(url, params);
+  }
+
+  /**
+   * 画像を更新する
+   */
+  public putImage(loginId: string, groupCd: string, form: GroupImageForm, file: File): Observable<boolean> {
+    const url = `/api/v1/user/${loginId}/group/${groupCd}/image`;
+    const data = new FormData();
+    data.append('upfile', file, form.upfile);
+    return this.post<boolean>(url, data);
   }
 
   /**

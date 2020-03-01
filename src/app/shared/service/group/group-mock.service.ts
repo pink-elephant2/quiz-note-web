@@ -7,6 +7,7 @@ import { GroupForm } from 'src/app/group/group-form/group-form';
 import { GroupMember } from './group-member';
 import { GroupInviteForm } from 'src/app/group/group-menu/group-invite-form';
 import { Pageable, Page } from 'shared/model';
+import { GroupImageForm } from 'src/app/group/group-form/group-image-form';
 
 /**
  * グループサービス
@@ -88,6 +89,13 @@ export class GroupMockService extends GroupService {
   public putGroup(loginId: string, groupCd: string, form: GroupForm): Observable<Group> {
     // TODO 実装
     return of();
+  }
+
+  /**
+   * 画像を更新する
+   */
+  public putImage(loginId: string, groupCd: string, form: GroupImageForm, file: File): Observable<boolean> {
+    return of(true);
   }
 
   /**

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import Compressor from 'compressorjs';
 
 import { GroupForm } from './group-form';
+import { GroupImageForm } from './group-image-form';
 import { AuthService } from 'shared/service/auth';
 import { LoadingService } from 'shared/service/loading';
 import { GroupService, Group } from 'shared/service/group';
@@ -20,8 +22,15 @@ export class GroupFormComponent implements OnInit {
   /** グループCD */
   groupCd: string;
 
+  /** グループ情報 */
+  group: Group;
+
+  /** プレビュー画像パス */
+  blobUrl: string;
+
   /** 入力フォーム */
   form: FormGroup;
+  imageForm: FormGroup;
 
   /** 作成失敗 */
   isInValid: boolean;
@@ -39,6 +48,7 @@ export class GroupFormComponent implements OnInit {
     private groupService: GroupService
   ) {
     this.form = this.formBuilder.group(GroupForm.validators);
+    this.imageForm = this.formBuilder.group(GroupImageForm.validators);
   }
 
   ngOnInit(): void {
@@ -59,6 +69,7 @@ export class GroupFormComponent implements OnInit {
       this.loadingService.setLoading(true);
       this.groupService.getGroup(this.authService.loginId, this.groupCd).subscribe(group => {
         this.loadingService.setLoading(false);
+        this.group = group;
 
         // 管理者アカウントのみ編集可能
         if (group.account.loginId !== this.authService.loginId) {
@@ -75,6 +86,54 @@ export class GroupFormComponent implements OnInit {
         this.isError = true;
       });
     });
+  }
+
+  /**
+   * 画像プレビュー
+   */
+  onchange(files: FileList): void {
+    if (files.length <= 0) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      this.blobUrl = reader.result.toString();
+
+      // 画像圧縮
+      new Compressor(files[0], {
+        quality: 0.8,
+        maxWidth: 250,
+        success: (result) => {
+          // 画像更新
+          this.loadingService.setLoading(true);
+          this.groupService.putImage(this.authService.loginId, this.groupCd, this.imageForm.value, new File([result], files[0].name, { type: files[0].type })).subscribe(ret => {
+            this.loadingService.setLoading(false);
+            if (ret) {
+              window['M'].toast({ html: '画像を更新しました。' });
+            } else {
+              this.isInValid = true;
+            }
+          }, (error: Response) => {
+            this.loadingService.setLoading(false);
+
+            switch (error.status) {
+              case 403:
+                this.isInValid = true;
+                break;
+              case 500:
+              default:
+                this.isError = true;
+                break;
+            }
+          });
+        },
+        error(err) {
+          this.loadingService.setLoading(false);
+          throw err;
+        }
+      });
+    }, false);
+    reader.readAsDataURL(files[0]);
   }
 
   /**
