@@ -10,6 +10,7 @@ import { QuizFormComponent } from './quiz-form/quiz-form.component';
 import { QuizAudioComponent } from './quiz-audio/quiz-audio.component';
 import { TimerService } from 'shared/service/timer';
 import { PaginationModule } from 'shared/component/pagination';
+import { QuizDetailComponent } from './quiz-detail/quiz-detail.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PaginationModule } from 'shared/component/pagination';
     QuizComponent,
     QuizCardComponent,
     QuizFormComponent,
-    QuizAudioComponent
+    QuizAudioComponent,
+    QuizDetailComponent
   ],
   imports: [
     CommonModule,

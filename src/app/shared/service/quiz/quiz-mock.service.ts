@@ -33,6 +33,14 @@ export class QuizMockService extends QuizService {
   ];
 
   /**
+   * クイズを取得する
+   */
+  public getQuiz(loginId: string, quizCd: string): Observable<Quiz> {
+    // TODO 実装
+    return of();
+  }
+
+  /**
    * クイズ一覧を取得する
    *
    * @param loginId 自分のログインID

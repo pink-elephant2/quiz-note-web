@@ -12,6 +12,14 @@ import { QuizForm } from 'src/app/quiz/quiz-form/quiz-form';
 export class QuizService extends ApiService {
 
   /**
+   * クイズを取得する
+   */
+  public getQuiz(loginId: string, quizCd: string): Observable<Quiz> {
+    const url = `/api/v1/user/${loginId}/quiz/${quizCd}`;
+    return this.get<boolean>(url);
+  }
+
+  /**
    * クイズ一覧を取得する
    *
    * @param loginId 自分のログインID
