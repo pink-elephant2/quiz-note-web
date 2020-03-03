@@ -34,8 +34,10 @@ export class QuizDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe((params: { cd: string }) => {
-      // クイズを取得する
-      this.getQuiz(params.cd);
+      if (params.cd) {
+        // クイズを取得する
+        this.getQuiz(params.cd);
+      }
     });
   }
 

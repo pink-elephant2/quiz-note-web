@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'password', loadChildren: () => import('./password/password.module').then(m => m.PasswordModule) },
   { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
   { path: 'quiz', component: QuizComponent, data: { title: 'クイズ一覧', infinityScroll: true }, canActivate: [AuthGuard] },
+  { path: 'quiz/create', component: QuizDetailComponent, data: { title: 'クイズ作成' }, canActivate: [AuthGuard] },
   { path: 'quiz/edit/:cd', component: QuizDetailComponent, data: { title: 'クイズ編集' }, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, data: { title: 'マイページ' }, canActivate: [AuthGuard] },
   { path: 'group', loadChildren: () => import('./group/group.module').then(m => m.GroupModule), canActivate: [AuthGuard] },

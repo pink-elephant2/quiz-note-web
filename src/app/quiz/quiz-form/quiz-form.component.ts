@@ -55,7 +55,7 @@ export class QuizFormComponent implements OnInit, OnChanges {
     if (this.quiz) {
       this.form.patchValue(this.quiz);
 
-      this.quiz.tags.forEach(tagName => {
+      (this.quiz.tags || []).forEach(tagName => {
         this.chipsInstance.addChip({
           tag: tagName
         });

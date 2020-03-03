@@ -2,7 +2,7 @@
   <div class="row">
     <div class="input-field col s12">
       <input id="question" type="text" class="validate" formControlName="question">
-      <label for="question">問題を入力</label>
+      <label for="question" [ngClass]="{active: form.controls['question'].value}">問題を入力</label>
       <ng-container *ngIf="form.controls['question'].touched">
         <span class="helper-text" *ngIf="form.controls['question'].hasError('required')" data-error="入力してください"></span>
         <span class="helper-text" *ngIf="form.controls['question'].hasError('maxlength')"
@@ -13,7 +13,7 @@
   <div class="row">
     <div class="input-field col s12">
       <input id="answer" type="text" class="validate" formControlName="answer">
-      <label for="answer">正解を入力</label>
+      <label for="answer" [ngClass]="{active: form.controls['answer'].value}">正解を入力</label>
       <ng-container *ngIf="form.controls['answer'].touched">
         <span class="helper-text" *ngIf="form.controls['answer'].hasError('required')" data-error="入力してください"></span>
         <span class="helper-text" *ngIf="form.controls['answer'].hasError('maxlength')"
@@ -43,7 +43,7 @@
   <div class="row">
     <div class="input-field col s12">
       <input id="explanation" type="text" class="validate" formControlName="explanation">
-      <label for="explanation">解説を入力</label>
+      <label for="explanation" [ngClass]="{active: form.controls['explanation'].value}">解説を入力</label>
       <ng-container *ngIf="form.controls['explanation'].touched">
         <span class="helper-text" *ngIf="form.controls['explanation'].hasError('maxlength')"
           data-error="100文字以内で入力してください"></span>
