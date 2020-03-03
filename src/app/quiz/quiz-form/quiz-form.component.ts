@@ -63,7 +63,10 @@ export class QuizFormComponent implements OnInit, OnChanges {
     } else {
       this.form.reset();
     }
+    // テキストボックス事前入力
     window['M'].updateTextFields();
+    // 文字数カウント
+    window['$']('#quizForm').find('input, textarea').not('.custom-class').characterCounter();
   }
 
   /**

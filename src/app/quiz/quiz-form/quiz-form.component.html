@@ -1,7 +1,8 @@
-<form [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)" autocomplete="off">
+<form id="quizForm" [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)" autocomplete="off">
   <div class="row">
     <div class="input-field col s12">
-      <input id="question" type="text" class="validate" formControlName="question">
+      <input id="question" type="text" class="validate" formControlName="question" required maxlength="200"
+        data-length="200">
       <label for="question" [ngClass]="{active: form.controls['question'].value}">問題を入力</label>
       <ng-container *ngIf="form.controls['question'].touched">
         <span class="helper-text" *ngIf="form.controls['question'].hasError('required')" data-error="入力してください"></span>
@@ -12,7 +13,7 @@
   </div>
   <div class="row">
     <div class="input-field col s12">
-      <input id="answer" type="text" class="validate" formControlName="answer">
+      <input id="answer" type="text" class="validate" formControlName="answer" required maxlength="50" data-length="50">
       <label for="answer" [ngClass]="{active: form.controls['answer'].value}">正解を入力</label>
       <ng-container *ngIf="form.controls['answer'].touched">
         <span class="helper-text" *ngIf="form.controls['answer'].hasError('required')" data-error="入力してください"></span>
@@ -31,8 +32,8 @@
   <!-- 
     <div class="row">
       <div class="input-field col s12">
-        <input id="hint" type="text" class="validate" formControlName="hint">
-        <label for="hint">ヒントを入力</label>
+        <input id="hint" type="text" class="validate" formControlName="hint" maxlength="50" data-length="50">
+        <label for="hint" [ngClass]="{active: form.controls['hint'].value}">ヒントを入力</label>
         <ng-container *ngIf="form.controls['hint'].touched">
           <span class="helper-text" *ngIf="form.controls['hint'].hasError('maxlength')"
             data-error="50文字以内で入力してください"></span>
@@ -42,7 +43,8 @@
   -->
   <div class="row">
     <div class="input-field col s12">
-      <input id="explanation" type="text" class="validate" formControlName="explanation">
+      <input id="explanation" type="text" class="validate" formControlName="explanation" maxlength="100"
+        data-length="100">
       <label for="explanation" [ngClass]="{active: form.controls['explanation'].value}">解説を入力</label>
       <ng-container *ngIf="form.controls['explanation'].touched">
         <span class="helper-text" *ngIf="form.controls['explanation'].hasError('maxlength')"
