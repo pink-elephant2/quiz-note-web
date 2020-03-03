@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../shared/service/auth';
@@ -11,7 +11,7 @@ import { Page, Pageable } from '../shared/model';
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.scss']
 })
-export class QuizComponent implements OnInit {
+export class QuizComponent implements OnInit, OnDestroy {
 
   /** クイズ情報 */
   quizData: Page<Quiz>;
@@ -45,35 +45,41 @@ export class QuizComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // FAB初期化
-    this.fabInstance = window['M'].FloatingActionButton.init(document.querySelectorAll('.fixed-action-btn'), {});
-
-    // ツールチップ初期化
-    this.tooltipInstance = window['M'].Tooltip.init(document.querySelectorAll('.tooltipped'), {
-      position: 'left'
-    });
-
-    // 登録モーダル
-    this.formModalInstance = window['M'].Modal.init(document.getElementById('form-modal'), {
-      startingTop: '20px'
-    });
-    // 録音モーダル
-    this.audioModalInstance = window['M'].Modal.init(document.getElementById('audio-modal'), {
-      startingTop: '20px'
-    });
-    // 削除モーダル
-    this.deleteModalInstance = window['M'].Modal.init(document.getElementById('delete-modal'), {
-      startingTop: '20px'
-    });
-
     // クイズ取得
-    this.getQuizList();
+    this.getQuizList(0, () => {
+
+      // FAB初期化
+      this.fabInstance = window['M'].FloatingActionButton.init(document.querySelectorAll('.fixed-action-btn'), {});
+
+      // ツールチップ初期化
+      this.tooltipInstance = window['M'].Tooltip.init(document.querySelectorAll('.tooltipped'), {
+        position: 'left'
+      });
+
+      // 登録モーダル
+      this.formModalInstance = window['M'].Modal.init(document.getElementById('form-modal'), {
+        startingTop: '20px'
+      });
+      // 録音モーダル
+      this.audioModalInstance = window['M'].Modal.init(document.getElementById('audio-modal'), {
+        startingTop: '20px'
+      });
+      // 削除モーダル
+      this.deleteModalInstance = window['M'].Modal.init(document.getElementById('delete-modal'), {
+        startingTop: '20px'
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+    // 再生を止める
+    speechSynthesis.cancel();
   }
 
   /**
    * クイズを取得する
    */
-  getQuizList(page?: number) {
+  getQuizList(page?: number, callback?: Function) {
     if (page !== undefined && this.quizData && (page < 0 || this.quizData.totalPages <= page)) {
       return;
     }
@@ -92,6 +98,10 @@ export class QuizComponent implements OnInit {
       window['M'].Collapsible.init(document.querySelectorAll('.collapsible'), {});
 
       window.scrollTo(0, 0);
+
+      setTimeout(() => {
+        callback();
+      });
     }, () => {
       this.router.navigate(['logout']);
     });
