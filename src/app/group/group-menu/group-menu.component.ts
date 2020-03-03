@@ -71,6 +71,49 @@ export class GroupMenuComponent implements OnInit {
   }
 
   /**
+   * 参加する
+   */
+  join() {
+    const form = {
+      memberLoginId: this.authService.loginId
+    } as GroupInviteForm;
+
+    // グループに所属する
+    this.loadingService.setLoading(true);
+    this.groupService.postGroupMember(this.authService.loginId, this.group.cd, form).subscribe((ret: boolean) => {
+      this.loadingService.setLoading(false);
+
+      // 招待完了
+      if (ret) {
+        // モーダルを閉じる
+        this.modalInstance.close();
+
+        window['M'].toast({ html: '参加しました。' });
+
+        // 親をリフレッシュする
+        this.onRefresh.emit();
+      } else {
+        // 招待済み
+        this.isInvited = true;
+      }
+    }, (error: Response) => {
+      this.loadingService.setLoading(false);
+
+      switch (error.status) {
+        case 401:
+        case 403:
+        case 404:
+          this.isInValid = true;
+          break;
+        case 500:
+        default:
+          this.isError = true;
+          break;
+      }
+    });
+  }
+
+  /**
    * 招待する（確認モーダルを開く）
    */
   inviteConfirm() {

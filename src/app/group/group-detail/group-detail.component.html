@@ -11,9 +11,16 @@
         </div>
         <button *ngIf="isManager" class="waves-effect waves-light btn-small pink accent-2"
           [routerLink]="['/group/edit', group.cd]">グループ編集</button>
-        <button class="btn-flat modal-trigger grey-text text-darken-2" data-target="menu-modal">
-          <i class="material-icons">more_horiz</i>
-        </button>
+
+        <ng-container *ngIf="group.isMember">
+          <button class="btn-flat modal-trigger grey-text text-darken-2" data-target="menu-modal">
+            <i class="material-icons">more_horiz</i>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="!group.isMember">
+          <button class="btn modal-trigger pink accent-2" data-target="menu-modal">このグループに入る</button>
+        </ng-container>
+
       </div>
     </div>
     <div class="row" *ngIf="group.description">

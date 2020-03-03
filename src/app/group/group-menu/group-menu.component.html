@@ -1,9 +1,19 @@
 <!-- 詳細メニューモーダル -->
 <div id="menu-modal" class="modal">
-  <div class="collection">
+  <div class="collection" *ngIf="group.isMember">
     <a href="javascript:void(0);" class="collection-item pink-text" (click)="inviteConfirm()">メンバーを招待する</a>
     <a href="javascript:void(0);" class="collection-item pink-text" (click)="leaveConfirm()">退会する</a>
     <a href="javascript:void(0);" class="modal-close grey-text collection-item">キャンセル</a>
+  </div>
+
+  <div *ngIf="!group.isMember">
+    <div class="modal-content">
+      <h4 class="h6">{{group.name}}に参加しますか？</h4>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="waves-effect waves-light btn-flat red-text" (click)="join()">参加する</button>
+      <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
+    </div>
   </div>
 </div>
 

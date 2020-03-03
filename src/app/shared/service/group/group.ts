@@ -32,4 +32,7 @@ export class Group {
 
   /** ログイン状態の場合、ブロックされているかどうか */
   isBlocked: boolean;
+
+  /** ログイン状態の場合、メンバーかどうか */
+  isMember: boolean;
 }
