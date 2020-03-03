@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SignupComponent } from './signup/signup.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { QuizDetailComponent } from './quiz/quiz-detail/quiz-detail.component';
 import { AccountComponent } from './account/account.component';
 import { LpComponent } from './lp/lp.component';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'password', loadChildren: () => import('./password/password.module').then(m => m.PasswordModule) },
   { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
   { path: 'quiz', component: QuizComponent, data: { title: 'クイズ一覧', infinityScroll: true }, canActivate: [AuthGuard] },
+  { path: 'quiz/edit/:cd', component: QuizDetailComponent, data: { title: 'クイズ編集' }, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, data: { title: 'マイページ' }, canActivate: [AuthGuard] },
   { path: 'group', loadChildren: () => import('./group/group.module').then(m => m.GroupModule), canActivate: [AuthGuard] },
   { path: 'setting', loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule), canActivate: [AuthGuard] },

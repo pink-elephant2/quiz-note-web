@@ -26,7 +26,11 @@
               </div>
               <div class="row">解説：<span>{{quiz.explanation}}</span></div>
               <div class="row">
-                <a class="waves-effect waves-teal btn-flat right" (click)="openForm(quiz)">
+                <!-- <a class="waves-effect waves-teal btn-flat right" (click)="openForm(quiz)">
+                  <span class="hide-on-med-and-up"><i class="material-icons">edit</i></span>
+                  <span class="hide-on-small-only"><i class="material-icons left">edit</i>編集</span>
+                </a> -->
+                <a class="waves-effect waves-teal btn-flat right" [routerLink]="['/quiz/edit', quiz.cd]">
                   <span class="hide-on-med-and-up"><i class="material-icons">edit</i></span>
                   <span class="hide-on-small-only"><i class="material-icons left">edit</i>編集</span>
                 </a>
@@ -92,7 +96,10 @@
         <i class="material-icons">volume_up</i></a>
     </li>
     <li>
-      <a class="btn-floating blue tooltipped" [ngClass]="{pulse: isPulse}" data-tooltip="新規クイズ登録" (click)="openForm()">
+      <!-- <a class="btn-floating blue tooltipped" [ngClass]="{pulse: isPulse}" data-tooltip="新規クイズ登録" (click)="openForm()">
+        <i class="material-icons">create</i></a> -->
+      <a class="btn-floating blue tooltipped" [ngClass]="{pulse: isPulse}" data-tooltip="新規クイズ登録"
+        routerLink="/quiz/edit">
         <i class="material-icons">create</i></a>
     </li>
   </ul>

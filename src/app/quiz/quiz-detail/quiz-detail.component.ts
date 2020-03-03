@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 
 import { AuthService } from 'shared/service/auth';
@@ -26,6 +26,7 @@ export class QuizDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private authService: AuthService,
     private loadingService: LoadingService,
     private quizService: QuizService
@@ -63,5 +64,24 @@ export class QuizDetailComponent implements OnInit {
       this.loadingService.setLoading(false);
       this.isNotFound = true;
     });
+  }
+
+  /**
+   * クイズ新規追加イベント
+   * @param quiz 新規クイズ情報
+   */
+  create(quiz: Quiz): void {
+    console.group();
+    console.log(this.quiz);
+    console.log(quiz);
+    console.groupEnd();
+
+    if (this.quiz) {
+      window['M'].toast({ html: 'クイズを更新しました。' });
+    } else {
+      window['M'].toast({ html: 'クイズを作成しました。' });
+    }
+
+    this.router.navigate(['quiz']);
   }
 }
