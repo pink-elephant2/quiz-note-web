@@ -9,8 +9,8 @@
           <h3 class="h5">{{group.name}}</h3>&nbsp;
           <h2 class="h6 grey-text">@{{group.cd}}</h2>
         </div>
-        <button *ngIf="isManager" class="waves-effect waves-light btn-small pink accent-2"
-          [routerLink]="['/group/edit', group.cd]">グループ編集</button>
+        <button *ngIf="isManager" class="waves-effect btn-small" [routerLink]="['/group/edit', group.cd]"
+          appThemeColorBg="accent">グループ編集</button>
 
         <ng-container *ngIf="group.isMember">
           <button class="btn-flat modal-trigger grey-text text-darken-2" data-target="menu-modal">
@@ -18,7 +18,8 @@
           </button>
         </ng-container>
         <ng-container *ngIf="!group.isMember">
-          <button class="btn modal-trigger pink accent-2" data-target="menu-modal">このグループに入る</button>
+          <button class="btn waves-effect modal-trigger" data-target="menu-modal"
+            appThemeColorBg="accent">このグループに入る</button>
         </ng-container>
 
       </div>
@@ -62,7 +63,7 @@
 <section class="section animated fadeIn" *ngIf="isNotFound">
   <div class="row">
     <div class="col s12">
-      <h2 class="h5 red-text darken-1">お探しのページは見つかりませんでした。</h2>
+      <h2 class="h5" appThemeColorText="mainHeadline">お探しのページは見つかりませんでした。</h2>
       <p>ページが削除されたか移動した可能性があります。</p>
     </div>
   </div>

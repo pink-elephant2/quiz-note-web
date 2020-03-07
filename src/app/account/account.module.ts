@@ -18,6 +18,7 @@ import { FollowService, FollowMockService } from '../shared/service/follow';
 import { QuizService, QuizMockService } from '../shared/service/quiz';
 import { QuizCardModule } from 'shared/component/quiz-card';
 import { PaginationModule } from 'shared/component/pagination';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { PaginationModule } from 'shared/component/pagination';
     AppRoutingModule,
     AccountImageModule,
     QuizCardModule,
-    PaginationModule
+    PaginationModule,
+    ThemeColorModule
   ],
   declarations: [
     AccountComponent,

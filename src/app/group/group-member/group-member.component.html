@@ -5,7 +5,8 @@
         <img appGroupImage [src]="groupMember.account.imgUrl" [alt]="groupMember.account.name" class="avatar circle">
       </a>
       <span class="title">
-        <a [routerLink]="['/', groupMember.account.loginId]" class="pink-text">{{groupMember.account.name}}</a>
+        <a [routerLink]="['/', groupMember.account.loginId]"
+          appThemeColorText="mainLink">{{groupMember.account.name}}</a>
         <ng-container *ngIf="groupMember.isManager">
           &nbsp;<i class="material-icons amber-text" title="管理者">grade</i>
         </ng-container>

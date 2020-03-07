@@ -6,6 +6,7 @@ import { ContactComponent } from './contact.component';
 import { ContactRoutingModule } from './contact-routing.module';
 import { environment } from 'env/environment';
 import { ContactService, ContactMockService } from 'shared/service/contact';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   declarations: [ContactComponent],
@@ -13,7 +14,8 @@ import { ContactService, ContactMockService } from 'shared/service/contact';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ContactRoutingModule
+    ContactRoutingModule,
+    ThemeColorModule
   ],
   exports: [
     ContactComponent

@@ -4,13 +4,15 @@ import { RouterModule } from '@angular/router';
 
 import { QuizCardComponent } from './quiz-card.component';
 import { AccountImageModule } from '../../directive/account-image';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   declarations: [QuizCardComponent],
   imports: [
     CommonModule,
     RouterModule,
-    AccountImageModule
+    AccountImageModule,
+    ThemeColorModule
   ],
   exports: [
     QuizCardComponent

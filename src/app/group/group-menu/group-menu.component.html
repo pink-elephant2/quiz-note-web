@@ -1,8 +1,10 @@
 <!-- 詳細メニューモーダル -->
 <div id="menu-modal" class="modal">
   <div class="collection" *ngIf="group.isMember">
-    <a href="javascript:void(0);" class="collection-item pink-text" (click)="inviteConfirm()">メンバーを招待する</a>
-    <a href="javascript:void(0);" class="collection-item pink-text" (click)="leaveConfirm()">退会する</a>
+    <a href="javascript:void(0);" class="collection-item waves-effect" (click)="inviteConfirm()"
+      appThemeColorText="accent">メンバーを招待する</a>
+    <a href="javascript:void(0);" class="collection-item waves-effect" (click)="leaveConfirm()"
+      appThemeColorText="accent">退会する</a>
     <a href="javascript:void(0);" class="modal-close grey-text collection-item">キャンセル</a>
   </div>
 
@@ -11,7 +13,7 @@
       <h4 class="h6">{{group.name}}に参加しますか？</h4>
     </div>
     <div class="modal-footer">
-      <button type="button" class="waves-effect waves-light btn-flat red-text" (click)="join()">参加する</button>
+      <button type="button" class="waves-effect btn-flat" (click)="join()" appThemeColorText="accent">参加する</button>
       <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
     </div>
   </div>
@@ -47,8 +49,8 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="submit" [disabled]="!form.valid || isError"
-        class="waves-effect waves-light btn-flat red-text">招待する</button>
+      <button type="submit" [disabled]="!form.valid || isError" class="waves-effect btn-flat"
+        appThemeColorText="accent">招待する</button>
       <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
     </div>
   </form>
@@ -65,7 +67,8 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a href="javascript:void(0)" (click)="leave()" class="waves-effect waves-light btn-flat red-text">グループから退会する</a>
+    <a href="javascript:void(0)" (click)="leave()" class="waves-effect btn-flat"
+      appThemeColorText="accent">グループから退会する</a>
     <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
   </div>
 </div>

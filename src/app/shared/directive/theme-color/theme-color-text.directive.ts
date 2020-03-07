@@ -21,8 +21,6 @@ export class ThemeColorTextDirective implements OnInit {
   ngOnInit(): void {
     let classList: string[] = this.themeService.getTextColors(this.pattern);
 
-    console.log(classList);
-    
     // 要素に適用する
     classList.forEach(cls => {
       this.renderer.addClass(this.el.nativeElement, cls);

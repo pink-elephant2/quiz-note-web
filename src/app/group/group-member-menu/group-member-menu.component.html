@@ -1,8 +1,9 @@
 <!-- 詳細メニューモーダル -->
 <div id="member-menu-modal" class="modal">
   <div class="collection">
-    <a href="javascript:void(0);" class="collection-item pink-text" (click)="changeManagerConfirm()">管理者にする</a>
-    <a href="javascript:void(0);" class="collection-item pink-text" (click)="leaveConfirm()">退会させる</a>
+    <a href="javascript:void(0);" class="collection-item" (click)="changeManagerConfirm()"
+      appThemeColorText="accent">管理者にする</a>
+    <a href="javascript:void(0);" class="collection-item" (click)="leaveConfirm()" appThemeColorText="accent">退会させる</a>
     <a href="javascript:void(0);" class="modal-close grey-text collection-item">キャンセル</a>
   </div>
 </div>
@@ -18,7 +19,8 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a href="javascript:void(0)" (click)="changeManager()" class="waves-effect waves-light btn-flat red-text">管理者にする</a>
+    <a href="javascript:void(0)" (click)="changeManager()" class="waves-effect btn-flat"
+      appThemeColorText="accent">管理者にする</a>
     <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
   </div>
 </div>
@@ -34,7 +36,8 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a href="javascript:void(0)" (click)="leave()" class="waves-effect waves-light btn-flat red-text">グループから退会させる</a>
+    <a href="javascript:void(0)" (click)="leave()" class="waves-effect btn-flat"
+      appThemeColorText="accent">グループから退会させる</a>
     <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
   </div>
 </div>

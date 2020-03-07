@@ -1,5 +1,5 @@
 <section class="section animated fadeIn">
-  <h2 class="h4 red-text darken-1">グループを探す</h2>
+  <h2 class="h4" appThemeColorText="mainHeadline">グループを探す</h2>
 
   <br>
 
@@ -14,7 +14,7 @@
         <a [routerLink]="['/group/', group.cd]">
           <img appGroupImage [src]="group.imgUrl" [alt]="group.name" class="avatar circle">
         </a>
-        <a [routerLink]="['/group/', group.cd]" class="pink-text">
+        <a [routerLink]="['/group/', group.cd]" appThemeColorText="mainLink">
           <span class="title">{{group.name}}</span>
         </a>
         <p class="truncate description">{{group.description}}</p>
@@ -33,7 +33,7 @@
               <a routerLink="/group/create"><img src="/assets/images/group_kids_no_dog.png" alt="グループを作る"></a>
             </div>
             <div class="card-action center">
-              <a routerLink="/group/create">作る</a>
+              <a routerLink="/group/create" class="waves-effect" appThemeColorText="accent">作る</a>
             </div>
           </div>
         </div>

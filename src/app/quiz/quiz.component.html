@@ -26,23 +26,23 @@
               </div>
               <div class="row">解説：<span>{{quiz.explanation}}</span></div>
               <div class="row">
-                <!-- <a class="waves-effect waves-teal btn-flat right" (click)="openForm(quiz)">
+                <!-- <a class="waves-effect btn-flat right" (click)="openForm(quiz)" appThemeColorText="base">
                   <span class="hide-on-med-and-up"><i class="material-icons">edit</i></span>
                   <span class="hide-on-small-only"><i class="material-icons left">edit</i>編集</span>
                 </a> -->
-                <a class="waves-effect waves-teal btn-flat right" [routerLink]="['/quiz/edit', quiz.cd]">
+                <a class="waves-effect btn-flat right" [routerLink]="['/quiz/edit', quiz.cd]" appThemeColorText="base">
                   <span class="hide-on-med-and-up"><i class="material-icons">edit</i></span>
                   <span class="hide-on-small-only"><i class="material-icons left">edit</i>編集</span>
                 </a>
-                <a class="waves-effect waves-teal btn-flat right" (click)="sound(quiz)">
+                <a class="waves-effect btn-flat right" (click)="sound(quiz)" appThemeColorText="base">
                   <span class="hide-on-med-and-up"><i class="material-icons">volume_up</i></span>
                   <span class="hide-on-small-only"><i class="material-icons left">volume_up</i>再生</span>
                 </a>
-                <a class="waves-effect waves-teal btn-flat right" (click)="audioConfirm(quiz)">
+                <a class="waves-effect btn-flat right" (click)="audioConfirm(quiz)" appThemeColorText="base">
                   <span class="hide-on-med-and-up"><i class="material-icons">mic</i></span>
                   <span class="hide-on-small-only"><i class="material-icons left">mic</i>録音</span>
                 </a>
-                <a class="waves-effect waves-red btn-flat red-text right" (click)="deleteConfirm(quiz)">
+                <a class="waves-effect btn-flat right" (click)="deleteConfirm(quiz)" appThemeColorText="accent">
                   <span class="hide-on-med-and-up"><i class="material-icons">delete</i></span>
                   <span class="hide-on-small-only"><i class="material-icons left">delete</i>削除</span>
                 </a>
@@ -80,14 +80,14 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a href="javascript:void(0)" (click)="delete()" class="waves-effect waves-light btn-flat red-text">削除</a>
+    <a href="javascript:void(0)" (click)="delete()" class="waves-effect btn-flat" appThemeColorText="accent">削除</a>
     <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
   </div>
 </div>
 
 <!-- メニューFAB -->
 <div class="fixed-action-btn">
-  <a class="btn-floating btn-large red" [ngClass]="{pulse: isPulse}">
+  <a class="btn-floating btn-large" [ngClass]="{pulse: isPulse}" appThemeColorBg="accent">
     <i class="large material-icons">menu</i>
   </a>
   <ul>

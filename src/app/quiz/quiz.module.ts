@@ -12,6 +12,7 @@ import { QuizAudioComponent } from './quiz-audio/quiz-audio.component';
 import { TimerService } from 'shared/service/timer';
 import { PaginationModule } from 'shared/component/pagination';
 import { QuizDetailComponent } from './quiz-detail/quiz-detail.component';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { QuizDetailComponent } from './quiz-detail/quiz-detail.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    PaginationModule
+    PaginationModule,
+    ThemeColorModule
   ],
   exports: [
     QuizComponent

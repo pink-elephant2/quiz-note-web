@@ -7,7 +7,7 @@ import { SignupComponent } from './signup.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { AccountService, AccountMockService } from '../shared/service/account';
 import { AppRoutingModule } from '../app-routing.module';
-
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { AppRoutingModule } from '../app-routing.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ThemeColorModule
   ],
   exports: [
     // LPで使う用

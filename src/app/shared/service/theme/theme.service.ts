@@ -24,6 +24,7 @@ export class ThemeService {
 
       // メインカラー
       case ColorPatternEnum.Main:
+        classList = []
         break;
 
       // メインカラー 見出し
@@ -36,7 +37,7 @@ export class ThemeService {
 
       // アクセントカラー
       case ColorPatternEnum.Accent:
-        classList = ['pink', 'accent-2']
+        classList = ['pink', 'accent-2', 'waves-light']
         break;
 
       default:
@@ -49,6 +50,36 @@ export class ThemeService {
    * テキスト色を取得する
    */
   public getTextColors(pattern?: ColorPatternEnum): string[] {
-    return [];
+    let classList: string[] = [];
+
+    switch (pattern) {
+      // ベースカラー
+      case ColorPatternEnum.Base:
+        classList = ['waves-pink']
+        break;
+
+      // メインカラー
+      case ColorPatternEnum.Main:
+        break;
+
+      // メインカラー 見出し
+      case ColorPatternEnum.MainHeadline:
+        classList = ['red-text', 'darken-1'];
+        break;
+
+      // メインカラー リンク
+      case ColorPatternEnum.MainLink:
+        classList = [];
+        break;
+
+      // アクセントカラー
+      case ColorPatternEnum.Accent:
+        classList = ['pink-text', 'text-accent-2', 'waves-pink']
+        break;
+
+      default:
+        break;
+    }
+    return classList;
   }
 }

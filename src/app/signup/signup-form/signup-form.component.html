@@ -42,10 +42,11 @@
     <div class="col s12">
       <label>
         <input id="isAgreeTerm" type="checkbox" formControlName="isAgreeTerm" required>
-        <span><a routerLink="/terms" target="_blank" rel="noopener">利用規約</a>に同意の上、「利用規約に同意して登録」ボタンを押してください。</span>
+        <span><a routerLink="/terms" target="_blank" rel="noopener"
+            appThemeColorText="mainLink">利用規約</a>に同意の上、「利用規約に同意して登録」ボタンを押してください。</span>
       </label>
-      <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
-        type="submit">利用規約に同意して登録</button>
+      <button [disabled]="!form.valid || isError" class="btn waves-effect right" type="submit"
+        appThemeColorBg="accent">利用規約に同意して登録</button>
     </div>
   </div>
 
