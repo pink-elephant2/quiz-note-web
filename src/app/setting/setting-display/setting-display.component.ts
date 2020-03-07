@@ -14,12 +14,16 @@ export class SettingDisplayComponent implements OnInit {
   /** テーマリスト */
   themeList = [];
 
+  /** 選択中のテーマ番号 */
+  myThemeNo: number = 0;
+
   constructor(
     private themeService: ThemeService
   ) { }
 
   ngOnInit(): void {
     this.themeList = this.themeService.themeList;
+    this.myThemeNo = this.themeService.myThemeNo;
   }
 
   /**
@@ -27,5 +31,6 @@ export class SettingDisplayComponent implements OnInit {
    */
   setTheme(themeNo: number) {
     this.themeService.setTheme(themeNo);
+    this.myThemeNo = themeNo;
   }
 }

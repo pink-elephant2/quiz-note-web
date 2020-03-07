@@ -12,6 +12,9 @@ export class ThemeColorTextDirective implements OnInit {
 
   @Input('appThemeColorText') pattern: ColorPatternEnum;
 
+  /** テーマ変更前のクラス */
+  private classList: string[] = [];
+
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
@@ -19,7 +22,19 @@ export class ThemeColorTextDirective implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let classList: string[] = this.themeService.getTextColors(this.pattern);
+    // テーマ変更検知
+    this.themeService.myThemeNoChanges.subscribe(ret => {
+      this.setClass();
+    });
+  }
+
+  setClass() {
+    // テーマ変更前の適用クラスを削除
+    this.classList.forEach(cls => {
+      this.renderer.removeClass(this.el.nativeElement, cls);
+    });
+
+    const classList: string[] = this.classList = this.themeService.getTextColors(this.pattern);
 
     // 要素に適用する
     classList.forEach(cls => {

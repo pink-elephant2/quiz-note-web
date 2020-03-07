@@ -9,7 +9,10 @@
 
   <div class="row">
     <div class="col s4 center" *ngFor="let theme of themeList; let i = index">
-      <button class="btn waves-effect" [ngClass]="theme.bg.main" (click)="setTheme(i)"></button>
+      <button class="btn btn-large waves-effect" [ngClass]="theme.bg.main" (click)="setTheme(i)">
+        <i class="material-icons" *ngIf="myThemeNo === i">check</i>
+        <i class="material-icons" *ngIf="myThemeNo !== i" style="color:transparent">check_box_outline_blank</i>
+      </button>
 
       <br><br>
     </div>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { ColorPatternEnum } from './color-pattern.enum';
 
 /**
@@ -112,6 +113,9 @@ export class ThemeService {
   /** 選択中のテーマ番号 */
   public myThemeNo: number = 0;
 
+  /** テーマ番号変更検知 */
+  public myThemeNoChanges = new BehaviorSubject<boolean>(null);
+
   constructor() { }
 
   /**
@@ -121,7 +125,8 @@ export class ThemeService {
     // TODO ローカルストレージ or DB保存
     this.myThemeNo = themeNo;
 
-    // TODO 呼び出し元に検知させる
+    // 呼び出し元に検知させる
+    this.myThemeNoChanges.next(true);
   }
 
   /**
