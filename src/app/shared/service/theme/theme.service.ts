@@ -116,14 +116,17 @@ export class ThemeService {
   /** テーマ番号変更検知 */
   public myThemeNoChanges = new BehaviorSubject<boolean>(null);
 
-  constructor() { }
+  constructor() {
+    this.myThemeNo = Number(localStorage.getItem('myThemeNo')) || 0;
+  }
 
   /**
    * テーマを選択する
    */
   public setTheme(themeNo: number) {
-    // TODO ローカルストレージ or DB保存
+    // TODO DB保存
     this.myThemeNo = themeNo;
+    localStorage.setItem('myThemeNo', `${themeNo}`);
 
     // 呼び出し元に検知させる
     this.myThemeNoChanges.next(true);
