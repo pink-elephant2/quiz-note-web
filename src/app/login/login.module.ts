@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login.component';
 import { environment } from 'src/environments/environment';
 import { AuthService, AuthMockService } from '../shared/service/auth';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -13,7 +14,8 @@ import { AuthService, AuthMockService } from '../shared/service/auth';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    ThemeColorModule
   ],
   exports: [
     LoginComponent

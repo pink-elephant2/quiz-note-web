@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { LpComponent } from './lp/lp.component';
 import { TwitterModule } from 'shared/component/twitter';
 import { QuizCardModule } from 'shared/component/quiz-card';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { QuizCardModule } from 'shared/component/quiz-card';
     AccountModule,
     LoadingModule,
     TwitterModule,
+    ThemeColorModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production && location.hostname !== 'localhost' })
   ],
   providers: [AuthGuard],
