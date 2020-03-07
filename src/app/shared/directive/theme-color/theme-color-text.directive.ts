@@ -3,13 +3,14 @@ import { ThemeService, ColorPatternEnum } from 'shared/service/theme';
 
 /**
  * テーマカラーディレクティブ
+ * テキスト色
  */
 @Directive({
-  selector: '[appThemeColor]'
+  selector: '[appThemeColorText]'
 })
-export class ThemeColorDirective implements OnInit {
+export class ThemeColorTextDirective implements OnInit {
 
-  @Input('appThemeColor') pattern: ColorPatternEnum;
+  @Input('appThemeColorText') pattern: ColorPatternEnum;
 
   constructor(
     private el: ElementRef,
@@ -18,16 +19,10 @@ export class ThemeColorDirective implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let classList: string[];
+    let classList: string[] = this.themeService.getTextColors(this.pattern);
 
-    if (this.el.nativeElement.classList.value.indexOf('btn') !== -1) {
-      // ボタン
-      classList = this.themeService.getBgColors(this.pattern);
-    } else {
-      // テキスト
-      classList = this.themeService.getTextColors(this.pattern);
-    }
-
+    console.log(classList);
+    
     // 要素に適用する
     classList.forEach(cls => {
       this.renderer.addClass(this.el.nativeElement, cls);

@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemeColorDirective } from './theme-color.directive';
-
+import { ThemeColorBgDirective } from './theme-color-bg.directive';
+import { ThemeColorTextDirective } from './theme-color-text.directive';
 
 
 @NgModule({
-  declarations: [ThemeColorDirective],
+  declarations: [
+    ThemeColorBgDirective,
+    ThemeColorTextDirective
+  ],
   imports: [
     CommonModule
   ],
   exports: [
-    ThemeColorDirective
+    ThemeColorBgDirective,
+    ThemeColorTextDirective
   ]
 })
 export class ThemeColorModule { }

@@ -18,11 +18,25 @@ export class ThemeService {
     let classList: string[] = [];
 
     switch (pattern) {
-      case ColorPatternEnum.Primary:
-        classList = ['pink', 'accent-2']
+      // ベースカラー
+      case ColorPatternEnum.Base:
         break;
 
-      case ColorPatternEnum.Warning:
+      // メインカラー
+      case ColorPatternEnum.Main:
+        break;
+
+      // メインカラー 見出し
+      case ColorPatternEnum.MainHeadline:
+        break;
+
+      // メインカラー リンク
+      case ColorPatternEnum.MainLink:
+        break;
+
+      // アクセントカラー
+      case ColorPatternEnum.Accent:
+        classList = ['pink', 'accent-2']
         break;
 
       default:

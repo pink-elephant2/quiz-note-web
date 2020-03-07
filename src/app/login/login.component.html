@@ -41,7 +41,7 @@
         <div class="row">
           <div class="col s12">
             <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right" type="submit"
-              appThemeColor="primary">ログイン</button>
+              appThemeColorBg="accent">ログイン</button>
           </div>
         </div>
 
@@ -56,13 +56,13 @@
       <div class="card-panel">
         <div class="row">
           <div class="col s12">
-            <a routerLink="/password/reminder">パスワードをお忘れですか？</a>
+            <a routerLink="/password/reminder" appThemeColorText="mainLink">パスワードをお忘れですか？</a>
           </div>
         </div>
         <div class="row">
           <div class="col s12">
             <p class="left">もしくはアカウントをお持ちでないですか？&emsp;</p>
-            <a routerLink="/signup" class="btn right" appThemeColor="primary">アカウントを登録する</a>
+            <a routerLink="/signup" class="btn right" appThemeColorBg="accent">アカウントを登録する</a>
           </div>
         </div>
       </div>
