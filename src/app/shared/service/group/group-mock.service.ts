@@ -122,8 +122,10 @@ export class GroupMockService extends GroupService {
 
   /**
    * グループメンバーを削除する
+	 * @param memberLoginId 削除対象のログインID
+	 * @param isBlocked ブラックリストに入れるか
    */
-  public removeGroupMember(loginId: string, groupCd: string, memberLoginId: string): Observable<boolean> {
+  public removeGroupMember(loginId: string, groupCd: string, memberLoginId: string, isBlocked: boolean): Observable<boolean> {
     return of(true);
   }
 

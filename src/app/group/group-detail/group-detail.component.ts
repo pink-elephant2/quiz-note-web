@@ -69,6 +69,11 @@ export class GroupDetailComponent implements OnInit, OnDestroy {
       this.loadingService.setLoading(false);
       this.group = group;
 
+      if (this.group.isBlocked) {
+        // ブロックされている
+        this.isNotFound = true;
+        return;
+      }
       // 管理者アカウントか
       this.isManager = this.group.account.loginId === this.authService.loginId;
 

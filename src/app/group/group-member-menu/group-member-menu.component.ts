@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 
 import { Account } from 'shared/service/account';
 import { GroupService, Group } from 'shared/service/group';
@@ -13,7 +13,7 @@ import { LoadingService } from 'shared/service/loading';
   templateUrl: './group-member-menu.component.html',
   styleUrls: ['./group-member-menu.component.scss']
 })
-export class GroupMemberMenuComponent implements OnInit {
+export class GroupMemberMenuComponent implements OnInit, OnChanges {
 
   /** グループコード */
   @Input() groupCd: string;
@@ -23,6 +23,9 @@ export class GroupMemberMenuComponent implements OnInit {
 
   /** グループ情報をリフレッシュさせるためのコールバック */
   @Output() onRefresh: EventEmitter<void> = new EventEmitter<void>();
+
+  /** ブラックリストに入れるか */
+  isBlocked: boolean = false;
 
   /** モーダル */
   private modalInstance: any;
@@ -48,6 +51,12 @@ export class GroupMemberMenuComponent implements OnInit {
     this.modalConfirmLeaveInstance = window['M'].Modal.init(document.getElementById('member-confirm-leave-modal'), {
       endingTop: '15%'
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.account) {
+      this.isBlocked = this.account.isBlocked;
+    }
   }
 
   /**
@@ -99,7 +108,7 @@ export class GroupMemberMenuComponent implements OnInit {
   leave(): void {
     // グループメンバーを削除する
     this.loadingService.setLoading(true);
-    this.groupService.removeGroupMember(this.authService.loginId, this.groupCd, this.account.loginId).subscribe(ret => {
+    this.groupService.removeGroupMember(this.authService.loginId, this.groupCd, this.account.loginId, this.isBlocked).subscribe(ret => {
       this.loadingService.setLoading(false);
 
       if (ret) {

@@ -37,6 +37,9 @@ export class GroupMenuComponent implements OnInit {
   /** 招待するアカウント */
   inviteAccount: Account;
 
+  /** ブラックリストに入れるか */
+  isBlocked: boolean = false;
+
   /** モーダル */
   private modalInstance: any;
   private modalConfirmInviteInstance: any;
@@ -189,7 +192,7 @@ export class GroupMenuComponent implements OnInit {
   leave(): void {
     // グループメンバー（自分）を削除する
     this.loadingService.setLoading(true);
-    this.groupService.removeGroupMember(this.authService.loginId, this.group.cd, this.authService.loginId).subscribe(ret => {
+    this.groupService.removeGroupMember(this.authService.loginId, this.group.cd, this.authService.loginId, this.isBlocked).subscribe(ret => {
       this.loadingService.setLoading(false);
 
       if (ret) {

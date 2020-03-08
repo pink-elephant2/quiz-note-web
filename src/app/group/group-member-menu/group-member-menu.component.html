@@ -34,6 +34,12 @@
         <img appAccountImage [src]="account.imgUrl" [alt]="account.name" class="avatar circle responsive-img">
       </div>
     </div>
+    <div class="row center">
+      <label>
+        <input id="isBlock" type="checkbox" [(ngModel)]="isBlocked">
+        <span>ブラックリストに入れる</span>
+      </label>
+    </div>
   </div>
   <div class="modal-footer">
     <a href="javascript:void(0)" (click)="leave()" class="waves-effect btn-flat"
