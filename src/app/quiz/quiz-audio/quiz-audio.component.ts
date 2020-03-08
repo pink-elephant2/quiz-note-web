@@ -93,9 +93,9 @@ export class QuizAudioComponent implements OnInit, OnChanges {
       mediastreamsource.connect(this.scriptProcessor);
       this.scriptProcessor.onaudioprocess = (e) => {
         console.debug('e', e);
-        var input = e.inputBuffer.getChannelData(0);
-        var bufferData = new Float32Array(this.bufferSize);
-        for (var i = 0; i < this.bufferSize; i++) {
+        const input = e.inputBuffer.getChannelData(0);
+        let bufferData = new Float32Array(this.bufferSize);
+        for (let i = 0; i < this.bufferSize; i++) {
           bufferData[i] = input[i];
         }
         this.audioData.push(bufferData);

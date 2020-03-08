@@ -214,16 +214,17 @@ export class GroupMenuComponent implements OnInit {
   leave(): void {
     // グループメンバー（自分）を削除する
     this.loadingService.setLoading(true);
-    this.groupService.removeGroupMember(this.authService.loginId, this.group.cd, this.authService.loginId, this.isBlocked).subscribe(ret => {
-      this.loadingService.setLoading(false);
+    this.groupService.removeGroupMember(this.authService.loginId, this.group.cd, this.authService.loginId, this.isBlocked)
+      .subscribe(ret => {
+        this.loadingService.setLoading(false);
 
-      if (ret) {
-        // モーダルを閉じる
-        this.modalConfirmLeaveInstance.close();
-        this.router.navigate(['/group']);
+        if (ret) {
+          // モーダルを閉じる
+          this.modalConfirmLeaveInstance.close();
+          this.router.navigate(['/group']);
 
-        window['M'].toast({ html: '退会しました。' });
-      }
-    });
+          window['M'].toast({ html: '退会しました。' });
+        }
+      });
   }
 }

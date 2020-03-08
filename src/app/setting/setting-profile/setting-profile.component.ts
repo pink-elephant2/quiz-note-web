@@ -82,7 +82,8 @@ export class SettingProfileComponent implements OnInit {
         success: (result) => {
           // 画像更新
           this.loadingService.setLoading(true);
-          this.accountService.putImage(this.account.loginId, this.imageForm.value, new File([result], files[0].name, { type: files[0].type })).subscribe(ret => {
+          const file = new File([result], files[0].name, { type: files[0].type });
+          this.accountService.putImage(this.account.loginId, this.imageForm.value, file).subscribe(ret => {
             this.loadingService.setLoading(false);
             if (ret) {
               window['M'].toast({ html: '画像を更新しました。' });

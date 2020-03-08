@@ -15,7 +15,7 @@ export class SettingDisplayComponent implements OnInit {
   themeList = [];
 
   /** 選択中のテーマ番号 */
-  myThemeNo: number = 0;
+  myThemeNo = 0;
 
   constructor(
     private themeService: ThemeService

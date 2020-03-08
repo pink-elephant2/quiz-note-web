@@ -92,8 +92,9 @@ export class GroupService extends ApiService {
 
   /**
    * グループメンバーを削除する
-	 * @param memberLoginId 削除対象のログインID
-	 * @param isBlocked ブラックリストに入れるか
+   *
+   * @param memberLoginId 削除対象のログインID
+   * @param isBlocked ブラックリストに入れるか
    */
   public removeGroupMember(loginId: string, groupCd: string, memberLoginId: string, isBlocked: boolean): Observable<boolean> {
     const url = `/api/v1/user/${loginId}/group/${groupCd}/member?memberLoginId=${memberLoginId}&isBlocked=${isBlocked}`;
