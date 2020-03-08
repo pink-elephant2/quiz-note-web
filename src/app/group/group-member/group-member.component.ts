@@ -70,8 +70,11 @@ export class GroupMemberComponent implements OnChanges {
    * メニューを開く
    */
   openMemu(groupMember: GroupMember) {
-    // アカウントを選択する
-    this.currentAccount = groupMember.account;
+    // アカウントを選択する。リフレッシュするため詰めなおし
+    this.currentAccount = undefined;
+    setTimeout(() => {
+      this.currentAccount = groupMember.account;
+    });
     // モーダルはライブラリが開く
   }
 
