@@ -19,6 +19,7 @@ import { QuizService, QuizMockService } from '../shared/service/quiz';
 import { QuizCardModule } from 'shared/component/quiz-card';
 import { PaginationModule } from 'shared/component/pagination';
 import { ThemeColorModule } from 'shared/directive/theme-color';
+import { ShareModalModule } from 'shared/component/share-modal';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { ThemeColorModule } from 'shared/directive/theme-color';
     AccountImageModule,
     QuizCardModule,
     PaginationModule,
-    ThemeColorModule
+    ThemeColorModule,
+    ShareModalModule
   ],
   declarations: [
     AccountComponent,

@@ -5,7 +5,7 @@
       (click)="reportConfirm()">不適切なユーザーを報告</a>
     <a href="javascript:void(0);" class="collection-item pink-text" *ngIf="!isMe && !account.isBlocked"
       (click)="blockConfirm()">このユーザーをブロック</a>
-    <a href="javascript:void(0);" class="modal-close collection-item">シェア</a>
+    <a href="javascript:void(0);" class="modal-close collection-item modal-trigger" data-target="share-modal">シェア</a>
     <a href="javascript:void(0);" class="modal-close grey-text collection-item">キャンセル</a>
   </div>
 </div>
@@ -73,3 +73,6 @@
     <button class="pink-text waves-effect waves-red btn-flat" type="button" (click)="block()">ブロックする</button>
   </div>
 </div>
+
+<!-- シェアモーダル -->
+<app-share-modal></app-share-modal>

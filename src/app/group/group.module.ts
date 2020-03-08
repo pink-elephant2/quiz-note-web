@@ -20,6 +20,7 @@ import { AccountImageModule } from 'shared/directive/account-image';
 import { QuizCardModule } from 'shared/component/quiz-card';
 import { PaginationModule } from 'shared/component/pagination';
 import { ThemeColorModule } from 'shared/directive/theme-color';
+import { ShareModalModule } from 'shared/component/share-modal';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ThemeColorModule } from 'shared/directive/theme-color';
     AccountImageModule,
     QuizCardModule,
     PaginationModule,
-    ThemeColorModule
+    ThemeColorModule,
+    ShareModalModule
   ],
   providers: [
     environment.production ? GroupService : { provide: GroupService, useClass: GroupMockService }

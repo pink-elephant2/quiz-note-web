@@ -5,6 +5,7 @@
       appThemeColorText="accent">メンバーを招待する</a>
     <a href="javascript:void(0);" class="collection-item waves-effect" (click)="leaveConfirm()"
       appThemeColorText="accent">退会する</a>
+    <a href="javascript:void(0);" class="modal-close collection-item modal-trigger" data-target="share-modal">シェア</a>
     <a href="javascript:void(0);" class="modal-close grey-text collection-item">キャンセル</a>
   </div>
 
@@ -80,3 +81,6 @@
     <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
   </div>
 </div>
+
+<!-- シェアモーダル -->
+<app-share-modal></app-share-modal>
