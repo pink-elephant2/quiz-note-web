@@ -27,7 +27,7 @@
       <br>
       <div class="input-field">
         <input id="memberLoginId" type="text" class="validate" formControlName="memberLoginId" required maxlength="30"
-          data-length="30" autocapitalize="off" autocorrect="off">
+          data-length="30" autocapitalize="off" autocorrect="off" (change)="checkInviteAccount()">
         <label for="memberLoginId">ログインID</label>
         <ng-container *ngIf="form.controls['memberLoginId'].touched">
           <span class="helper-text" *ngIf="form.controls['memberLoginId'].hasError('required')"
@@ -41,12 +41,14 @@
       <p class="red-text" *ngIf="isInvited">既に招待されています。</p>
       <p class="red-text" *ngIf="isError">申し訳ございません。ただいま回線が込み合っています。しばらくお待ちください。</p>
       <div class="row" *ngIf="inviteAccount">
-        <div class="col offset-s4 s3">
+        <div class="col offset-s4 s3 center">
           <img appAccountImage [src]="inviteAccount.imgUrl" [alt]="inviteAccount.name"
             class="avatar circle responsive-img">
           {{inviteAccount.name}}
         </div>
       </div>
+
+
     </div>
     <div class="modal-footer">
       <button type="submit" [disabled]="!form.valid || isError" class="waves-effect btn-flat"

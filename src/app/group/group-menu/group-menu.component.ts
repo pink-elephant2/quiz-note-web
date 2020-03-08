@@ -6,7 +6,7 @@ import { Group, GroupService } from 'shared/service/group';
 import { GroupInviteForm } from './group-invite-form';
 import { LoadingService } from 'shared/service/loading';
 import { AuthService } from 'shared/service/auth';
-import { Account } from 'shared/service/account';
+import { Account, AccountService } from 'shared/service/account';
 
 /**
  * グループメニュー
@@ -50,7 +50,8 @@ export class GroupMenuComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private loadingService: LoadingService,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private accountService: AccountService
   ) {
     this.form = this.formBuilder.group(GroupInviteForm.validators);
   }
@@ -125,6 +126,27 @@ export class GroupMenuComponent implements OnInit {
 
     // 確認モーダルを開く
     this.modalConfirmInviteInstance.open();
+  }
+
+  /**
+   * アカウント存在チェック
+   */
+  checkInviteAccount() {
+    if (this.form.valid && this.form.value.memberLoginId) {
+      this.inviteAccount = undefined;
+      this.isInValid = false;
+      this.isInvited = false;
+
+      // アカウントを取得する
+      this.accountService.getAccount(this.form.value.memberLoginId).subscribe(account => {
+        this.inviteAccount = account;
+      }, (error: Response) => {
+        if (error.status === 404) {
+          this.isInValid = true;
+          this.form.setErrors({ required: true });
+        }
+      });
+    }
   }
 
   /**
