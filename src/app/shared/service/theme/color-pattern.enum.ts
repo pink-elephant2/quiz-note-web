@@ -28,8 +28,20 @@ export enum ColorPatternEnum {
   MainLink = 'mainLink',
 
   /**
-   * アクセントカラー
+   * アクセントカラー1
    * 主にボタン
    */
-  Accent = 'accent'
+  Accent = 'accent',
+
+  /**
+   * アクセントカラー2
+   * 主にボタン
+   */
+  Accent2 = 'accent2',
+
+  /**
+   * アクセントカラー3
+   * 主にボタン
+   */
+  Accent3 = 'accent3'
 }

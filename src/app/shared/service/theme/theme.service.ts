@@ -12,100 +12,118 @@ export class ThemeService {
 
   /** テーマリスト */
   public themeList = [
+    // 青
     {
       bg: {
         base: [],
-        main: ['blue'],
-        mainHeadline: ['blue', 'darken-1'],
-        mainLink: ['blue', 'darken-4'],
-        accent: ['blue', 'accent-2', 'waves-light']
+        main: ['blue', 'lighten-2'],
+        mainHeadline: [],
+        mainLink: [],
+        accent: ['cyan', 'darken-3', 'waves-light'],
+        accent2: ['cyan', 'lighten-2', 'waves-light'],
+        accent3: ['green', 'lighten-2', 'waves-light']
       },
       text: {
         base: [],
-        main: ['blue-text'],
-        mainHeadline: ['blue-text', 'text-darken-1'],
-        mainLink: ['blue-text', 'text-darken-4'],
-        accent: ['blue-text', 'text-accent-2', 'waves-light']
+        main: [],
+        mainHeadline: ['light-blue-text', 'text-darken-4'],
+        mainLink: ['deep-purple-text', 'text-darken-3'],
+        accent: ['cyan-text', 'text-darken-3', 'waves-light']
       }
     },
+    // オレンジ
     {
       bg: {
         base: [],
-        main: ['orange'],
-        mainHeadline: ['orange', 'darken-1'],
-        mainLink: ['orange', 'darken-4'],
-        accent: ['orange', 'accent-2', 'waves-light']
+        main: ['orange', 'lighten-2'],
+        mainHeadline: [],
+        mainLink: [],
+        accent: ['deep-purple', 'lighten-2', 'waves-light'],
+        accent2: ['cyan', 'lighten-2', 'waves-light'],
+        accent3: ['green', 'lighten-2', 'waves-light']
       },
       text: {
         base: [],
-        main: ['orange-text'],
-        mainHeadline: ['orange-text', 'text-darken-1'],
-        mainLink: ['orange-text', 'text-darken-4'],
-        accent: ['orange-text', 'text-accent-2', 'waves-light']
+        main: [],
+        mainHeadline: ['light-green-text', 'text-darken-1'],
+        mainLink: ['cyan-text', 'text-darken-3'],
+        accent: ['deep-purple-text', 'text-lighten-2', 'waves-light']
       }
     },
+    // ピンク
     {
       bg: {
         base: [],
-        main: ['pink'],
-        mainHeadline: ['pink', 'darken-1'],
-        mainLink: ['pink', 'darken-4'],
-        accent: ['pink', 'accent-2', 'waves-light']
+        main: ['pink', 'accent-1'],
+        mainHeadline: [],
+        mainLink: [],
+        accent: ['pink', 'accent-1', 'waves-light'],
+        accent2: ['cyan', 'lighten-2', 'waves-light'],
+        accent3: ['green', 'lighten-2', 'waves-light']
       },
       text: {
         base: [],
-        main: ['pink-text'],
-        mainHeadline: ['pink-text', 'text-darken-1'],
-        mainLink: ['pink-text', 'text-darken-4'],
-        accent: ['pink-text', 'text-accent-2', 'waves-light']
+        main: [],
+        mainHeadline: ['brown-text'],
+        mainLink: ['green-text'],
+        accent: ['pink-text', 'text-lighten-2', 'waves-light']
       }
     },
+    // TODO 紫
     {
       bg: {
         base: [],
         main: ['purple'],
-        mainHeadline: ['purple', 'darken-1'],
-        mainLink: ['purple', 'darken-4'],
-        accent: ['purple', 'accent-2', 'waves-light']
+        mainHeadline: [],
+        mainLink: [],
+        accent: ['purple', 'waves-light'],
+        accent2: ['cyan', 'lighten-2', 'waves-light'],
+        accent3: ['green', 'lighten-2', 'waves-light']
       },
       text: {
         base: [],
-        main: ['purple-text'],
-        mainHeadline: ['purple-text', 'text-darken-1'],
-        mainLink: ['purple-text', 'text-darken-4'],
-        accent: ['purple-text', 'text-accent-2', 'waves-light']
+        main: [],
+        mainHeadline: ['purple-text'],
+        mainLink: ['purple-text'],
+        accent: ['purple-text', 'waves-light']
       }
     },
+    // 赤
     {
       bg: {
         base: [],
-        main: ['red'],
-        mainHeadline: ['red', 'darken-1'],
-        mainLink: ['red', 'darken-4'],
-        accent: ['red', 'accent-2', 'waves-light']
+        main: ['red', 'accent-2'],
+        mainHeadline: [],
+        mainLink: [],
+        accent: ['teal', 'accent-4', 'waves-light'],
+        accent2: ['orange', 'waves-light'],
+        accent3: ['pink', 'accent-1', 'waves-light']
       },
       text: {
         base: [],
-        main: ['red-text'],
-        mainHeadline: ['red-text', 'text-darken-1'],
-        mainLink: ['red-text', 'text-darken-4'],
-        accent: ['red-text', 'text-accent-2', 'waves-light']
+        main: [],
+        mainHeadline: ['teal-text', 'text-accent-4'],
+        mainLink: ['blue-text', 'text-darken-1'],
+        accent: ['teal-text', 'waves-light']
       }
     },
+    // TODO 緑
     {
       bg: {
         base: [],
         main: ['green'],
-        mainHeadline: ['green', 'darken-1'],
-        mainLink: ['green', 'darken-4'],
-        accent: ['green', 'accent-2', 'waves-light']
+        mainHeadline: [],
+        mainLink: [],
+        accent: ['green', 'waves-light'],
+        accent2: ['cyan', 'lighten-2', 'waves-light'],
+        accent3: ['green', 'lighten-2', 'waves-light']
       },
       text: {
         base: [],
-        main: ['green-text'],
-        mainHeadline: ['green-text', 'text-darken-1'],
-        mainLink: ['green-text', 'text-darken-4'],
-        accent: ['green-text', 'text-accent-2', 'waves-light']
+        main: [],
+        mainHeadline: ['green-text'],
+        mainLink: ['green-text'],
+        accent: ['green-text', 'waves-light']
       }
     }
   ];
@@ -159,9 +177,19 @@ export class ThemeService {
         classList = this.themeList[this.myThemeNo].bg.mainLink;
         break;
 
-      // アクセントカラー
+      // アクセントカラー1
       case ColorPatternEnum.Accent:
         classList = this.themeList[this.myThemeNo].bg.accent;
+        break;
+
+      // アクセントカラー2
+      case ColorPatternEnum.Accent2:
+        classList = this.themeList[this.myThemeNo].bg.accent2;
+        break;
+
+      // アクセントカラー3
+      case ColorPatternEnum.Accent3:
+        classList = this.themeList[this.myThemeNo].bg.accent3;
         break;
 
       default:

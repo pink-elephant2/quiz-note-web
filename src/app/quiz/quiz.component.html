@@ -92,14 +92,14 @@
   </a>
   <ul>
     <li *ngIf="quizData && quizData.totalElements > 0">
-      <a class="btn-floating green tooltipped" data-tooltip="問読み再生" (click)="soundAll()">
+      <a class="btn-floating tooltipped" data-tooltip="問読み再生" (click)="soundAll()" appThemeColorBg="accent3">
         <i class="material-icons">volume_up</i></a>
     </li>
     <li>
       <!-- <a class="btn-floating blue tooltipped" [ngClass]="{pulse: isPulse}" data-tooltip="新規クイズ登録" (click)="openForm()">
         <i class="material-icons">create</i></a> -->
-      <a class="btn-floating blue tooltipped" [ngClass]="{pulse: isPulse}" data-tooltip="新規クイズ登録"
-        routerLink="/quiz/create">
+      <a class="btn-floating tooltipped" [ngClass]="{pulse: isPulse}" data-tooltip="新規クイズ登録" routerLink="/quiz/create"
+        appThemeColorBg="accent2">
         <i class="material-icons">create</i></a>
     </li>
   </ul>
