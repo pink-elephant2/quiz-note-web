@@ -1,7 +1,7 @@
 <div id="carousel" class="carousel carousel-slider center">
   <div class="carousel-fixed-item center">
     <h1 class="h3">みんなのクイズ手帳！</h1>
-    <h2 class="h4">クイズの問読み・練習が変わる！</h2>
+    <h2 class="h4" appThemeColorText="mainHeadline">クイズの問読み・練習が変わる！</h2>
   </div>
   <span class="carousel-item">
     <img src="https://cdn.banana-juice.com/tech/img/articles/20111207/20111207.jpg"></span>
@@ -13,7 +13,7 @@
 
 <section class="section center">
   <div class="row">
-    <h3 class="h5">みんなのクイズ手帳とは？</h3>
+    <h3 class="h5" appThemeColorText="mainHeadline">みんなのクイズ手帳とは？</h3>
     <h4 class="h6">毎日使える！クイズ問読み・練習の定番サービス！</h4>
   </div>
 
@@ -49,7 +49,7 @@
 
 <section class="section center">
   <div class="row">
-    <h3 class="h5">今後はこんな事もできるように！</h3>
+    <h3 class="h5" appThemeColorText="mainHeadline">今後はこんな事もできるように！</h3>
   </div>
 
   <div class="row">
@@ -67,11 +67,11 @@
 
 <section class="section center">
   <div class="row">
-    <h3 class="h5">「みんなのクイズ手帳」を<br>使ってみよう！</h3>
+    <h3 class="h5" appThemeColorText="mainHeadline">「みんなのクイズ手帳」を<br>使ってみよう！</h3>
   </div>
 
   <div class="row">
-    <p><a class="btn waves-effect waves-light indigo darken-2"
+    <p><a class="btn btn-large waves-effect waves-light indigo darken-2"
         href="https://api.quiz-note.com/api/v1/login/facebook">Facebookで登録</a></p>
   </div>
 
@@ -85,7 +85,7 @@
 
 <section class="section center">
   <div class="row">
-    <h3 class="h5">Twitter</h3>
+    <h3 class="h5" appThemeColorText="mainHeadline">Twitter</h3>
   </div>
   <div class="row">
     <app-twitter></app-twitter>
@@ -99,8 +99,11 @@
   </div>
 
   <div class="row">
-    <p><a class="btn waves-effect waves-light indigo darken-2"
-        href="https://api.quiz-note.com/api/v1/login/facebook">Facebookで登録</a></p>
-    <p><a class="btn waves-effect waves-light pink accent-2" routerLink="/signup">会員登録</a></p>
+    <div class="col s12">
+      <a class=" btn btn-large waves-effect waves-light indigo darken-2"
+        href="https://api.quiz-note.com/api/v1/login/facebook">Facebookで登録</a>
+      &nbsp;&nbsp;
+      <a class="btn btn-large waves-effect" routerLink="/signup" appThemeBgColor="accent">会員登録</a>
+    </div>
   </div>
 </section>
