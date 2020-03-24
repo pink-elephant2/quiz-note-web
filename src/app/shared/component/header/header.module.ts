@@ -6,12 +6,14 @@ import { HeaderComponent } from './header.component';
 import { AppRoutingModule } from '../../../app-routing.module';
 import { AuthService, AuthMockService } from '../../service/auth';
 import { AccountService, AccountMockService } from '../../service/account';
+import { AccountImageModule } from 'shared/directive/account-image';
 import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
+    AccountImageModule,
     ThemeColorModule
   ],
   declarations: [HeaderComponent],
